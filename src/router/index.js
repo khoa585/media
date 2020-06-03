@@ -1,6 +1,12 @@
 let express = require('express');
 let router = express.Router();
-const UsersDB = require('../models/user')
+const UsersDB = require('../databases/user');
+const adminRouter = require('./admin/index');
+const {checkAdminPermision} = require('./../common/middlware');
+router.get("/admin/login",(req,res)=>{
+    res.render("admin/login")
+})
+router.use("/admin",checkAdminPermision,adminRouter);
 router.get('/', (req, res) => {
     res.render('index');
 })
