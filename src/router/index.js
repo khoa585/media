@@ -10,7 +10,6 @@ router.get("/admin/login",(req,res)=>{
 router.post("/admin/login",async(req,res)=>{
     try {
         let dataLogin = await LoginUser(req.body.username,req.body.password);
-        console.log(dataLogin);
         req.session.user = dataLogin ;
         return res.json( {
             status:"success"
