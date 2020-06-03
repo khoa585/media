@@ -26,13 +26,14 @@
 	<link rel="stylesheet" type="text/css" href="/css/util.css">
 	<link rel="stylesheet" type="text/css" href="/css/main.css">
 <!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 </head>
 <body>
 	
 	<div class="limiter">
 		<div class="container-login100" style="background-image: url('images/bg-01.jpg');">
 			<div class="wrap-login100">
-				<form class="login100-form validate-form">
+				<form class="login100-form validate-form" onsubmit="" id="formLogin">
 					<span class="login100-form-logo">
 						<i class="zmdi zmdi-landscape"></i>
 					</span>
@@ -42,12 +43,12 @@
 					</span>
 
 					<div class="wrap-input100 validate-input" data-validate = "Enter username">
-						<input class="input100" type="text" name="username" placeholder="Username">
+						<input class="input100" type="text" name="username" placeholder="Username" id="username">
 						<span class="focus-input100" data-placeholder="&#xf207;"></span>
 					</div>
 
 					<div class="wrap-input100 validate-input" data-validate="Enter password">
-						<input class="input100" type="password" name="pass" placeholder="Password">
+						<input class="input100" type="password" name="pass" placeholder="Password" id="password">
 						<span class="focus-input100" data-placeholder="&#xf191;"></span>
 					</div>
 
@@ -59,7 +60,7 @@
 					</div>
 
 					<div class="container-login100-form-btn">
-						<button class="login100-form-btn">
+						<button class="login100-form-btn" id="submitLogin">
 							Login
 						</button>
 					</div>
@@ -91,8 +92,55 @@
 	<script src="/vendor/daterangepicker/daterangepicker.js"></script>
 <!--===============================================================================================-->
 	<script src="/vendor/countdowntime/countdowntime.js"></script>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 <!--===============================================================================================-->
 	<script src="/js/main.js"></script>
-
+	<script>
+		$(document).ready(function(){
+			$("#formLogin").submit(function(event){
+				event.preventDefault();
+				let username = $("#username").val();
+				let password = $("#password").val();
+				$.ajax({
+					url:"/admin/login",
+					method:"post",
+					data:{
+						username,
+						password
+					},
+					success:(data)=>{
+						if(data.status=="success"){
+							Toastify({
+							text: "Đăng Nhập Thành Công",
+							duration: 3000,
+							newWindow: true,
+							close: true,
+							gravity: "top", // `top` or `bottom`
+							position: 'right', // `left`, `center` or `right`
+							backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
+							stopOnFocus: true // Prevents dismissing of toast on hover
+							}).showToast();
+							setTimeout(()=>{
+								location.href="/admin"
+							},500)
+						}
+						else {
+							Toastify({
+							text: "Tên Tài Khoản Hoặc Mật Khẩu Chưa Chính Xác",
+							duration: 3000,
+							newWindow: true,
+							close: true,
+							gravity: "top", // `top` or `bottom`
+							position: 'right', // `left`, `center` or `right`
+							backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
+							stopOnFocus: true // Prevents dismissing of toast on hover
+							}).showToast();
+						}
+					}
+				})
+			})
+			
+		})
+	</script>
 </body>
 </html>

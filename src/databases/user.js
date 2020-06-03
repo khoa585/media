@@ -5,12 +5,12 @@ const UsersDB=  db.define('users',{
       type:Sequelize.DataTypes.INTEGER ,
       primaryKey:true
     },
-    usename: {
+    username: {
         type: Sequelize.STRING
       },
-      password: {
-        type: Sequelize.STRING
-      }
+    password: {
+      type: Sequelize.STRING
+    }
 })
 UsersDB.sync({force:false})
 module.exports =  UsersDB

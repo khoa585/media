@@ -1,8 +1,13 @@
 const checkAdminPermision = (req,res,next)=>{
-    if(req.user){
+    let user = req.session.user ;
+    if(!user){
         res.redirect("/admin/login");
     }
-    next();
+    else {
+        req.user= user ;
+        next();
+    }
+   
 }
 module.exports ={
     checkAdminPermision

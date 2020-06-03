@@ -2,9 +2,25 @@ let express = require('express');
 let router = express.Router();
 const UsersDB = require('../databases/user');
 const adminRouter = require('./admin/index');
+const  {LoginUser} = require("./../models/User");
 const {checkAdminPermision} = require('./../common/middlware');
 router.get("/admin/login",(req,res)=>{
     res.render("admin/login")
+})
+router.post("/admin/login",async(req,res)=>{
+    try {
+        let dataLogin = await LoginUser(req.body.username,req.body.password);
+        console.log(dataLogin);
+        req.session.user = dataLogin ;
+        return res.json( {
+            status:"success"
+        })
+    } catch (error) {
+        console.log(error);
+        return res.json( {
+            status:error
+        })
+    }
 })
 router.use("/admin",checkAdminPermision,adminRouter);
 router.get('/', (req, res) => {
