@@ -4,10 +4,10 @@ const UsersDB = require('../databases/user');
 const adminRouter = require('./admin/index');
 const  {LoginUser} = require("./../models/User");
 const {checkAdminPermision} = require('./../common/middlware');
-router.get("/admin/login",(req,res)=>{
+router.get("/adminmanage/login",(req,res)=>{
     res.render("admin/login")
 })
-router.post("/admin/login",async(req,res)=>{
+router.post("/adminmanage/login",async(req,res)=>{
     try {
         let dataLogin = await LoginUser(req.body.username,req.body.password);
         req.session.user = dataLogin ;
@@ -21,7 +21,7 @@ router.post("/admin/login",async(req,res)=>{
         })
     }
 })
-router.use("/admin",checkAdminPermision,adminRouter);
+router.use("/adminmanage",checkAdminPermision,adminRouter);
 router.get('/', (req, res) => {
     res.render('index');
 })

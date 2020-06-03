@@ -102,7 +102,7 @@
 				let username = $("#username").val();
 				let password = $("#password").val();
 				$.ajax({
-					url:"/admin/login",
+					url:"/adminmanage/login",
 					method:"post",
 					data:{
 						username,
@@ -121,7 +121,7 @@
 							stopOnFocus: true // Prevents dismissing of toast on hover
 							}).showToast();
 							setTimeout(()=>{
-								location.href="/admin"
+								location.href="/adminmanage"
 							},500)
 						}
 						else {
