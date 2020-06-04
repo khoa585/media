@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 let multer = require("multer");
-const {createNews ,getListNews,TotalNumberNews} = require("./../../models/newsModel");
+const {createNews ,getListNews,TotalNumberNews ,deleteNews} = require("./../../models/newsModel");
 const { v4: uuidv4 } = require('uuid');
 let moment = require("moment");
 let storage = multer.diskStorage({
@@ -41,6 +41,22 @@ router.post("/add",upload.single("file"),
         })
     }
 })
+router.post("/delete",async(req,res)=>{
+    console.log(req.body);
+    try {
+        let resultDelete = await deleteNews(req.body.id);
+        return res.json({
+            status:"success",
+            data:resultDelete
+        })
+    } catch (error) {
+        console.log(error);
+        return res.json({
+            status:"error",
+            data:error
+        })
+    }
+})
 router.get("(/:id)?",async(req,res)=>{
     let page =1 ;
     //console.log(req.params.id);
@@ -48,10 +64,8 @@ router.get("(/:id)?",async(req,res)=>{
         page=req.params.id;
     }
     let [listNews,totalPage] = await Promise.all([getListNews(page),TotalNumberNews()]);
-    console.log(listNews);
-    console.log(totalPage);
-    res.render('admin/news/news',{user:req.user ,listNews:listNews ,totalPage:(totalPage/6)+1 ,moment:moment ,current:page})
+    // console.log(listNews);
+    // console.log(Math.floor(totalPage.count/6)+1);
+    res.render('admin/news/news',{user:req.user ,listNews:listNews ,pages:Math.floor(totalPage.count/6)+1 ,moment:moment ,current:page})
 })
-
-
 module.exports = router;

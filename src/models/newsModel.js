@@ -15,8 +15,16 @@ const getListNews = async (page=PAGE,limit=LIMIT_NUMBER)=>{
 const TotalNumberNews = async()=>{
     return newsDB.findAndCountAll({raw:true});
 }
+const deleteNews = async (id)=>{
+    return newsDB.destroy({
+        where:{
+            [newsFields.id]:id
+        }
+    })
+}
 module.exports = {
     createNews,
     getListNews,
-    TotalNumberNews
+    TotalNumberNews,
+    deleteNews
 }
