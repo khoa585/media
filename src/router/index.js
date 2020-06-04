@@ -2,6 +2,7 @@ let express = require('express');
 let router = express.Router();
 const UsersDB = require('../databases/user');
 const adminRouter = require('./admin/index');
+const uploader = require('./upload');
 const  {LoginUser} = require("./../models/User");
 const {checkAdminPermision} = require('./../common/middlware');
 router.get("/adminmanage/login",(req,res)=>{
@@ -21,6 +22,7 @@ router.post("/adminmanage/login",async(req,res)=>{
         })
     }
 })
+router.use("/uploader",uploader);
 router.use("/adminmanage",checkAdminPermision,adminRouter);
 router.get('/', (req, res) => {
     res.render('index');

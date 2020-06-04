@@ -8,25 +8,25 @@ const newsFields = {
     html:'html'
 }
  const newsDB  = db.define('news',{
-    [newsFiels.id]:{
+    [newsFields.id]:{
         type:Sequelize.DataTypes.INTEGER,
         primaryKey:true,
     },
-    [newsFiels.title]:{
+    [newsFields.title]:{
         type:Sequelize.DataTypes.TEXT
     },
-    [newsFiels.image]:{
+    [newsFields.image]:{
         type:Sequelize.DataTypes.TEXT
     },
-    [newsFiels.description]:{
+    [newsFields.description]:{
         type:Sequelize.DataTypes.TEXT
     },
-    [newsFiels.html]:{
+    [newsFields.html]:{
         type:Sequelize.DataTypes.TEXT
     },
 })
 newsDB.sync({force:false})
 module.exports ={
     newsFields,
-    newsDBx
+    newsDB
 }
