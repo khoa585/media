@@ -22,9 +22,24 @@ const deleteNews = async (id)=>{
         }
     })
 }
+const getDetialNews = async(id)=>{
+    return newsDB.findOne({
+        where:{[newsFields.id]:id},
+        raw:true
+    })
+}
+const updateNews = async(id,data)=>{
+    return newsDB.update({...data},{
+        where:{
+            id:id
+        }
+    })
+}
 module.exports = {
     createNews,
     getListNews,
     TotalNumberNews,
-    deleteNews
+    deleteNews,
+    getDetialNews,
+    updateNews
 }

@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 let multer = require("multer");
-const {createNews ,getListNews,TotalNumberNews ,deleteNews} = require("./../../models/newsModel");
+const {createNews ,getListNews,TotalNumberNews ,deleteNews ,getDetialNews,updateNews} = require("./../../models/newsModel");
 const { v4: uuidv4 } = require('uuid');
 let moment = require("moment");
 let storage = multer.diskStorage({
@@ -41,6 +41,25 @@ router.post("/add",upload.single("file"),
         })
     }
 })
+router.post("/update",upload.single("file"),
+    async(req,res)=>{
+        console.log(req.body);
+        let {id} = req.body ;
+        delete req.body.id ;
+        delete req.body.file ;
+        try {
+            if(req.file){
+                req.body.image = "/upload/"+ req.file.filename;
+            }
+            let dataUpdate = await updateNews(id,req.body);
+            return res.json({
+                status:"success",
+                data:dataUpdate
+            })
+        } catch (error) {
+            console.log(error);
+        }
+    })
 router.post("/delete",async(req,res)=>{
     console.log(req.body);
     try {
@@ -66,6 +85,21 @@ router.get("(/:id)?",async(req,res)=>{
     let [listNews,totalPage] = await Promise.all([getListNews(page),TotalNumberNews()]);
     // console.log(listNews);
     // console.log(Math.floor(totalPage.count/6)+1);
+    if(!listNews){
+        return res.redirect("/adminmanage");
+    }
     res.render('admin/news/news',{user:req.user ,listNews:listNews ,pages:Math.floor(totalPage.count/6)+1 ,moment:moment ,current:page})
+})
+router.get("/detial/:id",async(req,res)=>{
+    try {
+        let resultNews = await getDetialNews(req.params.id);
+        if(!resultNews){
+            return res.redirect("/adminmanage");
+        }
+        res.render("admin/news/detial",{user:req.user,newsDetial:resultNews,moment:moment})
+        
+    } catch (error) {
+        console.log(error);
+    }
 })
 module.exports = router;

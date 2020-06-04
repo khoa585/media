@@ -1,0 +1,257 @@
+<!--
+=========================================================
+* Argon Dashboard - v1.2.0
+=========================================================
+* Product Page: https://www.creative-tim.com/product/argon-dashboard
+
+
+* Copyright  Creative Tim (http://www.creative-tim.com)
+* Coded by www.creative-tim.com
+
+
+
+=========================================================
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+-->
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Start your development with a Dashboard for Bootstrap 4.">
+  <meta name="author" content="Creative Tim">
+  <title>Thêm Tin Tức</title>
+  <!-- Favicon -->
+  <link rel="icon" href="/assets/img/brand/favicon.png" type="image/png">
+  <!-- Fonts -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
+  <!-- Icons -->
+  <link rel="stylesheet" href="/assets/vendor/nucleo/css/nucleo.css" type="text/css">
+  <link rel="stylesheet" href="/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css" type="text/css">
+  <!-- Argon CSS -->
+  <link rel="stylesheet" href="/assets/css/argon.css?v=1.2.0" type="text/css">
+</head>
+
+<body>
+  <!-- Sidenav -->
+  <%-include("./../common/navbar.ejs")%>
+  <!-- Main content -->
+  <div class="main-content" id="panel">
+    <!-- Topnav -->
+    <%-include("./../common/header.ejs")%>
+    <!-- Header -->
+    <!-- Header -->
+    <div class="header bg-primary pb-6">
+        <div class="container-fluid">
+          <div class="header-body">
+            <div class="row align-items-center py-4">
+              <div class="col-lg-6 col-7">
+                <h6 class="h2 text-white d-inline-block mb-0">Admin</h6>
+                <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+                  <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+                    <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
+                    <li class="breadcrumb-item"><a href="#">Admin</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Cập NhậtTin Tức</li>
+                  </ol>
+                </nav>
+              </div>
+              <div class="col-lg-6 col-5 text-right">
+                <!-- <a href="/adminmanage/news/add" class="btn btn-sm btn-neutral">Thêm Mới</a> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <!-- Page content -->
+    <div class="container-fluid mt--6">
+      <div class="row">
+
+        <div class="col-xl-12 order-xl-1">
+          <div class="card">
+            <div class="card-header">
+              <div class="row align-items-center">
+                <div class="col-12">
+                  <h3 class="mb-0">Thêm Mới Tin Tức </h3>
+                </div>
+                <!-- <div class="col-4 text-right">
+                  <a href="#!" class="btn btn-sm btn-primary">Settings</a>
+                </div> -->
+              </div>
+            </div>
+            <div class="card-body">
+              <form id="formUpdate">
+                <div class="pl-lg-4">
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-username">Tiêu Đề</label>
+                        <input type="text" id="title" class="form-control" value="<%=newsDetial.title%>">
+                      </div>
+                    </div>
+                    <div class="col-lg-12">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-email">Mô Tả</label>
+                        <textarea id="descriptions" class="form-control" rows="4" cols="50"><%=newsDetial.description%></textarea>
+                      </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label class="form-control-label" for="input-email">Hình Ảnh :</label>
+                            <div id="image-priview-add" style="padding: 10px;">
+                                <img src="<%=newsDetial.image%>" class='image-preview'/>
+                            </div>
+                            <input type="file" class="form-control" id="newsImages" >
+                        </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Description -->
+                <div class="pl-lg-4">
+                  <div class="form-group">
+                    <label class="form-control-label">Nội Dung</label>
+                    <input type="text" id="idNews" value="<%=newsDetial.id%>" hidden />
+                    <textarea id="editor" class="form-control"> <%=newsDetial.html%></textarea>
+                  </div>
+                </div>
+                <div class="pl-lg-4">
+                    <button type="submit">Cập Nhật Tin Tức</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Footer -->
+      <%-include("./../common/footer.ejs")%>
+    </div>
+  </div>
+  <!-- Argon Scripts -->
+  <!-- Core -->
+  <script src="/assets/vendor/jquery/dist/jquery.min.js"></script>
+  <script src="/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/assets/vendor/js-cookie/js.cookie.js"></script>
+  <script src="/assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
+  <script src="/assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
+  <script src="//cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+  <!-- Argon JS -->
+  <script src="/assets/js/argon.js?v=1.2.0"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+  <style>
+      @media  (max-width: 700px){
+        .image-preview {
+        width: 100%;
+        height: 200px;
+        border: 1px #8898aa;
+        padding: 10px;
+        }
+      }
+      @media  (min-width: 700px){
+        .image-preview {
+        width: 50%;
+        height: 300px;
+        border: 1px #8898aa;
+        padding: 10px;
+        }
+      }
+      
+  </style>
+  <script>
+      $(document).ready(function(){
+        var editor=CKEDITOR.replace( 'editor');
+        editor.on( 'fileUploadRequest', function( evt ) {
+          console.log("Upload")
+          var fileLoader = evt.data.fileLoader,
+              formData = new FormData(),
+              xhr = fileLoader.xhr;
+
+          xhr.open( 'post', fileLoader.uploadUrl, true );
+          formData.append( 'file', fileLoader.file, fileLoader.fileName );
+          fileLoader.xhr.send( formData );
+
+          // Prevented the default behavior.
+          evt.stop();
+      }, null, null, 4 ); //
+        $("#newsImages").change(function(){
+            if (this.files && this.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+              
+                let img =`<img src=${e.target.result} class='image-preview'/>`;
+                $('#image-priview-add').empty();
+                $('#image-priview-add').append(img);
+            }
+            reader.readAsDataURL(this.files[0]);
+        }
+        })
+        // Add Tin Tức
+        $("#formUpdate").submit(function(event){
+            event.preventDefault();
+            let id = $("#idNews").val();
+            let title = $("#title").val();
+            let descriptions = $("#descriptions").val();
+            let File = $("#newsImages")[0].files[0]
+            var data = CKEDITOR.instances.editor.getData();
+            let formData = new FormData();
+            console.log(title ,File,data,descriptions)
+            if(title=="" || data =="" || descriptions =="" ){
+              return  Toastify({
+                        text: "Vui Lòng Nhập Đủ Thông Tin",
+                        duration: 3000,
+                        newWindow: true,
+                        close: true,
+                        gravity: "top", // `top` or `bottom`
+                        position: 'right', // `left`, `center` or `right`
+                        backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
+                        stopOnFocus: true // Prevents dismissing of toast on hover
+                        }).showToast();
+            }
+            formData.append('id',id);
+            formData.append('title',title);
+            formData.append('description',descriptions);
+            formData.append('html',data);
+            formData.append('file',File);
+            $.ajax({
+                url:'/adminmanage/news/update',
+                method:'post',
+                data:formData,
+                cache : false,
+                contentType: false,
+                processData: false,
+                success:function(data){
+                    if(data.status=="success"){
+                      Toastify({
+                      text: "Thêm Thành Công",
+                      duration: 3000,
+                      newWindow: true,
+                      close: true,
+                      gravity: "top", // `top` or `bottom`
+                      position: 'right', // `left`, `center` or `right`
+                      backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
+                      stopOnFocus: true // Prevents dismissing of toast on hover
+                      }).showToast();
+                      setTimeout(()=>{
+                        location.reload();
+                      },1000)
+                    }else
+                     {
+                        Toastify({
+                        text: "Có Lỗi Xảy ra",
+                        duration: 3000,
+                        newWindow: true,
+                        close: true,
+                        gravity: "top", // `top` or `bottom`
+                        position: 'right', // `left`, `center` or `right`
+                        backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
+                        stopOnFocus: true // Prevents dismissing of toast on hover
+                        }).showToast();
+                     }
+                }
+            })
+        })
+      })
+  </script>
+</body>
+
+</html>
