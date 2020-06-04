@@ -193,7 +193,8 @@
             let File = $("#newsImages")[0].files[0]
             var data = CKEDITOR.instances.editor.getData();
             let formData = new FormData();
-            if(title=="" ||File || data ==""|| descriptions =="" ){
+            console.log(title ,File,data,descriptions)
+            if(title=="" || data =="" || descriptions =="" ){
               return  Toastify({
                         text: "Vui Lòng Nhập Đủ Thông Tin",
                         duration: 3000,

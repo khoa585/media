@@ -1,8 +1,9 @@
 const express = require("express");
 const router = express.Router();
 let multer = require("multer");
-const {createNews} = require("./../../models/newsModel");
+const {createNews ,getListNews,TotalNumberNews} = require("./../../models/newsModel");
 const { v4: uuidv4 } = require('uuid');
+let moment = require("moment");
 let storage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, __dirname + '/../../public/upload');
@@ -40,8 +41,16 @@ router.post("/add",upload.single("file"),
         })
     }
 })
-router.get("(/:id)?",(req,res)=>{
-    res.render('admin/news/news',{user:req.user})
+router.get("(/:id)?",async(req,res)=>{
+    let page =1 ;
+    //console.log(req.params.id);
+    if(req.params.id){
+        page=req.params.id;
+    }
+    let [listNews,totalPage] = await Promise.all([getListNews(page),TotalNumberNews()]);
+    console.log(listNews);
+    console.log(totalPage);
+    res.render('admin/news/news',{user:req.user ,listNews:listNews ,totalPage:(totalPage/6)+1 ,moment:moment ,current:page})
 })
 
 
