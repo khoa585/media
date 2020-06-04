@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 let multer = require("multer");
 const {createNews ,getListNews,TotalNumberNews ,deleteNews ,getDetialNews,updateNews} = require("./../../models/newsModel");
-const { v4: uuidv4 } = require('uuid');
+let {genId} = require("./../../common/TextHelper");
 let moment = require("moment");
 let storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -24,7 +24,7 @@ router.post("/add",upload.single("file"),
     async(req,res)=>{
     try {
         delete req.body.file ;
-        req.body.id =uuidv4();
+        req.body.id =genId();
         if(req.file){
             req.body.image = "/upload/"+ req.file.filename;
         }
