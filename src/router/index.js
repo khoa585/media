@@ -4,30 +4,39 @@ const UsersDB = require('../databases/user');
 const adminRouter = require('./admin/index');
 const uploader = require('./upload');
 const news = require("./news");
-const  {LoginUser} = require("./../models/User");
-const {checkAdminPermision} = require('./../common/middlware');
-router.get("/adminmanage/login",(req,res)=>{
+const { LoginUser } = require("./../models/User");
+const { getListNews } = require('../models/newsModel')
+const { checkAdminPermision } = require('./../common/middlware');
+router.get("/adminmanage/login", (req, res) => {
     res.render("admin/login")
 })
-router.post("/adminmanage/login",async(req,res)=>{
+router.post("/adminmanage/login", async (req, res) => {
     try {
-        let dataLogin = await LoginUser(req.body.username,req.body.password);
-        req.session.user = dataLogin ;
-        return res.json( {
-            status:"success"
+        let dataLogin = await LoginUser(req.body.username, req.body.password);
+        req.session.user = dataLogin;
+        return res.json({
+            status: "success"
         })
     } catch (error) {
         console.log(error);
-        return res.json( {
-            status:error
+        return res.json({
+            status: error
         })
     }
 })
-router.use("/uploader",uploader);
-router.use("/adminmanage",checkAdminPermision,adminRouter);
-router.use("/tin-tuc",news);
-router.get('/', (req, res) => {
-    res.render('index');
+router.use("/uploader", uploader);
+router.use("/adminmanage", checkAdminPermision, adminRouter);
+router.use("/tin-tuc", news);
+router.get('/', async (req, res) => {
+    try {
+        const result = await getListNews(1,10)
+        res.render('index', { result: result });
+    } catch (error) {
+        return res.json({
+            status: "error",
+            data: error
+        })
+    }
 })
 router.get('/dich-vu-bao-ve-nick-facebook', (req, res) => {
     res.render('AccountSecurityService');
@@ -115,7 +124,7 @@ router.get('/tang-mat-xem-livestream-shopee', (req, res) => {
 })
 
 router.get('/testmysql', async (req, res) => {
-    const result =await UsersDB.findAll()
+    const result = await UsersDB.findAll()
     console.log(result)
 })
 module.exports = router;

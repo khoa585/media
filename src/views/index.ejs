@@ -27,6 +27,36 @@
     <link rel='stylesheet' id='flatsome-googlefonts-css'
         href='//fonts.googleapis.com/css?family=Roboto%3Aregular%2C500%2Cregular%2C500%7CDancing+Script%3Aregular%2Cdefault&#038;display=swap&#038;ver=3.9'
         type='text/css' media='all' />
+    <%
+    function to_slug(str) {
+       
+        str = str.toLowerCase();
+
+        // xóa dấu
+        str = str.replace(/(à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ)/g, 'a');
+        str = str.replace(/(è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ)/g, 'e');
+        str = str.replace(/(ì|í|ị|ỉ|ĩ)/g, 'i');
+        str = str.replace(/(ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ)/g, 'o');
+        str = str.replace(/(ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ)/g, 'u');
+        str = str.replace(/(ỳ|ý|ỵ|ỷ|ỹ)/g, 'y');
+        str = str.replace(/(đ)/g, 'd');
+
+        // Xóa ký tự đặc biệt
+        str = str.replace(/([^0-9a-z-\s])/g, '');
+
+        // Xóa khoảng trắng thay bằng ký tự -
+        str = str.replace(/(\s+)/g, '-');
+
+        // xóa phần dự - ở đầu
+        str = str.replace(/^-+/g, '');
+
+        // xóa phần dư - ở cuối
+        str = str.replace(/-+$/g, '');
+
+        // return
+        return str;
+    }
+    %>
     <style id='rocket-lazyload-inline-css' type='text/css'>
         .rll-youtube-player {
             position: relative;
@@ -1347,223 +1377,30 @@
                 </div>
                 <div class="row large-columns-4 medium-columns-1 small-columns-1 has-shadow row-box-shadow-1 row-box-shadow-2-hover slider row-slider slider-nav-reveal slider-nav-push"
                     data-flickity-options='{"imagesLoaded": true, "groupCells": "100%", "dragThreshold" : 5, "cellAlign": "left","wrapAround": true,"prevNextButtons": true,"percentPosition": true,"pageDots": false, "rightToLeft": false, "autoPlay" : 5000}'>
+                    <% result.forEach(function(task){ %>
                     <div class="col post-item">
                         <div class="col-inner">
-                            <a href="10-cach-giup-video-len-xu-huong-tik-tok/" class="plain">
+                            <a href="/tin-tuc/<%- to_slug(task.title) %>.<%-task.id%>" class="plain">
                                 <div class="box box-normal box-text-bottom box-blog-post has-hover">
                                     <div class="box-image">
                                         <div class="image-cover" style="padding-top:56.25%;"> <img width="300"
-                                                height="261"
-                                                src="data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%20300%20261%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3C%2Fsvg%3E"
-                                                data-src="wp-content/uploads/2020/04/tang-view-tik-tok-mien-phi-1-300x261.png"
+                                                height="261" src=<%-task.image%> data-src=<%-task.image%>
                                                 class="lazy-load attachment-medium size-medium wp-post-image"
-                                                alt="Tăng View Tik Tok" srcset=""
-                                                data-srcset="wp-content/uploads/2020/04/tang-view-tik-tok-mien-phi-1-300x261.png 300w, wp-content/uploads/2020/04/tang-view-tik-tok-mien-phi-1.png 396w"
+                                                alt="Tăng View Tik Tok" srcset="" data-srcset=<%-task.image%>
                                                 sizes="(max-width: 300px) 100vw, 300px" /></div>
                                     </div>
                                     <div class="box-text text-left">
                                         <div class="box-text-inner blog-post-inner">
-                                            <h5 class="post-title is-large ">10 Cách Giúp video Tik tok lên xu hướng
-                                                kiếm triệu view</h5>
+                                            <h5 class="post-title is-large "><%-task.title;%></h5>
                                             <div class="is-divider"></div>
-                                            <p class="from_the_blog_excerpt ">2019 trở lại đây Tiktok là cái tên
-                                                được nhắc đến nhiều nhất, liên tiếp...</p>
+                                            <p class="from_the_blog_excerpt "><%-task.description;%></p>
                                         </div>
                                     </div>
                                 </div>
                             </a>
                         </div>
                     </div>
-                    <div class="col post-item">
-                        <div class="col-inner">
-                            <a href="nen-mua-fanpage-co-san-hay-mua-like-cho-fanpage/" class="plain">
-                                <div class="box box-normal box-text-bottom box-blog-post has-hover">
-                                    <div class="box-image">
-                                        <div class="image-cover" style="padding-top:56.25%;"> <img width="200"
-                                                height="161"
-                                                src="data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%20200%20161%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3C%2Fsvg%3E"
-                                                data-src="wp-content/uploads/2020/04/fbb2.png"
-                                                class="lazy-load attachment-medium size-medium wp-post-image" alt="" />
-                                        </div>
-                                    </div>
-                                    <div class="box-text text-left">
-                                        <div class="box-text-inner blog-post-inner">
-                                            <h5 class="post-title is-large ">Nên Mua Fanpage Có Sẵn Hay Mua Like Cho
-                                                Fanpage ?</h5>
-                                            <div class="is-divider"></div>
-                                            <p class="from_the_blog_excerpt ">Các bạn đang cần 1 fanpage nhiều like
-                                                để kinh doanh bán hàng hiệu quả...</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col post-item">
-                        <div class="col-inner">
-                            <a href="6-cach-hack-like-hack-view-hack-share-video-tik-tok-mien-phi-2020/" class="plain">
-                                <div class="box box-normal box-text-bottom box-blog-post has-hover">
-                                    <div class="box-image">
-                                        <div class="image-cover" style="padding-top:56.25%;"> <img width="300"
-                                                height="300"
-                                                src="data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%20300%20300%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3C%2Fsvg%3E"
-                                                data-src="wp-content/uploads/2020/04/tt-sg-article-cover-80fce146c8739a73b19daab745dcd818-300x300.png"
-                                                class="lazy-load attachment-medium size-medium wp-post-image"
-                                                alt="Tích Xanh Tik Tok" srcset=""
-                                                data-srcset="wp-content/uploads/2020/04/tt-sg-article-cover-80fce146c8739a73b19daab745dcd818-300x300.png 300w, wp-content/uploads/2020/04/tt-sg-article-cover-80fce146c8739a73b19daab745dcd818-150x150.png 150w, wp-content/uploads/2020/04/tt-sg-article-cover-80fce146c8739a73b19daab745dcd818.png 342w"
-                                                sizes="(max-width: 300px) 100vw, 300px" /></div>
-                                    </div>
-                                    <div class="box-text text-left">
-                                        <div class="box-text-inner blog-post-inner">
-                                            <h5 class="post-title is-large ">6 cách hack like, hack view, hack share
-                                                video Tik Tok miễn phí 2020</h5>
-                                            <div class="is-divider"></div>
-                                            <p class="from_the_blog_excerpt ">Có phải điều các bạn đang mong muốn đó
-                                                chính là: Tăng follow Tik Tok,...</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col post-item">
-                        <div class="col-inner">
-                            <a href="5-cach-de-tang-like-nhanh-chong-tren-instargram-2020/" class="plain">
-                                <div class="box box-normal box-text-bottom box-blog-post has-hover">
-                                    <div class="box-image">
-                                        <div class="image-cover" style="padding-top:56.25%;"> <img width="300"
-                                                height="225"
-                                                src="data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%20300%20225%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3C%2Fsvg%3E"
-                                                data-src="wp-content/uploads/2020/02/hinh-300x225.jpg"
-                                                class="lazy-load attachment-medium size-medium wp-post-image" alt=""
-                                                srcset=""
-                                                data-srcset="wp-content/uploads/2020/02/hinh-300x225.jpg 300w, wp-content/uploads/2020/02/hinh.jpg 480w"
-                                                sizes="(max-width: 300px) 100vw, 300px" /></div>
-                                    </div>
-                                    <div class="box-text text-left">
-                                        <div class="box-text-inner blog-post-inner">
-                                            <h5 class="post-title is-large ">5 cách để tăng like nhanh chóng trên
-                                                instargram 2020</h5>
-                                            <div class="is-divider"></div>
-                                            <p class="from_the_blog_excerpt ">Bài viết này nhằm mục đích chia sẻ
-                                                cách tăng like instargram mà không mất phí,...</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col post-item">
-                        <div class="col-inner">
-                            <a href="dung-mo-ban-hang-tren-facebook-ca-nhan-hieu-qua-neu-mac-8-sai-lam-nay/"
-                                class="plain">
-                                <div class="box box-normal box-text-bottom box-blog-post has-hover">
-                                    <div class="box-image">
-                                        <div class="image-cover" style="padding-top:56.25%;"> <img width="300"
-                                                height="124"
-                                                src="data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%20300%20124%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3C%2Fsvg%3E"
-                                                data-src="wp-content/uploads/2020/02/dung-mo-ban-hang-tren-face-book-ca-nhan-hieu-qua-neu-mac-phai-nhung-sai-lam-nay-1-300x124.jpg"
-                                                class="lazy-load attachment-medium size-medium wp-post-image" alt=""
-                                                srcset=""
-                                                data-srcset="wp-content/uploads/2020/02/dung-mo-ban-hang-tren-face-book-ca-nhan-hieu-qua-neu-mac-phai-nhung-sai-lam-nay-1-300x124.jpg 300w, wp-content/uploads/2020/02/dung-mo-ban-hang-tren-face-book-ca-nhan-hieu-qua-neu-mac-phai-nhung-sai-lam-nay-1-768x317.jpg 768w, wp-content/uploads/2020/02/dung-mo-ban-hang-tren-face-book-ca-nhan-hieu-qua-neu-mac-phai-nhung-sai-lam-nay-1.jpg 800w"
-                                                sizes="(max-width: 300px) 100vw, 300px" /></div>
-                                    </div>
-                                    <div class="box-text text-left">
-                                        <div class="box-text-inner blog-post-inner">
-                                            <h5 class="post-title is-large ">Đừng mơ bán hàng trên Facebook cá nhân
-                                                hiệu quả nếu mắc 8 sai lầm này</h5>
-                                            <div class="is-divider"></div>
-                                            <p class="from_the_blog_excerpt ">Một trong những cách bán hàng online
-                                                hiệu quả hiện nay đó là bán hàng...</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col post-item">
-                        <div class="col-inner">
-                            <a href="muon-livestream-ban-quan-ao-dep-va-hieu-qua-dung-bo-qua-bi-quyet-nay/"
-                                class="plain">
-                                <div class="box box-normal box-text-bottom box-blog-post has-hover">
-                                    <div class="box-image">
-                                        <div class="image-cover" style="padding-top:56.25%;"> <img width="300"
-                                                height="200"
-                                                src="data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%20300%20200%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3C%2Fsvg%3E"
-                                                data-src="wp-content/uploads/2020/02/cach-live-stream-ban-quan-ao-hieu-qua-1-1-300x200.jpg"
-                                                class="lazy-load attachment-medium size-medium wp-post-image" alt=""
-                                                srcset=""
-                                                data-srcset="wp-content/uploads/2020/02/cach-live-stream-ban-quan-ao-hieu-qua-1-1-300x200.jpg 300w, wp-content/uploads/2020/02/cach-live-stream-ban-quan-ao-hieu-qua-1-1.jpg 640w"
-                                                sizes="(max-width: 300px) 100vw, 300px" /></div>
-                                    </div>
-                                    <div class="box-text text-left">
-                                        <div class="box-text-inner blog-post-inner">
-                                            <h5 class="post-title is-large ">Muốn livestream bán quần áo đẹp và hiệu
-                                                quả, đừng bỏ qua bí quyết này</h5>
-                                            <div class="is-divider"></div>
-                                            <p class="from_the_blog_excerpt ">Livestream bán hàng không khó, nhưng
-                                                kỹ năng livestream trên Facebook đẹp và cách live...</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col post-item">
-                        <div class="col-inner">
-                            <a href="huong-dan-chi-tiet-cach-live-stream-tren-shopee-kiem-tram-don-moi-ngay/"
-                                class="plain">
-                                <div class="box box-normal box-text-bottom box-blog-post has-hover">
-                                    <div class="box-image">
-                                        <div class="image-cover" style="padding-top:56.25%;"> <img width="300"
-                                                height="187"
-                                                src="data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%20300%20187%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3C%2Fsvg%3E"
-                                                data-src="wp-content/uploads/2020/02/cach-live-stream-tren-shopee-2-300x187.jpg"
-                                                class="lazy-load attachment-medium size-medium wp-post-image" alt=""
-                                                srcset=""
-                                                data-srcset="wp-content/uploads/2020/02/cach-live-stream-tren-shopee-2-300x187.jpg 300w, wp-content/uploads/2020/02/cach-live-stream-tren-shopee-2.jpg 600w"
-                                                sizes="(max-width: 300px) 100vw, 300px" /></div>
-                                    </div>
-                                    <div class="box-text text-left">
-                                        <div class="box-text-inner blog-post-inner">
-                                            <h5 class="post-title is-large ">Hướng dẫn chi tiết cách live stream
-                                                trên Shopee kiếm trăm đơn mỗi ngày</h5>
-                                            <div class="is-divider"></div>
-                                            <p class="from_the_blog_excerpt ">Shopee Live là gì? Livestream trên
-                                                Shopee có lợi ích gì? Làm thế nào để...</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col post-item">
-                        <div class="col-inner">
-                            <a href="huong-dan-5-cach-kiem-tien-tren-instagram-nhanh-va-de-lam/" class="plain">
-                                <div class="box box-normal box-text-bottom box-blog-post has-hover">
-                                    <div class="box-image">
-                                        <div class="image-cover" style="padding-top:56.25%;"> <img width="300"
-                                                height="200"
-                                                src="data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%20300%20200%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3C%2Fsvg%3E"
-                                                data-src="wp-content/uploads/2020/02/cach-kiem-tien-tren-instagram-1-300x200.jpg"
-                                                class="lazy-load attachment-medium size-medium wp-post-image" alt=""
-                                                srcset=""
-                                                data-srcset="wp-content/uploads/2020/02/cach-kiem-tien-tren-instagram-1-300x200.jpg 300w, wp-content/uploads/2020/02/cach-kiem-tien-tren-instagram-1-1024x682.jpg 1024w, wp-content/uploads/2020/02/cach-kiem-tien-tren-instagram-1-768x512.jpg 768w, wp-content/uploads/2020/02/cach-kiem-tien-tren-instagram-1.jpg 1280w"
-                                                sizes="(max-width: 300px) 100vw, 300px" /></div>
-                                    </div>
-                                    <div class="box-text text-left">
-                                        <div class="box-text-inner blog-post-inner">
-                                            <h5 class="post-title is-large ">Hướng dẫn 5 cách kiếm tiền trên
-                                                Instagram nhanh và dễ làm</h5>
-                                            <div class="is-divider"></div>
-                                            <p class="from_the_blog_excerpt ">Làm thế nào để kiếm tiền online trên
-                                                Instagram? Cách kiếm tiền trên Instagram nào...</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
+                    <% }) %>
                 </div>
                 <div class="row" id="row-1840980824">
                     <div class="col medium-2 small-12 large-2">
@@ -2205,6 +2042,9 @@
             height: 36px
         }
     </style>
+    <script>
+       
+    </script>
     <script
         type='text/javascript'>/* <![CDATA[ */ var flatsomeVars = { "ajaxurl": "https:\/\/ezmedia.vn\/wp-admin\/admin-ajax.php", "rtl": "", "sticky_height": "64", "lightbox": { "close_markup": "<button title=\"%title%\" type=\"button\" class=\"mfp-close\"><svg xmlns=\"http:\/\/www.w3.org\/2000\/svg\" width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"feather feather-x\"><line x1=\"18\" y1=\"6\" x2=\"6\" y2=\"18\"><\/line><line x1=\"6\" y1=\"6\" x2=\"18\" y2=\"18\"><\/line><\/svg><\/button>", "close_btn_inside": false }, "user": { "can_edit_pages": false } }; /* ]]> */</script>
     <script>window.lazyLoadOptions = { elements_selector: "img[data-lazy-src],.rocket-lazyload,iframe[data-lazy-src]", data_src: "lazy-src", data_srcset: "lazy-srcset", data_sizes: "lazy-sizes", class_loading: "lazyloading", class_loaded: "lazyloaded", threshold: 300, callback_loaded: function (element) { if (element.tagName === "IFRAME" && element.dataset.rocketLazyload == "fitvidscompatible") { if (element.classList.contains("lazyloaded")) { if (typeof window.jQuery != "undefined") { if (jQuery.fn.fitVids) { jQuery(element).parent().fitVids() } } } } } }; window.addEventListener('LazyLoad::Initialized', function (e) {
