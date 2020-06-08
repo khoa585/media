@@ -29,7 +29,7 @@ router.post("/adminmanage/login", async (req, res) => {
 router.use("/uploader", uploader);
 router.use("/adminmanage", checkAdminPermision, adminRouter);
 router.use("/tin-tuc", news);
-router.use("/san-pham",products);
+router.use("/phan-mem",products);
 router.get('/', async (req, res) => {
     try {
         const result = await getListNews(1,10)

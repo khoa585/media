@@ -7,7 +7,6 @@ router.get("/", async (req, res) => {
 router.get("/*.:id", async (req, res) => {
     const {id} = req.params
     const [resultDetailNews,resultNews] = await Promise.all([getDetialNews(parseInt(id)),getListNews(1,5)])
-   console.log(resultNews)
     res.render("news/detail",{resultDetailNews : resultDetailNews,resultNews : resultNews})
 })
 module.exports = router;

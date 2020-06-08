@@ -41,6 +41,17 @@
         return str;
     }
     %>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
     <style type="text/css">
         img.wp-smiley,
         img.emoji {
@@ -122,6 +133,9 @@
             opacity: 1
         }
     </style>
+    <%
+        const formatter = new Intl.NumberFormat('vi-VN')
+        %>
     <link rel="icon" href="../wp-content/uploads/2019/03/12-61x60.png" sizes="32x32" />
     <link rel="icon" href="../wp-content/uploads/2019/03/12.png" sizes="192x192" />
     <link rel="apple-touch-icon" href="../wp-content/uploads/2019/03/12.png" />
@@ -208,6 +222,11 @@
 
         .search-form {
             width: 61%
+        }
+
+        .footer-widgets.footer.footer-1 {
+            display: flex;
+            justify-content: center;
         }
 
         .header-bg-color,
@@ -732,108 +751,415 @@
             </style>
         </div>
         <%- include('../common/Header'); %>
-        <main id="main" class="">
-            <div id="content" class="blog-wrapper blog-single page-wrapper">
-                <div class="row row-large row-divided ">
-                    <div class="large-9 col">
-                        <article id="post-4802"
-                            class="post-4802 post type-post status-publish format-standard has-post-thumbnail hentry category-tik-tok">
-                            <div class="article-inner has-shadow box-shadow-1 box-shadow-2-hover">
-                                <header class="entry-header">
-                                    <div class="entry-header-text entry-header-text-top text-left">
-                                        <h1 class="entry-title"><%- resultDetailNews.title %></h1>
-                                        <div class="entry-divider is-divider small"></div>
-                                    </div>
-                                </header>
-                                <div class="entry-content single-page">
-                                    <%- resultDetailNews.html %>
-                                </div>
-                                <nav role="navigation" id="nav-below" class="navigation-post">
-                                    <div class="flex-row next-prev-nav bt bb">
-                                        <div class="flex-col flex-grow nav-prev text-left">
-                                            <div class="nav-previous">
-                                                <a href="10-cach-giup-video-len-xu-huong-tik-tok/" rel="prev">
-                                                    <span class="hide-for-small"><i class="icon-angle-left"></i></span>
-                                                    10 Cách Giúp video Tik tok lên xu hướng kiếm triệu view</a>
+        <div id="content" class="site-content" itemtype="https://schema.org/WebSite" itemscope="itemscope">
+            <div id="primary" class="content-area primary">
+                <main id="main" class="site-main" role="main">
+                    <article id="home-page" class="home-page">
+                        <div class="entry-content clear" itemprop="text">
+                            <section id="Product" class="section section-product aos-init aos-animate"
+                                data-aos="fade-up">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <h2 style="margin-bottom:40px;font-weight: bold;text-align: center;">ATP -
+                                                CUNG CẤP CHO BẠN NHỮNG SẢN PHẨM TỐT NHẤT</h2>
+                                        </div>
+                                        <div style="clear:both"></div>
+                                        <% if (resultData.length !=0) { %>
+                                        <% resultData.forEach(function(task){ %>
+                                        <div class="col-md-3">
+                                            <div id="ATPMedia" class="box-product">
+                                                <div class="box-hover">
+                                                    <p class="button button-quick"
+                                                        onclick="clickHandler('<%-task.name%>','<%-task.price%>','<%-task.description%>','<%-task.detial%>','<%-task.image%>')"
+                                                        data-toggle="modal" data-target="#staticBackdrop"><a
+                                                            href="javascript:void(0)" class="btn btn-default">XEM
+                                                            NHANH</a></p>
+                                                    <p class="button button-info"><a href="" target="_blank"
+                                                            class="btn btn-main">XEM CHI TIẾT</a></p>
+                                                </div>
+                                                <p class="image"><img src=<%-task.image%> alt="simple-leads"></p>
+
+                                                <h3 class="title"><span><%-task.name%></span></h3>
+                                                <p class="price"><%-formatter.format(task.price)%> VND</p>
+                                                <p class="description"><%- task.description%> </p>
+                                                <p class="download"><a href="javascript:void(0)" data-id="67113"
+                                                        data-name="ATP Media"
+                                                        class="btn btn-second btn-check-down hidden-xs"><img
+                                                        src="https://atpsoftware.vn/wp-content/themes/jnews-child/template/img/cloud-storage-download.png"
+                                                            alt="download">TÌM HIỂU NGAY</a></p>
                                             </div>
                                         </div>
-                                        <div class="flex-col flex-grow nav-next text-right">
-                                            <div class="nav-next"><a
-                                                    href="https://ezmedia.vn/10-cach-giup-video-len-xu-huong-tik-tok/"
-                                                    rel="next">10 Cách Giúp video Tik tok lên xu hướng kiếm triệu view
-                                                    <span class="hide-for-small"><i
-                                                            class="icon-angle-right"></i></span></a></div>
+                                        <% }) %>
+                                        <% } %>
+                                    </div>
+                                </div>
+                            </section>
+                            <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false"
+                                tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <div id="MembershipSitePopup" class="popup-content">
+                                            <div class="close-popup" data-dismiss="modal"><a
+                                                    href="javascript:void(0)">×</a></div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <h3 class="title" id="titleProduct"></h3>
+                                                    <div class="hr"></div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <p class="image-product"><img id="imageP" alt="all-in-one"></p>
+                                                </div>
+                                                <div class="col-md-6 content-body">
+                                                    <p class="titletag" id="titletag"></p>
+                                                    <p class="description" id="detailsP"></p>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <p class="description" id="descriptionP"></p>
+                                                    <p class="button-"><a href="#"
+                                                            class="btn btn-default" target="_blank">TÌM HIỂU NGAY</a> <a
+                                                            href="javascript:void(0)"
+                                                            class="btn btn-second btn-form-crm"
+                                                            data-name="Special Combo">MUA NGAY</a></p>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </nav>
+                                </div>
                             </div>
-                        </article>
-                        <div id="comments" class="comments-area">
-                            <div id="respond" class="comment-respond">
-                                <h3 id="reply-title" class="comment-reply-title">Trả lời <small><a rel="nofollow"
-                                            id="cancel-comment-reply-link"
-                                            href="4-buoc-cach-tai-video-tik-tok-khong-co-logo-va-id/#respond"
-                                            style="display:none;">Hủy</a></small></h3>
-                                <form action="wp-comments-post.php" method="post" id="commentform" class="comment-form"
-                                    novalidate>
-                                    <p class="comment-notes"><span id="email-notes">Email của bạn sẽ không được hiển thị
-                                            công khai.</span> Các trường bắt buộc được đánh dấu <span
-                                            class="required">*</span></p>
-                                    <p class="comment-form-comment"><label for="comment">Bình luận</label><textarea
-                                            id="comment" name="comment" cols="45" rows="8" maxlength="65525"
-                                            required="required"></textarea></p>
-                                    <p class="comment-form-author"><label for="author">Tên <span
-                                                class="required">*</span></label> <input id="author" name="author"
-                                            type="text" value="" size="30" maxlength="245" required='required' /></p>
-                                    <p class="comment-form-email"><label for="email">Email <span
-                                                class="required">*</span></label> <input id="email" name="email"
-                                            type="email" value="" size="30" maxlength="100"
-                                            aria-describedby="email-notes" required='required' /></p>
-                                    <p class="comment-form-url"><label for="url">Trang web</label> <input id="url"
-                                            name="url" type="url" value="" size="30" maxlength="200" /></p>
-                                    <p class="form-submit"><input name="submit" type="submit" id="submit" class="submit"
-                                            value="Phản hồi" /> <input type='hidden' name='comment_post_ID' value='4802'
-                                            id='comment_post_ID' /> <input type='hidden' name='comment_parent'
-                                            id='comment_parent' value='0' /></p>
-                                </form>
-                            </div>
+                            <style type="text/css">
+                                .section-product .box-product .image,
+                                .section-product .box-product .download,
+                                .section-product .box-product .title {
+                                    text-align: center;
+                                }
+
+                                .section-product h2::after {
+                                    content: "";
+                                    display: block;
+                                    background-color: #fa6018;
+                                    width: 100px;
+                                    height: 4px;
+                                    margin: 20px auto 0;
+                                }
+
+                                .section-product .box-product {
+                                    padding: 20px 30px;
+                                    box-shadow: 0 0 10px #ccc;
+                                    border-radius: 10px;
+                                    margin-bottom: 40px;
+                                    background: url(https://atpsoftware.vn/wp-content/themes/jnews-child/template/img/bg-pro.png) no-repeat #fdfdfd;
+                                    background-size: contain;
+                                    position: relative;
+                                }
+
+                                .box-hover {
+                                    position: absolute;
+                                    z-index: 1;
+                                    left: 0;
+                                    width: 100%;
+                                    top: 60px;
+                                    display: none;
+                                }
+
+                                .box-product:hover .box-hover {
+                                    display: block;
+                                }
+
+                                .box-hover .button {
+                                    text-align: center;
+                                    margin-bottom: 20px;
+                                    width: 100%;
+                                    background: transparent;
+                                }
+
+                                .box-hover .button .btn {
+                                    width: 130px;
+                                    padding: 10px;
+                                    font-weight: bold;
+                                    color: #fff;
+                                    line-height: 1.42857143;
+                                    border-radius: 4px;
+                                }
+
+                                .box-hover .button-quick .btn {
+                                    background-color: #fff0;
+                                    border: 2px solid #fff;
+                                    transition: all 0.2s;
+                                }
+
+                                .box-hover .button-quick .btn:hover {
+                                    background: #fff;
+                                    color: #000;
+                                }
+
+                                .section-product .box-product .image img {
+                                    width: 160px;
+                                }
+
+                                .section-product .box-product .btn-second {
+                                    width: 100%;
+                                    /* padding: 5px; */
+                                    background: #1e2f7f;
+                                    border-radius: 20px;
+                                    color: #fff;
+                                }
+
+                                .section-product .product-more {
+                                    text-align: center;
+                                    margin-top: 30px;
+                                }
+
+                                a.btn.btn-main {
+                                    border-color: #fa6018;
+                                    background-color: #fa6018;
+                                }
+
+                                .section-product .product-more .btn-main {
+                                    padding: 15px 60px;
+                                    border-radius: 40px;
+                                    font-size: 22px;
+                                    box-shadow: 0 0 46px #fa601861;
+
+                                }
+
+                                .section-product .product-more img {
+                                    width: 40px;
+                                    margin-right: 10px;
+                                }
+
+                                /* popup product */
+                                .section-popupproduct {
+                                    width: 100vw;
+                                    height: 100vh;
+                                    top: 0;
+                                    left: 0;
+                                    background: #00000080;
+                                    z-index: 999;
+                                }
+
+                                .popup-content {
+                                    background: #fff;
+                                    padding: 20px;
+                                    border-radius: 20px;
+                                    text-align: center;
+                                    position: relative;
+                                }
+
+                                .popup-content h3.title {
+                                    padding: 0 50px;
+                                }
+
+                                .section-popupproduct .image-product {
+                                    text-align: center;
+                                    position: relative;
+                                    background: url(https://atpsoftware.vn/wp-content/themes/jnews-child/template/img/layer-bg.png) no-repeat;
+                                    background-position: 50%;
+                                    background-size: contain;
+                                    margin: 0 40px;
+                                }
+
+                                .image-product img {
+                                    width: 220px;
+                                }
+
+                                .popup-content .titletag span {
+                                    background-color: #fa6018;
+                                    color: #ffffff;
+                                    padding: 7px 10px;
+                                    border-radius: 10px;
+                                    font-size: 16px;
+                                    font-weight: bold;
+                                }
+
+                                .popup-content .titletag {
+                                    font-size: 18px;
+                                    color: #cd0606;
+                                    font-weight: bold;
+                                    margin-bottom: 20px;
+                                }
+
+                                .popup-content .description img {
+                                    width: 20px;
+                                }
+
+                                .popup-content .col-md-12 .description {
+                                    padding: 0 20px;
+                                    margin: 20px 0;
+                                }
+
+                                .popup-content .col-md-12 .btn {
+                                    margin: 0 10px;
+                                    padding: 10px 0;
+                                    width: 150px;
+                                    font-weight: bold;
+                                    border-radius: 10px;
+                                    background: #1e2f7f;
+                                    color: #ffffff;
+                                }
+
+                                .popup-content .col-md-12 .btn-default {
+                                    background: #000000;
+                                    color: #ffffff;
+                                }
+
+                                .section-popupproduct .image-product img {
+                                    width: 220px;
+                                }
+
+                                .popup-content .close-popup {
+                                    padding-right: 10px;
+                                    padding-top: 10px;
+                                    position: absolute;
+                                    right: 0;
+                                    z-index: 1;
+                                }
+
+                                .popup-content .close-popup a {
+                                    background: #fa6018;
+                                    color: #fff;
+                                    padding: 0px 9px;
+                                    border-radius: 25px;
+                                    font-size: 22px;
+                                    float: right;
+                                    text-decoration: none;
+                                }
+
+                                .popup-content .content-body {
+                                    text-align: left;
+                                }
+
+                                .section-product .box-product:hover .image::before {
+                                    content: "";
+                                    position: absolute;
+                                    width: 100%;
+                                    height: 230px;
+                                    margin-top: -20px;
+                                    border-radius: 10px;
+                                    border-bottom-right-radius: 0;
+                                    border-bottom-left-radius: 0;
+                                    left: 0;
+                                    background-color: #0006;
+                                }
+
+                                /* box Product */
+                                .section-product .box-product .title span {
+                                    font-size: 20px;
+                                    background: #fa6018;
+                                    color: #fff;
+                                    padding: 5px;
+                                    border-radius: 10px;
+                                }
+
+                                .section-product .box-product .price {
+                                    text-align: center;
+                                    font-size: 18px;
+                                    color: #e60405;
+                                    margin-top: 20px;
+                                    font-weight: bold;
+                                }
+
+                                .section-product .box-product .description {
+                                    min-height: 80px;
+                                }
+
+                                .section-product .download img {
+                                    width: 20px;
+                                }
+
+                                .section-product .icon {
+                                    position: absolute;
+                                    right: 10%;
+                                    top: 40%;
+                                }
+
+                                .section .popup-content .icon {
+                                    top: auto;
+                                    bottom: 10%;
+                                }
+
+                                .affix {
+                                    position: fixed;
+                                }
+
+                                .hide {
+                                    display: none !important;
+                                }
+
+                                .box-hover .button:hover,
+                                .box-hover .button-quick .btn:hover {
+                                    box-shadow: none;
+                                }
+
+                                @media (max-width: 767px) {
+                                    .section-product .product-more .btn-second img {
+                                        width: 20px;
+                                    }
+
+                                    .section-product .product-more .btn-second {
+                                        border-radius: 40px;
+                                        font-size: 14px;
+                                        box-shadow: 0 0 30px #1e2f7f54;
+                                        padding-top: 10px;
+                                        padding-bottom: 10px;
+                                    }
+
+                                    .section-product .col-md-3 {
+                                        width: 50%;
+                                        float: left;
+                                    }
+
+                                    .section-product .box-product {
+                                        padding: 5px 10px;
+                                        margin-bottom: 20px;
+                                    }
+
+                                    .section-product .box-product .title span,
+                                    .section-product .box-product .price {
+                                        font-size: 14px;
+                                    }
+
+                                    .section-product .box-product .description {
+                                        font-size: 12px;
+                                    }
+
+                                    .section-product .box-product .image img {
+                                        width: 50%;
+                                    }
+
+                                    .section-popupproduct .image-product img {
+                                        width: 150px;
+                                    }
+
+                                    .section-popupproduct {
+                                        padding: 10px;
+                                    }
+
+                                    .popup-content {
+                                        width: 100%;
+                                        margin-top: 0px;
+                                    }
+
+                                    .popup-content .titletag {
+                                        text-align: center;
+                                        margin-top: 20px;
+                                    }
+
+                                    .popup-content .content-body .description {
+                                        display: none;
+                                    }
+
+                                    .popup-content h3.title {
+                                        font-size: 16px;
+                                        line-height: 20px;
+                                    }
+                                }
+                            </style>
                         </div>
-                    </div>
-                    <div class="post-sidebar large-3 col">
-                        <div id="secondary" class="widget-area " role="complementary">
-                            <aside id="search-2" class="widget widget_search">
-                                <form method="get" class="searchform" action="" role="search">
-                                    <div class="flex-row relative">
-                                        <div class="flex-col flex-grow"> <input type="search" class="search-field mb-0"
-                                                name="s" value="" id="s" placeholder="Tìm kiếm..." /></div>
-                                        <div class="flex-col"> <button type="submit"
-                                                class="ux-search-submit submit-button secondary button icon mb-0"
-                                                aria-label="Submit"> <i class="icon-search"></i> </button></div>
-                                    </div>
-                                    <div class="live-search-results text-left z-top"></div>
-                                </form>
-                            </aside>
-                            <aside id="recent-posts-2" class="widget widget_recent_entries">
-                                <span class="widget-title "><span>Bài viết mới</span></span>
-                                <div class="is-divider small"></div>
-                                <ul>
-                                    <% resultNews.forEach(function(item){ %>
-                                    <li>
-                                        <a href="/<%-to_slug(item.title)%>" aria-current="page"><%- item.title %></a>
-                                    </li>
-                                    <% }) %>
-                                </ul>
-                            </aside>
-                            <aside id="recent-comments-2" class="widget widget_recent_comments">
-                                <span class="widget-title "><span>Phản hồi gần đây</span></span>
-                                <div class="is-divider small"></div>
-                                <ul id="recentcomments"></ul>
-                            </aside>
-                        </div>
-                    </div>
-                </div>
+                    </article>
+                </main>
             </div>
-        </main>
+        </div>
         <%- include('../common/Footer'); %>
     </div>
     <div id="main-menu" class="mobile-sidebar no-scrollbar mfp-hide">
@@ -1461,7 +1787,19 @@
             width: 36px;
             height: 36px
         }
-    </style>
+    </style>\
+    <script>
+        const formatter = new Intl.NumberFormat('vi-VN')
+        function clickHandler(name, price, description, detail, image) {
+            const priceP = formatter.format(price)
+            console.log(detail)
+            document.querySelector("#imageP").src = image
+            document.querySelector("#titleProduct").innerHTML = name
+            document.querySelector("#titletag").innerHTML = priceP + ' VND'
+            document.querySelector("#descriptionP").innerHTML = description
+            document.querySelector("#detailsP").innerHTML = detail
+        }
+    </script>
     <script
         type='text/javascript'>/* <![CDATA[ */ var flatsomeVars = { "ajaxurl": "https:\/\/ezmedia.vn\/wp-admin\/admin-ajax.php", "rtl": "", "sticky_height": "64", "lightbox": { "close_markup": "<button title=\"%title%\" type=\"button\" class=\"mfp-close\"><svg xmlns=\"http:\/\/www.w3.org\/2000\/svg\" width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"feather feather-x\"><line x1=\"18\" y1=\"6\" x2=\"6\" y2=\"18\"><\/line><line x1=\"6\" y1=\"6\" x2=\"18\" y2=\"18\"><\/line><\/svg><\/button>", "close_btn_inside": false }, "user": { "can_edit_pages": false } }; /* ]]> */</script>
     <script>window.lazyLoadOptions = { elements_selector: "img[data-lazy-src],.rocket-lazyload,iframe[data-lazy-src]", data_src: "lazy-src", data_srcset: "lazy-srcset", data_sizes: "lazy-sizes", class_loading: "lazyloading", class_loaded: "lazyloaded", threshold: 300, callback_loaded: function (element) { if (element.tagName === "IFRAME" && element.dataset.rocketLazyload == "fitvidscompatible") { if (element.classList.contains("lazyloaded")) { if (typeof window.jQuery != "undefined") { if (jQuery.fn.fitVids) { jQuery(element).parent().fitVids() } } } } } }; window.addEventListener('LazyLoad::Initialized', function (e) {
@@ -1485,29 +1823,3 @@
 </body>
 
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

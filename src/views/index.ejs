@@ -1377,6 +1377,7 @@
                 </div>
                 <div class="row large-columns-4 medium-columns-1 small-columns-1 has-shadow row-box-shadow-1 row-box-shadow-2-hover slider row-slider slider-nav-reveal slider-nav-push"
                     data-flickity-options='{"imagesLoaded": true, "groupCells": "100%", "dragThreshold" : 5, "cellAlign": "left","wrapAround": true,"prevNextButtons": true,"percentPosition": true,"pageDots": false, "rightToLeft": false, "autoPlay" : 5000}'>
+                    <% if (result.length !=0) { %>
                     <% result.forEach(function(task){ %>
                     <div class="col post-item">
                         <div class="col-inner">
@@ -1401,6 +1402,7 @@
                         </div>
                     </div>
                     <% }) %>
+                    <% } %>
                 </div>
                 <div class="row" id="row-1840980824">
                     <div class="col medium-2 small-12 large-2">
@@ -1914,7 +1916,7 @@
         }
     </style>
     <script>
-       
+
     </script>
     <script
         type='text/javascript'>/* <![CDATA[ */ var flatsomeVars = { "ajaxurl": "https:\/\/ezmedia.vn\/wp-admin\/admin-ajax.php", "rtl": "", "sticky_height": "64", "lightbox": { "close_markup": "<button title=\"%title%\" type=\"button\" class=\"mfp-close\"><svg xmlns=\"http:\/\/www.w3.org\/2000\/svg\" width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"feather feather-x\"><line x1=\"18\" y1=\"6\" x2=\"6\" y2=\"18\"><\/line><line x1=\"6\" y1=\"6\" x2=\"18\" y2=\"18\"><\/line><\/svg><\/button>", "close_btn_inside": false }, "user": { "can_edit_pages": false } }; /* ]]> */</script>
