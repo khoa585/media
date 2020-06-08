@@ -21,7 +21,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="Start your development with a Dashboard for Bootstrap 4.">
   <meta name="author" content="Creative Tim">
-  <title>Thêm Tin Tức</title>
+  <title>Thêm Sản Phẩm</title>
   <!-- Favicon -->
   <link rel="icon" href="/assets/img/brand/favicon.png" type="image/png">
   <!-- Fonts -->
@@ -52,7 +52,7 @@
                   <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                     <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
                     <li class="breadcrumb-item"><a href="#">Admin</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Cập NhậtTin Tức</li>
+                    <li class="breadcrumb-item active" aria-current="page">Sản Phẩm</li>
                   </ol>
                 </nav>
               </div>
@@ -72,31 +72,59 @@
             <div class="card-header">
               <div class="row align-items-center">
                 <div class="col-12">
-                  <h3 class="mb-0">Thêm Mới Tin Tức </h3>
+                  <h3 class="mb-0">Thêm Mới Sản Phẩm </h3>
                 </div>
+                <!-- <div class="col-4 text-right">
+                  <a href="#!" class="btn btn-sm btn-primary">Settings</a>
+                </div> -->
               </div>
             </div>
             <div class="card-body">
-              <form id="formUpdate">
+              <form id="formAdd">
                 <div class="pl-lg-4">
                   <div class="row">
                     <div class="col-lg-12">
                       <div class="form-group">
-                        <label class="form-control-label" for="input-username">Tiêu Đề</label>
-                        <input type="text" id="title" class="form-control" value="<%=newsDetial.title%>">
+                        <label class="form-control-label" for="input-username">Tên Sản Phẩm</label>
+                        <input type="text" id="nameproduct" class="form-control" placeholder="Nhập Tên Sản Phẩm">
+                      </div>
+                    </div>
+                    <div class="col-lg-12">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-username">Loại</label>
+                        <select class="custom-select mr-sm-2 form-control" id="typeproduct">
+                          <%
+                            category.forEach((item)=>{ %>
+                              <option value="<%-item.id%>"> <%-item.name%></option>
+                           <% })
+                          %>
+                        </select>
+                        <!-- <input type="text" id="title" class="form-control" placeholder="Nhập Tiêu Đề"> -->
+                      </div>
+                    </div>
+                    <div class="col-lg-12">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-username">Giá</label>
+                        <input type="number" id="priceproduct" class="form-control" placeholder="Nhập Giá">
+                      </div>
+                    </div>
+                    <div class="col-lg-12">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-username">Giảm Giá (%)</label>
+                        <input type="number" id="discountproduct" class="form-control" min=0 max= 100 value=0>
                       </div>
                     </div>
                     <div class="col-lg-12">
                       <div class="form-group">
                         <label class="form-control-label" for="input-email">Mô Tả</label>
-                        <textarea id="descriptions" class="form-control" rows="4" cols="50"><%=newsDetial.description%></textarea>
+                        <textarea id="descriptionproduct" class="form-control" rows="4" cols="50" placeholder="Nhập Mô Tả"></textarea>
                       </div>
                     </div>
                     <div class="col-lg-12">
                         <div class="form-group">
                             <label class="form-control-label" for="input-email">Hình Ảnh :</label>
                             <div id="image-priview-add" style="padding: 10px;">
-                                <img src="<%=newsDetial.image%>" class='image-preview'/>
+
                             </div>
                             <input type="file" class="form-control" id="newsImages" >
                         </div>
@@ -106,13 +134,12 @@
                 <!-- Description -->
                 <div class="pl-lg-4">
                   <div class="form-group">
-                    <label class="form-control-label">Nội Dung</label>
-                    <input type="text" id="idNews" value="<%=newsDetial.id%>" hidden />
-                    <textarea id="editor" class="form-control"> <%=newsDetial.html%></textarea>
+                    <label class="form-control-label">Nội Dung Chi Tiết</label>
+                    <div id="editor" class="form-control"></div>
                   </div>
                 </div>
                 <div class="pl-lg-4">
-                    <button type="submit">Cập Nhật Tin Tức</button>
+                    <button type="submit">Thêm Mới</button>
                 </div>
               </form>
             </div>
@@ -155,6 +182,7 @@
       
   </style>
   <script>
+
       $(document).ready(function(){
         var editor=CKEDITOR.replace( 'editor');
         editor.on( 'fileUploadRequest', function( evt ) {
@@ -183,16 +211,18 @@
         }
         })
         // Add Tin Tức
-        $("#formUpdate").submit(function(event){
+        $("#formAdd").submit(function(event){
             event.preventDefault();
-            let id = $("#idNews").val();
-            let title = $("#title").val();
-            let descriptions = $("#descriptions").val();
+            let name = $("#nameproduct").val();
+            let categoryid = $("#typeproduct").val();
+            let price = $("#priceproduct").val();
+            let discount = $("#discountproduct").val();
+            let description = $("#descriptionproduct").val();
             let File = $("#newsImages")[0].files[0]
             var data = CKEDITOR.instances.editor.getData();
             let formData = new FormData();
-            console.log(title ,File,data,descriptions)
-            if(title=="" || data =="" || descriptions =="" ){
+            console.log(name ,File,data,description)
+            if(name=="" || price =="" || description =="" ){
               return  Toastify({
                         text: "Vui Lòng Nhập Đủ Thông Tin",
                         duration: 3000,
@@ -204,13 +234,15 @@
                         stopOnFocus: true // Prevents dismissing of toast on hover
                         }).showToast();
             }
-            formData.append('id',id);
-            formData.append('title',title);
-            formData.append('description',descriptions);
-            formData.append('html',data);
+            formData.append('name',name);
+            formData.append('categoryid',categoryid);
+            formData.append('price',price);
+            formData.append('discount',discount);
+            formData.append('description',description);
+            formData.append('detial',data);
             formData.append('file',File);
             $.ajax({
-                url:'/adminmanage/news/update',
+                url:'/adminmanage/product/add',
                 method:'post',
                 data:formData,
                 cache : false,
@@ -229,7 +261,7 @@
                       stopOnFocus: true // Prevents dismissing of toast on hover
                       }).showToast();
                       setTimeout(()=>{
-                        location.reload();
+                        location.href="/adminmanage/product"
                       },1000)
                     }else
                      {
