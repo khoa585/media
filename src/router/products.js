@@ -15,7 +15,7 @@ router.get("/:type", async (req, res) => {
         return res.redirect("/");
     }
     const resultData = await getListProducts(1,10,category[0].id)
-    res.render("products/softWare",{ resultData: resultData })
+    res.render("products/softWare",{ resultData: resultData ,titleProduct : category[0].name})
 })
 
 module.exports = router;
