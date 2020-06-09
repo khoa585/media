@@ -761,7 +761,8 @@
                                 <div class="container">
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <h2 style="margin-bottom:40px;font-weight: bold;text-align: center;">CUNG CẤP CHO BẠN NHỮNG SẢN PHẨM TỐT NHẤT</h2>
+                                            <h2 style="margin-bottom:40px;font-weight: bold;text-align: center;">CUNG
+                                                CẤP CHO BẠN NHỮNG SẢN PHẨM TỐT NHẤT</h2>
                                         </div>
                                         <div style="clear:both"></div>
                                         <% if (resultData.length !=0) { %>
@@ -769,10 +770,9 @@
                                         <div class="col-md-3">
                                             <div id="ATPMedia" class="box-product">
                                                 <div class="box-hover">
-                                                    <p class="button button-quick"
-                                                        onclick="clickHandler('<%-task.name%>','<%-task.price%>','<%-task.description%>','<%-task.detial%>','<%-task.image%>')"
-                                                        data-toggle="modal" data-target="#staticBackdrop"><a
-                                                            href="javascript:void(0)" class="btn btn-default">XEM
+                                                    <p class="button button-quick" data-toggle="modal"
+                                                        data-target=#s<%-task.id%>>
+                                                        <a class="btn btn-default">XEM
                                                             NHANH</a></p>
                                                     <p class="button button-info"><a href="" target="_blank"
                                                             class="btn btn-main">XEM CHI TIẾT</a></p>
@@ -785,7 +785,7 @@
                                                 <p class="download"><a href="javascript:void(0)" data-id="67113"
                                                         data-name="ATP Media"
                                                         class="btn btn-second btn-check-down hidden-xs"><img
-                                                        src="https://atpsoftware.vn/wp-content/themes/jnews-child/template/img/cloud-storage-download.png"
+                                                            src="https://atpsoftware.vn/wp-content/themes/jnews-child/template/img/cloud-storage-download.png"
                                                             alt="download">TÌM HIỂU NGAY</a></p>
                                             </div>
                                         </div>
@@ -794,7 +794,9 @@
                                     </div>
                                 </div>
                             </section>
-                            <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false"
+                            <% if (resultData.length !=0) { %>
+                            <% resultData.forEach(function(task){ %>
+                            <div class="modal fade" id=s<%-task.id%> </div> data-backdrop="static" data-keyboard="false"
                                 tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
@@ -803,20 +805,20 @@
                                                     href="javascript:void(0)">×</a></div>
                                             <div class="row">
                                                 <div class="col-md-12">
-                                                    <h3 class="title" id="titleProduct"></h3>
+                                                    <h3 class="title" id="titleProduct"><%-task.name%></h3>
                                                     <div class="hr"></div>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <p class="image-product"><img id="imageP" alt="all-in-one"></p>
+                                                    <p class="image-product"><img id="imageP" alt="all-in-one" src=<%-task.image%> ></p>
                                                 </div>
                                                 <div class="col-md-6 content-body">
-                                                    <p class="titletag" id="titletag"></p>
-                                                    <p class="description" id="detailsP"></p>
+                                                    <p class="titletag" id="titletag"><%-formatter.format(task.price)%> VND</p>
+                                                    <p class="description" id="detailsP"><%-task.detial%> </p>
                                                 </div>
                                                 <div class="col-md-12">
-                                                    <p class="description" id="descriptionP"></p>
-                                                    <p class="button-"><a href="#"
-                                                            class="btn btn-default" target="_blank">TÌM HIỂU NGAY</a> <a
+                                                    <p class="description" id="descriptionP"><%-task.description%> </p>
+                                                    <p class="button-"><a href="#" class="btn btn-default"
+                                                            target="_blank">TÌM HIỂU NGAY</a> <a
                                                             href="javascript:void(0)"
                                                             class="btn btn-second btn-form-crm"
                                                             data-name="Special Combo">MUA NGAY</a></p>
@@ -826,6 +828,9 @@
                                     </div>
                                 </div>
                             </div>
+                            <% }) %>
+                            <% } %>
+
                             <style type="text/css">
                                 .section-product .box-product .image,
                                 .section-product .box-product .download,
@@ -894,6 +899,7 @@
 
                                 .section-product .box-product .image img {
                                     width: 160px;
+                                    height: 210px;
                                 }
 
                                 .section-product .box-product .btn-second {
@@ -1786,19 +1792,8 @@
             width: 36px;
             height: 36px
         }
-    </style>\
-    <script>
-        const formatter = new Intl.NumberFormat('vi-VN')
-        function clickHandler(name, price, description, detail, image) {
-            const priceP = formatter.format(price)
-            console.log(detail)
-            document.querySelector("#imageP").src = image
-            document.querySelector("#titleProduct").innerHTML = name
-            document.querySelector("#titletag").innerHTML = priceP + ' VND'
-            document.querySelector("#descriptionP").innerHTML = description
-            document.querySelector("#detailsP").innerHTML = detail
-        }
-    </script>
+    </style>
+
     <script
         type='text/javascript'>/* <![CDATA[ */ var flatsomeVars = { "ajaxurl": "https:\/\/ezmedia.vn\/wp-admin\/admin-ajax.php", "rtl": "", "sticky_height": "64", "lightbox": { "close_markup": "<button title=\"%title%\" type=\"button\" class=\"mfp-close\"><svg xmlns=\"http:\/\/www.w3.org\/2000\/svg\" width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"feather feather-x\"><line x1=\"18\" y1=\"6\" x2=\"6\" y2=\"18\"><\/line><line x1=\"6\" y1=\"6\" x2=\"18\" y2=\"18\"><\/line><\/svg><\/button>", "close_btn_inside": false }, "user": { "can_edit_pages": false } }; /* ]]> */</script>
     <script>window.lazyLoadOptions = { elements_selector: "img[data-lazy-src],.rocket-lazyload,iframe[data-lazy-src]", data_src: "lazy-src", data_srcset: "lazy-srcset", data_sizes: "lazy-sizes", class_loading: "lazyloading", class_loaded: "lazyloaded", threshold: 300, callback_loaded: function (element) { if (element.tagName === "IFRAME" && element.dataset.rocketLazyload == "fitvidscompatible") { if (element.classList.contains("lazyloaded")) { if (typeof window.jQuery != "undefined") { if (jQuery.fn.fitVids) { jQuery(element).parent().fitVids() } } } } } }; window.addEventListener('LazyLoad::Initialized', function (e) {
