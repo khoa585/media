@@ -5,6 +5,7 @@ const adminRouter = require('./admin/index');
 const uploader = require('./upload');
 const news = require("./news");
 const products = require("./products");
+const Detailproducts = require("./DetailProduct");
 const { LoginUser } = require("./../models/User");
 const { getListNews } = require('../models/newsModel')
 const { checkAdminPermision } = require('./../common/middlware');
@@ -30,9 +31,7 @@ router.use("/uploader", uploader);
 router.use("/adminmanage", checkAdminPermision, adminRouter);
 router.use("/tin-tuc", news);
 router.use("/phan-mem",products);
-router.get("/*:name", async (req, res) => {
-    res.render("products/Detail")
-})
+router.use("/chi-tiet",Detailproducts);
 router.get('/', async (req, res) => {
     try {
         const result = await getListNews(1,10)
