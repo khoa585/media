@@ -774,7 +774,7 @@
                                                         data-target=#s<%-task.id%>>
                                                         <a class="btn btn-default">XEM
                                                             NHANH</a></p>
-                                                    <p class="button button-info"><a href="" target="_blank"
+                                                    <p class="button button-info"><a href="/chi-tiet/<%-to_slug(task.name)%>" target="_blank"
                                                             class="btn btn-main">XEM CHI TIẾT</a></p>
                                                 </div>
                                                 <p class="image"><img src=<%-task.image%> alt="simple-leads"></p>
@@ -796,7 +796,7 @@
                             </section>
                             <% if (resultData.length !=0) { %>
                             <% resultData.forEach(function(task){ %>
-                            <div class="modal fade" id=s<%-task.id%> </div> data-backdrop="static" data-keyboard="false"
+                            <div class="modal fade" id='s<%-task.id%>' data-backdrop="static" data-keyboard="false"
                                 tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
@@ -1160,6 +1160,7 @@
                                         font-size: 16px;
                                         line-height: 20px;
                                     }
+            
                                 }
                             </style>
                         </div>
@@ -1167,6 +1168,23 @@
                 </main>
             </div>
         </div>
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+              <li class="page-item">
+                <a class="page-link" href="#" aria-label="Previous">
+                  <span aria-hidden="true">&laquo;</span>
+                </a>
+              </li>
+              <li class="page-item"><a class="page-link" href="#">1</a></li>
+              <li class="page-item"><a class="page-link" href="#">2</a></li>
+              <li class="page-item"><a class="page-link" href="#">3</a></li>
+              <li class="page-item">
+                <a class="page-link" href="#" aria-label="Next">
+                  <span aria-hidden="true">&raquo;</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
         <%- include('../common/Footer'); %>
     </div>
     <div id="main-menu" class="mobile-sidebar no-scrollbar mfp-hide">

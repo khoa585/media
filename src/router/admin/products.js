@@ -95,6 +95,7 @@ router.get("(/:id)?",async(req,res)=>{
     }
     let [listProduct,totalPage] = await Promise.all([productModel.getListProducts(page),productModel.totalNumber()]);
     // console.log(listProduct);
+    console.log(totalPage)
     res.render("admin/product/product",{user:req.user,moment:moment ,listProduct:listProduct,pages:Math.floor(totalPage.count/6)+1,current:page})
 })
 module.exports = router ;

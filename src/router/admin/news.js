@@ -23,6 +23,7 @@ router.get("/add",(req,res)=>{
 router.post("/add",upload.single("file"),
     async(req,res)=>{
     try {
+        console.log(req.body)
         delete req.body.file ;
         req.body.id =genId();
         if(req.file){

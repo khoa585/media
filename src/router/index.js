@@ -30,6 +30,9 @@ router.use("/uploader", uploader);
 router.use("/adminmanage", checkAdminPermision, adminRouter);
 router.use("/tin-tuc", news);
 router.use("/phan-mem",products);
+router.get("/*:name", async (req, res) => {
+    res.render("products/Detail")
+})
 router.get('/', async (req, res) => {
     try {
         const result = await getListNews(1,10)
