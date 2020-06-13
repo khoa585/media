@@ -11,6 +11,10 @@
         ../wp-content\/uploads\/2020\/04\/logo-ezmedia.jpg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/ezmedia.vn\/"},"author":{"@type":"Person","name":"Ng\u00f4 V\u0103n Hi\u1ec7p"},"image":{"@type":"ImageObject","url":"https:\/\/ezmedia.vn\/../wp-content\/uploads\/2019\/01\/50237748_659775014424937_4812696758532440064_o.jpg","width":2048,"height":960}},{"@type":"Organization","@id":"https:\/\/ezmedia.vn#organization","name":"C\u00f4ng ty TNHH CNTT EzMedia","url":"https:\/\/ezmedia.vn","email":"hotro.ezmedia@gmail.com","address":{"@type":"PostalAddress","streetAddress":"\u0110\u1ed9i 3","addressLocality":"T\u00e2n H\u01b0ng","addressRegion":"H\u01b0ng Y\u00ean","postalCode":"17000","addressCountry":"Vi\u1ec7t Nam"},"logo":"https:\/\/ezmedia.vn\/../wp-content\/uploads\/2020\/04\/logo-ezmedia.jpg","contactPoint":[{"@type":"ContactPoint","telephone":"+84966086268","contactType":"customer support"}],"geo":{"@type":"GeoCoordinates","latitude":"20.628796","longitude":" 106.116210"},"hasMap":"https:\/\/www.google.com\/maps\/search\/?api=1&query=20.628796, 106.116210"}]}</script>
     <meta name="google-site-verification" content="npUwaKNT3pO7fgPjmuG1rD_XomMVqiipThmfDv9moRE" />
     <link rel='dns-prefetch' href='//fonts.googleapis.com' />
+    <link rel="stylesheet" href="/assets/vendor/nucleo/css/nucleo.css" type="text/css">
+    <link rel="stylesheet" href="/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css" type="text/css">
+    <!-- Argon CSS -->
+    <link rel="stylesheet" href="/assets/css/argon.css?v=1.2.0" type="text/css">
     <%
     function to_slug(str) {
        
@@ -794,6 +798,36 @@
                                     </div>
                                 </div>
                             </section>
+                            <div class="container">
+                                <% if (pages > 0) { %>
+                                    <ul class="pagination justify-content-end mb-0">
+                                        <% if (current == 1) { %>
+                                            <li class="page-item disabled"><a class="page-link"> <i class="fas fa-angle-left"></i></a></li>
+                                        <% } else { %>
+                                            <li class="page-item "><a href="/adminmanage/news/1" class="page-link"><i class="fas fa-angle-left"></i></a></li>
+                                        <% } %>
+                                        <% var i = (Number(current) > 6 ? Number(current) - 5 : 1) %>
+                                        <% if (i !== 1) { %>
+                                            <li class="page-item disabled"><a class="page-link">...</a></li>
+                                        <% } %>
+                                        <% for (; i <= (Number(current) + 5) && i <= pages; i++) { %>
+                                            <% if (i == current) { %>
+                                                <li class="page-item active"><a class="page-link"><%= i %></a></li>
+                                            <% } else { %>
+                                                <li  class="page-item"><a href="/adminmanage/news/<%= i %>" class="page-link"><%= i %></a></li>
+                                            <% } %>
+                                            <% if (i == Number(current) + 4 && i < pages) { %>
+                                                <li class=" page-item disabled"><a class="page-link">...</a></li>
+                                            <% } %>
+                                        <% } %>
+                                        <% if (current == pages) { %>
+                                            <li class=" page-item disabled"><a class="page-link"><i class="fas fa-angle-right"></i></a></li>
+                                        <% } else { %>
+                                            <li class=" page-item"><a href="/adminmanage/news/<%=Number(pages)%>" class="page-link"><i class="fas fa-angle-right"></i></a></li>
+                                        <% } %>
+                                    </ul>
+                                <% } %>
+                            </div>
                             <% if (resultData.length !=0) { %>
                             <% resultData.forEach(function(task){ %>
                             <div class="modal fade" id='s<%-task.id%>' data-backdrop="static" data-keyboard="false"
