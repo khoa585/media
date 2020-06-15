@@ -6,7 +6,7 @@ const NUMBER_IN_PAGE = 12 ;
 router.get("/", async (req, res) => {
     let page = req.query.page || 1 ;
     let pages =0 ;
-    const [resultData,totalProduct] = await Promise.all([getListProducts(page,NUMBER_IN_PAGE),totalNumber()]);
+    const [resultData,totalProduct] = await Promise.all([getListProducts(page,NUMBER_IN_PAGE,req.query.price),totalNumber()]);
     if(totalProduct.count%NUMBER_IN_PAGE==0){
         pages = totalProduct.count/NUMBER_IN_PAGE ;
     }else {

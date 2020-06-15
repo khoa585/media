@@ -768,6 +768,21 @@
                                             <h2 style="margin-bottom:40px;font-weight: bold;text-align: center;">CUNG
                                                 CẤP CHO BẠN NHỮNG SẢN PHẨM TỐT NHẤT</h2>
                                         </div>
+                                        <div class="col-md-12" style="padding: 20px;">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                </div>
+                                                <div class="col-md-3">
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <select class="form-control" id="ChangePrice" style="width: 200px;">
+                                                        <option value="0" >Giá </option>
+                                                        <option value="1">Giá : Từ Thấp Đến Cao</option>
+                                                        <option value="2">Giá : Từ Cao Đến Thấp</option>
+                                                    </select>
+                                                </div>
+                                             </div>
+                                        </div>
                                         <div style="clear:both"></div>
                                         <% if (resultData.length !=0) { %>
                                         <% resultData.forEach(function(task){ %>
@@ -1852,5 +1867,14 @@
         src="../wp-content/plugins/wp-rocket/assets/js/lazyload/12.0/lazyload.min.js"></script>
     <script src="../../wp-content/cache/min/1/2eb826468b7947bb2909175851e2f8f6.js" data-minify="1" defer></script>
 </body>
-
+    <script>
+        $("#ChangePrice").change(function(){
+            var url = new URL(document.URL);
+            if($(this).val()!=0){
+                url.searchParams.delete('price');
+                url.searchParams.append('price',$(this).val())
+                window.location.href = url.href ;
+            }
+        })
+    </script>
 </html>
