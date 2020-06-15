@@ -772,60 +772,62 @@
                                         clear: both;
                                        display: flex;
                                        background: rgba(0,0,0,.03);
+                                       justify-content: flex-end;
                                        height: 60px;
                                        align-items: center;">
-                                            <div class="sort-bar">
-                                                <span class="sort-bar__label">Lựa Chọn</span>
-                                            </div>
-                                            <div class="dropdown_">
-                                                <div class="dropdown-select">
-                                                    <% if (countPrice === 0) {%>
-                                                    <span class="select">Lựa Chọn</span>
-                                                    <% } %>
-                                                    <% if (countPrice === 1) {%>
-                                                    <span class="select" style="color: #ee4d2d;">Giá: Cao-Thấp</span>
-                                                    <% } %>
-                                                    <% if (countPrice === 2) {%>
-                                                    <span class="select" style="color: #ee4d2d;">Giá: Thấp-Cao</span>
-                                                    <% } %>
-                                                    <% if (countPrice === 3) {%>
-                                                    <span class="select" style="color: #ee4d2d;">Tên: A-Z</span>
-                                                    <% } %>
-                                                    <% if (countPrice === 4) {%>
-                                                    <span class="select" style="color: #ee4d2d;">Tên: Z-A</span>
-                                                    <% } %>
-                                                    <% if (countPrice === 5) {%>
-                                                    <span class="select" style="color: #ee4d2d;">Ngày: cao đến
-                                                        thấp</span>
-                                                    <% } %>
-                                                    <% if (countPrice === 6) {%>
-                                                    <span class="select" style="color: #ee4d2d;">Ngày: thấp đến
-                                                        cao</span>
-                                                    <% } %>
-                                                    <i class="fa fa-caret-down"></i>
-                                                </div>
-                                                <div class="dropdown-list">
+                                            <div class="dropdown">
+                                                <% if (countPrice === 0) {%>
+                                                <span class="select dropdown-toggle" id="dropdownMenuButton"
+                                                    data-toggle="dropdown" aria-haspopup="true"
+                                                    aria-expanded="false">Sắp xếp theo</span>
+                                                <% } %>
+                                                <% if (countPrice === 1) {%>
+                                                <span class="select dropdown-toggle" id="dropdownMenuButton"
+                                                    data-toggle="dropdown" aria-haspopup="true"
+                                                    aria-expanded="false">Giá Giảm Dần</span>
+                                                <% } %>
+                                                <% if (countPrice === 2) {%>
+                                                <span class="select dropdown-toggle" id="dropdownMenuButton"
+                                                    data-toggle="dropdown" aria-haspopup="true"
+                                                    aria-expanded="false">Giá Tăng Dần</span>
+                                                <% } %>
+                                                <% if (countPrice === 3) {%>
+                                                <span class="select dropdown-toggle" id="dropdownMenuButton"
+                                                    data-toggle="dropdown" aria-haspopup="true"
+                                                    aria-expanded="false">Tên A-z</span>
+                                                <% } %>
+                                                <% if (countPrice === 4) {%>
+                                                <span class="select dropdown-toggle" id="dropdownMenuButton"
+                                                    data-toggle="dropdown" aria-haspopup="true"
+                                                    aria-expanded="false">Tên Z-a</span>
+                                                <% } %>
+                                                <% if (countPrice === 5) {%>
+                                                <span class="select dropdown-toggle" id="dropdownMenuButton"
+                                                    data-toggle="dropdown" aria-haspopup="true"
+                                                    aria-expanded="false">Mới Nhất</span>
+                                                <% } %>
+                                                <% if (countPrice === 6) {%>
+                                                <span class="select dropdown-toggle" id="dropdownMenuButton"
+                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Cũ
+                                                    Nhất</span>
+                                                <% } %>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                                     <div class="ChangePrice dropdown-list__item" name="price"
-                                                        value="desc">Giá: Từ
-                                                        Cao
-                                                        Đến Thấp</div>
+                                                        value="asc">Giá Tăng Dần</div>
                                                     <div class="ChangePrice dropdown-list__item" name="price"
-                                                        value="asc">Giá: Từ
-                                                        Thấp
-                                                        Đến Cao</div>
+                                                        value="desc">Giá Giảm Dần</div>
                                                     <div class="ChangePrice dropdown-list__item" name="name"
-                                                        value="desc">Tên: Tên sản
-                                                        phẩm từ a-z</div>
+                                                        value="desc">Tên A-z</div>
                                                     <div class="ChangePrice dropdown-list__item" name="name"
-                                                        value="asc">Tên: Tên sản
-                                                        phẩm từ z-a</div>
+                                                        value="asc">Tên Z-a</div>
                                                     <div class="ChangePrice dropdown-list__item" name="createdAt"
-                                                        value="desc">Ngày: Ngày tạo từ cao đến thấp</div>
+                                                        value="desc">Mới Nhất</div>
                                                     <div class="ChangePrice dropdown-list__item" name="createdAt"
-                                                        value="asc">Ngày: Ngày tạo từ thấp đến cao</div>
+                                                        value="asc">Cũ Nhất</div>
                                                 </div>
                                             </div>
                                         </div>
+
                                         <div style="clear: both;
                                        padding: 1% 0;"></div>
                                         <% if (resultData.length !=0) { %>
@@ -933,58 +935,39 @@
                             <% } %>
 
                             <style type="text/css">
-                                .dropdown_ {
-                                    width: 15em;
-                                    position: relative;
+                                button#dropdownMenuButton span.select {
+                                    font-size: 0.7em;
                                 }
 
-                                .dropdown_:hover .dropdown-list {
-                                    opacity: 1;
-                                    visibility: visible;
+                                .dropdown-toggle::after {
+                                    margin-left: 30px !important;
                                 }
 
-                                .sort-bar {
-                                    width: 5rem;
-                                    text-align: center;
-                                }
-
-                                .dropdown-select {
-
-                                    border-radius: 2px;
-                                    background-color: #ffffff;
-                                    width: 100%;
-                                    display: flex;
-                                    align-items: center;
-                                    justify-content: space-between;
-                                    font-size: 1rem;
-                                    cursor: pointer;
-                                    padding: 3%;
-                                    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .02);
-
-                                }
-
-                                .dropdown-list {
-                                    border-radius: 4px;
-                                    background-color: white;
-                                    position: absolute;
-                                    top: 110%;
-                                    left: 0;
-                                    right: 0;
-                                    z-index: 9;
-                                    opacity: 0;
-                                }
-
-                                .dropdown-list__item {
-                                    padding: 3%;
-                                    font-size: 0.9rem;
-                                    border-bottom: 1;
+                                span#dropdownMenuButton {
+                                    /* width: 20rem; */
+                                    padding: 10px 20px;
+                                    border: 1px solid #e2d8d8;
                                     cursor: pointer;
                                 }
 
-                                .dropdown-list__item:hover {
-                                    transition: .5s;
-                                    background-color: #e6e5e5;
-                                    ;
+                                button#dropdownMenuButton {
+                                    border: 1px solid #d6d0d0;
+                                    border-radius: 2px !important;
+                                    padding: 10px !important;
+                                }
+
+                                button#dropdownMenuButton:focus {
+                                    outline: none;
+                                }
+
+                                .ChangePrice.dropdown-list__item {
+                                    font-size: 1em;
+                                    padding: 5px 20px;
+                                    cursor: pointer;
+                                }
+
+                                .ChangePrice.dropdown-list__item:hover {
+                                    background-color: #e8e8e8;
                                 }
 
                                 .section-product .box-product .image,
