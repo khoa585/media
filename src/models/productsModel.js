@@ -2,7 +2,7 @@ const {productsDB ,productsFields} = require('./../databases/products');
 const sequelize = require("./../databases/connectdDb");
 const { QueryTypes } = require('sequelize');
 const PAGE =1  ;
-const LIMIT_NUMBER= 2 ;
+const LIMIT_NUMBER= 12 ;
 const createNews = async (data)=>{
     return productsDB.create({...data});
 }
