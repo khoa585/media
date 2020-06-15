@@ -20,6 +20,11 @@ app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/public'));
 app.use(cors());
 app.use(getListCategory);
+app.use((req,res,next)=>{
+    res.locals.path = req.path;
+    res.locals.url = req.url ;
+    next();
+})
 app.use("/",router);
 
 app.listen(process.env.PORT || 3000 ,()=>{
