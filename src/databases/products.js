@@ -9,7 +9,6 @@ const productsFields = {
     image:'image',
     description:'description',
     detial:'detial'
-
 }
 const productsDB = db.define("products",{
     [productsFields.id]:{

@@ -768,7 +768,7 @@
                                             <h2 style="margin-bottom:40px;font-weight: bold;text-align: center;">CUNG
                                                 CẤP CHO BẠN NHỮNG SẢN PHẨM TỐT NHẤT</h2>
                                         </div>
-                                        <div class="col-md-12" style="padding: 20px;">
+                                        <!-- <div class="col-md-12" style="padding: 20px;">
                                             <div class="row">
                                                 <div class="col-md-6">
                                                 </div>
@@ -782,8 +782,65 @@
                                                     </select>
                                                 </div>
                                              </div>
+                                        </div> -->
+                                        <div style="   
+                                         clear: both;
+                                        display: flex;
+                                        background: rgba(0,0,0,.03);
+                                        height: 60px;
+                                        align-items: center;">
+                                            <div class="sort-bar">
+                                                <span class="sort-bar__label">Lựa Chọn</span>
+                                            </div>
+                                            <div class="dropdown_">
+                                                <div class="dropdown-select">
+                                                    <% if (countPrice === 0) {%>
+                                                    <span class="select">Lựa Chọn</span>
+                                                    <% } %>
+                                                    <% if (countPrice === 1) {%>
+                                                    <span class="select" style="color: #ee4d2d;">Giá: Cao-Thấp</span>
+                                                    <% } %>
+                                                    <% if (countPrice === 2) {%>
+                                                    <span class="select" style="color: #ee4d2d;">Giá: Thấp-Cao</span>
+                                                    <% } %>
+                                                    <% if (countPrice === 3) {%>
+                                                    <span class="select" style="color: #ee4d2d;">Tên: A-Z</span>
+                                                    <% } %>
+                                                    <% if (countPrice === 4) {%>
+                                                    <span class="select" style="color: #ee4d2d;">Tên: Z-A</span>
+                                                    <% } %>
+                                                    <% if (countPrice === 5) {%>
+                                                    <span class="select" style="color: #ee4d2d;">Ngày: cao đến thấp</span>
+                                                    <% } %>
+                                                    <% if (countPrice === 6) {%>
+                                                    <span class="select" style="color: #ee4d2d;">Ngày: thấp đến cao</span>
+                                                    <% } %>
+                                                    <i class="fa fa-caret-down"></i>
+                                                </div>
+                                                <div class="dropdown-list">
+                                                    <div class="ChangePrice dropdown-list__item" name="price"
+                                                        value="desc">Giá: Từ
+                                                        Cao
+                                                        Đến Thấp</div>
+                                                    <div class="ChangePrice dropdown-list__item" name="price"
+                                                        value="asc">Giá: Từ
+                                                        Thấp
+                                                        Đến Cao</div>
+                                                    <div class="ChangePrice dropdown-list__item" name="name"
+                                                        value="desc">Tên: Tên sản
+                                                        phẩm từ a-z</div>
+                                                    <div class="ChangePrice dropdown-list__item" name="name"
+                                                        value="asc">Tên: Tên sản
+                                                        phẩm từ z-a</div>
+                                                    <div class="ChangePrice dropdown-list__item" name="createdAt"
+                                                        value="desc">Ngày: Ngày tạo từ cao đến thấp</div>
+                                                    <div class="ChangePrice dropdown-list__item" name="createdAt"
+                                                        value="asc">Ngày: Ngày tạo từ thấp đến cao</div>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div style="clear:both"></div>
+                                        <div style="clear: both;
+                                        padding: 1% 0;"></div>
                                         <% if (resultData.length !=0) { %>
                                         <% resultData.forEach(function(task){ %>
                                         <div class="col-md-3">
@@ -793,19 +850,20 @@
                                                         data-target=#s<%-task.id%>>
                                                         <a class="btn btn-default">XEM
                                                             NHANH</a></p>
-                                                    <p class="button button-info"><a href="/pm/<%-to_slug(task.name)%>.<%-task.id%>" target="_blank"
-                                                            class="btn btn-main">XEM CHI TIẾT</a></p>
+                                                    <p class="button button-info"><a
+                                                            href="/pm/<%-to_slug(task.name)%>.<%-task.id%>"
+                                                            target="_blank" class="btn btn-main">XEM CHI TIẾT</a></p>
                                                 </div>
                                                 <p class="image"><img src=<%-task.image%> alt="simple-leads"></p>
 
                                                 <h3 class="title"><span><%-task.name%></span></h3>
                                                 <p class="price"><%-formatter.format(task.price)%> VND</p>
                                                 <p class="description"><%- task.description%> </p>
-                                                <p class="download"><a href="javascript:void(0)" data-id="67113"
+                                                <!-- <p class="download"><a href="javascript:void(0)" data-id="67113"
                                                         data-name="ATP Media"
                                                         class="btn btn-second btn-check-down hidden-xs"><img
                                                             src="https://atpsoftware.vn/wp-content/themes/jnews-child/template/img/cloud-storage-download.png"
-                                                            alt="download">TÌM HIỂU NGAY</a></p>
+                                                            alt="download">TÌM HIỂU NGAY</a></p> -->
                                             </div>
                                         </div>
                                         <% }) %>
@@ -815,32 +873,37 @@
                             </section>
                             <div class="container">
                                 <% if (pages > 0) { %>
-                                    <ul class="pagination justify-content-end mb-0">
-                                        <% if (current == 1) { %>
-                                            <li class="page-item disabled"><a class="page-link"> <i class="fas fa-angle-left"></i></a></li>
-                                        <% } else { %>
-                                            <li class="page-item "><a href="<%=path%>?page=1" class="page-link"><i class="fas fa-angle-left"></i></a></li>
-                                        <% } %>
-                                        <% var i = (Number(current) > 6 ? Number(current) - 5 : 1) %>
-                                        <% if (i !== 1) { %>
-                                            <li class="page-item disabled"><a class="page-link">...</a></li>
-                                        <% } %>
-                                        <% for (; i <= (Number(current) + 5) && i <= pages; i++) { %>
-                                            <% if (i == current) { %>
-                                                <li class="page-item active"><a class="page-link"><%= i %></a></li>
-                                            <% } else { %>
-                                                <li  class="page-item"><a href="<%=path%>?page=<%= i %>" class="page-link"><%= i %></a></li>
-                                            <% } %>
-                                            <% if (i == Number(current) + 4 && i < pages) { %>
-                                                <li class=" page-item disabled"><a class="page-link">...</a></li>
-                                            <% } %>
-                                        <% } %>
-                                        <% if (current == pages) { %>
-                                            <li class=" page-item disabled"><a class="page-link"><i class="fas fa-angle-right"></i></a></li>
-                                        <% } else { %>
-                                            <li class=" page-item"><a href="<%=path%>?page=<%=Number(pages)%>" class="page-link"><i class="fas fa-angle-right"></i></a></li>
-                                        <% } %>
-                                    </ul>
+                                <ul class="pagination justify-content-end mb-0">
+                                    <% if (current == 1) { %>
+                                    <li class="page-item disabled"><a class="page-link"> <i
+                                                class="fas fa-angle-left"></i></a></li>
+                                    <% } else { %>
+                                    <li class="page-item "><a href="<%=path%>?page=1" class="page-link"><i
+                                                class="fas fa-angle-left"></i></a></li>
+                                    <% } %>
+                                    <% var i = (Number(current) > 6 ? Number(current) - 5 : 1) %>
+                                    <% if (i !== 1) { %>
+                                    <li class="page-item disabled"><a class="page-link">...</a></li>
+                                    <% } %>
+                                    <% for (; i <= (Number(current) + 5) && i <= pages; i++) { %>
+                                    <% if (i == current) { %>
+                                    <li class="page-item active"><a class="page-link"><%= i %></a></li>
+                                    <% } else { %>
+                                    <li class="page-item"><a href="<%=path%>?page=<%= i %>"
+                                            class="page-link"><%= i %></a></li>
+                                    <% } %>
+                                    <% if (i == Number(current) + 4 && i < pages) { %>
+                                    <li class=" page-item disabled"><a class="page-link">...</a></li>
+                                    <% } %>
+                                    <% } %>
+                                    <% if (current == pages) { %>
+                                    <li class=" page-item disabled"><a class="page-link"><i
+                                                class="fas fa-angle-right"></i></a></li>
+                                    <% } else { %>
+                                    <li class=" page-item"><a href="<%=path%>?page=<%=Number(pages)%>"
+                                            class="page-link"><i class="fas fa-angle-right"></i></a></li>
+                                    <% } %>
+                                </ul>
                                 <% } %>
                             </div>
                             <% if (resultData.length !=0) { %>
@@ -883,6 +946,60 @@
                             <% } %>
 
                             <style type="text/css">
+                                .dropdown_ {
+                                    width: 15em;
+                                    position: relative;
+                                }
+
+                                .dropdown_:hover .dropdown-list {
+                                    opacity: 1;
+                                    visibility: visible;
+                                }
+
+                                .sort-bar {
+                                    width: 5rem;
+                                    text-align: center;
+                                }
+
+                                .dropdown-select {
+
+                                    border-radius: 2px;
+                                    background-color: #ffffff;
+                                    width: 100%;
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: space-between;
+                                    font-size: 1rem;
+                                    cursor: pointer;
+                                    padding: 3%;
+                                    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .02);
+
+                                }
+
+                                .dropdown-list {
+                                    border-radius: 4px;
+                                    background-color: white;
+                                    position: absolute;
+                                    top: 110%;
+                                    left: 0;
+                                    right: 0;
+                                    z-index: 9;
+                                    opacity: 0;
+                                }
+
+                                .dropdown-list__item {
+                                    padding: 3%;
+                                    font-size: 0.9rem;
+                                    border-bottom: 1;
+                                    cursor: pointer;
+                                }
+
+                                .dropdown-list__item:hover {
+                                    transition: .5s;
+                                    background-color: #e6e5e5;
+                                    ;
+                                }
+
                                 .section-product .box-product .image,
                                 .section-product .box-product .download,
                                 .section-product .box-product .title {
@@ -1209,7 +1326,7 @@
                                         font-size: 16px;
                                         line-height: 20px;
                                     }
-            
+
                                 }
                             </style>
                         </div>
@@ -1867,14 +1984,25 @@
         src="../wp-content/plugins/wp-rocket/assets/js/lazyload/12.0/lazyload.min.js"></script>
     <script src="../../wp-content/cache/min/1/2eb826468b7947bb2909175851e2f8f6.js" data-minify="1" defer></script>
 </body>
-    <script>
-        $("#ChangePrice").change(function(){
-            var url = new URL(document.URL);
-            if($(this).val()!=0){
-                url.searchParams.delete('price');
-                url.searchParams.append('price',$(this).val())
-                window.location.href = url.href ;
-            }
-        })
-    </script>
+<script>
+    $(".ChangePrice").click(function () {
+        var url = new URL(document.URL);
+        if ($(this).attr("value") != 0) {
+            url.searchParams.delete('order');
+            url.searchParams.delete('sortBy');
+            url.searchParams.append('order', $(this).attr("value"))
+            url.searchParams.append('sortBy', $(this).attr("name"))
+            window.location.href = url.href;
+        }
+    });
+    // $("#ChangePrice").change(function () {
+    //     var url = new URL(document.URL);
+    //     if ($(this).val() != 0) {
+    //         url.searchParams.delete('price');
+    //         url.searchParams.append('price', $(this).val())
+    //         window.location.href = url.href;
+    //     }
+    // })
+</script>
+
 </html>
