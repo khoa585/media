@@ -9,7 +9,8 @@ router.get("/", async (req, res) => {
     let sort_By;
     let order = req.query.order
     let name = req.query.sortBy
-    if (order) {
+    let paths = '';
+    if (order && name) {
         if (order === 'desc' && name === "price") {
             sort_By = 1
         }
@@ -27,6 +28,10 @@ router.get("/", async (req, res) => {
         }
         if (order === 'asc' && name === "createdAt") {
             sort_By = 6
+        }
+        paths = {
+            order,
+            name
         }
     }
     let countPrice = req.query.order ? sort_By : 0;
@@ -36,8 +41,7 @@ router.get("/", async (req, res) => {
     } else {
         pages = Math.floor(totalProduct.count / NUMBER_IN_PAGE) + 1;
     }
-
-    res.render("products/index", { resultData: resultData, pages: pages, current: page, countPrice: countPrice })
+    res.render("products/index", { resultData: resultData, pages: pages, current: page, countPrice: countPrice, paths: paths })
 })
 router.get("/:type", async (req, res) => {
     const { type } = req.params;
@@ -46,6 +50,7 @@ router.get("/:type", async (req, res) => {
     let sort_By;
     let order = req.query.order
     let name = req.query.sortBy
+    let paths = '';
     if (order) {
         if (order === 'desc' && name === "price") {
             sort_By = 1
@@ -65,6 +70,10 @@ router.get("/:type", async (req, res) => {
         if (order === 'asc' && name === "createdAt") {
             sort_By = 6
         }
+        paths = {
+            order,
+            name
+        }
     }
     let countPrice = req.query.order ? sort_By : 0;
     let category = req.category.filter((item) => {
@@ -73,7 +82,7 @@ router.get("/:type", async (req, res) => {
     if (category.length == 0) {
         return res.redirect("/");
     }
-    const resultData = await getListProducts(page, NUMBER_IN_PAGE,sort_By, category[0].id);
+    const resultData = await getListProducts(page, NUMBER_IN_PAGE, sort_By, category[0].id);
     let totalProduct = await totalNumber(category[0].id);
     if (totalProduct.count % NUMBER_IN_PAGE == 0) {
         pages = totalProduct.count / NUMBER_IN_PAGE;
@@ -81,6 +90,6 @@ router.get("/:type", async (req, res) => {
         pages = Math.floor(totalProduct.count / NUMBER_IN_PAGE) + 1;
     }
     //const [resultData,totalProduct] = await Promise.all([getListProducts(page),totalNumber()]);
-    res.render("products/softWare", { resultData: resultData, titleProduct: category[0].name, pages: pages, current: page, countPrice: countPrice })
+    res.render("products/softWare", { resultData: resultData, titleProduct: category[0].name, pages: pages, current: page, countPrice: countPrice ,paths: paths})
 })
 module.exports = router;
