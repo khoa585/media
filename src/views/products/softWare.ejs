@@ -844,9 +844,20 @@
                                                             target="_blank" class="btn btn-main">XEM CHI TIẾT</a></p>
                                                 </div>
                                                 <p class="image"><img src=<%-task.image%> alt="simple-leads"></p>
-
+                                                <% if(task.discount != 0) {%>
+                                                <div class="salePrice">
+                                                    <span>Giảm <%- task.discount%>%</span>
+                                                </div>
+                                                <% } else {%>
+                                                <% }%>
                                                 <h3 class="title"><span><%-task.name%></span></h3>
-                                                <p class="price"><%-formatter.format(task.price)%> VND</p>
+                                                <div>
+                                                    <p class=<%-task.discount === 0 ? "price" : "price-thought"%>>
+                                                        <%-formatter.format(task.price)%> VND</p>
+                                                    <p class=<%-task.discount != 0 ? "price" : "visibale"%>>
+                                                        <%-formatter.format(Math.floor(task.price - ((task.price*task.discount)/100)))%>
+                                                        VND</p>
+                                                </div>
                                                 <p class="description"><%- task.description%> </p>
                                                 <!-- <p class="download"><a href="javascript:void(0)" data-id="67113"
                                                         data-name="ATP Media"
@@ -973,8 +984,30 @@
                             </div>
                             <% }) %>
                             <% } %>
-
                             <style type="text/css">
+                                .price-thought {
+                                    text-decoration: line-through;
+                                    text-align: center;
+                                    font-size: 18px;
+                                    margin-top: 20px;
+                                    font-weight: bold;
+                                }
+
+                                .section-product .box-product .salePrice {
+                                    position: absolute;
+                                    top: 0;
+                                    right: 0;
+                                    background: #dc3131;
+                                    padding: 10px;
+                                    color: #fff;
+                                    width: 110px;
+                                    z-index: 999;
+                                }
+
+                                .visibale {
+                                    visibility: hidden;
+                                }
+
                                 button#dropdownMenuButton span.select {
                                     font-size: 0.7em;
                                 }
@@ -1010,9 +1043,7 @@
                                     background-color: #e8e8e8;
                                 }
 
-                                .section-product .box-product .image,
-                                .section-product .box-product .download,
-                                .section-product .box-product .title {
+                                .section-product .box-product {
                                     text-align: center;
                                 }
 
@@ -1026,13 +1057,13 @@
                                 }
 
                                 .section-product .box-product {
-                                    padding: 20px 30px;
+                                    padding: 20px 0 0 0;
                                     box-shadow: 0 0 10px #ccc;
                                     border-radius: 10px;
                                     margin-bottom: 40px;
-                                    background: url(https://atpsoftware.vn/wp-content/themes/jnews-child/template/img/bg-pro.png) no-repeat #fdfdfd;
                                     background-size: contain;
                                     position: relative;
+                                    overflow: hidden;
                                 }
 
                                 .box-hover {
@@ -1243,7 +1274,7 @@
                                 }
 
                                 .section-product .box-product .description {
-                                    min-height: 80px;
+                                    min-height: 40px;
                                 }
 
                                 .section-product .download img {
@@ -1336,6 +1367,7 @@
                                         font-size: 16px;
                                         line-height: 20px;
                                     }
+
                                 }
                             </style>
                         </div>
