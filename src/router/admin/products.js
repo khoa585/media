@@ -88,14 +88,41 @@ router.get("/detial/:id",async(req,res)=>{
         return res.redirect("/adminmanage");
     }
 })
+const NUMBER_IN_PAGE = 12;
 router.get("(/:id)?",async(req,res)=>{
-    let page=1 ;
-    if(req.params.id){
-        page =req.params.id ;
+    console.log( req.query)
+    let sort_By;
+    let order = req.query.order
+    let name = req.query.sortBy
+    let paths = '';
+    if (order && name) {
+        if (order === 'desc' && name === "price") {
+            sort_By = 1
+        }
+        if (order === 'asc' && name === "price") {
+            sort_By = 2
+        }
+        if (order === 'desc' && name === "name") {
+            sort_By = 3
+        }
+        if (order === 'asc' && name === "name") {
+            sort_By = 4
+        }
+        if (order === 'desc' && name === "createdAt") {
+            sort_By = 5
+        }
+        if (order === 'asc' && name === "createdAt") {
+            sort_By = 6
+        }
+        paths = {
+            order,
+            name
+        }
     }
-    let [listProduct,totalPage] = await Promise.all([productModel.getListProducts(page),productModel.totalNumber()]);
+    let countPrice = req.query.order ? sort_By : 0;
+    let page = req.query.page || 1;
+    let [listProduct,totalPage] = await Promise.all([productModel.getListProducts(page,NUMBER_IN_PAGE,sort_By),productModel.totalNumber()]);
     // console.log(listProduct);
-    console.log(totalPage)
-    res.render("admin/product/product",{user:req.user,moment:moment ,listProduct:listProduct,pages:Math.floor(totalPage.count/6)+1,current:page})
+    res.render("admin/product/product",{user:req.user,moment:moment,paths: paths ,listProduct:listProduct,pages:Math.floor(totalPage.count/NUMBER_IN_PAGE)+1,current:page,countPrice:countPrice})
 })
 module.exports = router ;

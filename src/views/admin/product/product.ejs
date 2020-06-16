@@ -1,18 +1,3 @@
-<!--
-=========================================================
-* Argon Dashboard - v1.2.0
-=========================================================
-* Product Page: https://www.creative-tim.com/product/argon-dashboard
-
-
-* Copyright  Creative Tim (http://www.creative-tim.com)
-* Coded by www.creative-tim.com
-
-
-
-=========================================================
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
--->
 <!DOCTYPE html>
 <html>
 
@@ -22,26 +7,17 @@
   <meta name="description" content="Start your development with a Dashboard for Bootstrap 4.">
   <meta name="author" content="Creative Tim">
   <title>Quản Lý Tin Tức</title>
-  <!-- Favicon -->
   <link rel="icon" href="/assets/img/brand/favicon.png" type="image/png">
-  <!-- Fonts -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
-  <!-- Icons -->
   <link rel="stylesheet" href="/assets/vendor/nucleo/css/nucleo.css" type="text/css">
   <link rel="stylesheet" href="/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css" type="text/css">
-  <!-- Argon CSS -->
   <link rel="stylesheet" href="/assets/css/argon.css?v=1.2.0" type="text/css">
 </head>
 
 <body>
-  <!-- Sidenav -->
-    <%-include("./../common/navbar.ejs")%>
-  <!-- Main content -->
+  <%-include("./../common/navbar.ejs")%>
   <div class="main-content" id="panel">
-    <!-- Topnav -->
     <%-include("./../common/header.ejs")%>
-    <!-- Header -->
-    <!-- Header -->
     <div class="header bg-primary pb-6">
       <div class="container-fluid">
         <div class="header-body">
@@ -63,16 +39,13 @@
         </div>
       </div>
     </div>
-    <!-- Page content -->
     <div class="container-fluid mt--6">
       <div class="row">
         <div class="col">
           <div class="card">
-            <!-- Card header -->
             <div class="card-header border-0">
               <h3 class="mb-0">Danh Sách Tin Tức</h3>
             </div>
-            <!-- Light table -->
             <div class="table-responsive">
               <table class="table align-items-center table-flush">
                 <thead class="thead-light">
@@ -87,168 +60,266 @@
                     <th scope="col" class="text-center">Hành Động</th>
                   </tr>
                 </thead>
+                <div>
+                  <div style="   
+                     clear: both;
+                    display: flex;
+                    background: rgba(0,0,0,.03);
+                    justify-content: flex-end;
+                    height: 60px;
+                    align-items: center;">
+                    <div class="dropdown">
+                      <% if (countPrice === 0) {%>
+                      <span class="select dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">Sắp xếp theo</span>
+                      <% } %>
+                      <% if (countPrice === 1) {%>
+                      <span class="select dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">Giá Giảm Dần</span>
+                      <% } %>
+                      <% if (countPrice === 2) {%>
+                      <span class="select dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">Giá Tăng Dần</span>
+                      <% } %>
+                      <% if (countPrice === 3) {%>
+                      <span class="select dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">Tên A-z</span>
+                      <% } %>
+                      <% if (countPrice === 4) {%>
+                      <span class="select dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">Tên Z-a</span>
+                      <% } %>
+                      <% if (countPrice === 5) {%>
+                      <span class="select dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">Mới Nhất</span>
+                      <% } %>
+                      <% if (countPrice === 6) {%>
+                      <span class="select dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">Cũ
+                        Nhất</span>
+                      <% } %>
+
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <div class="ChangePrice dropdown-list__item" name="price" value="asc">Giá Tăng Dần</div>
+                        <div class="ChangePrice dropdown-list__item" name="price" value="desc">Giá Giảm Dần</div>
+                        <div class="ChangePrice dropdown-list__item" name="name" value="desc">Tên A-z</div>
+                        <div class="ChangePrice dropdown-list__item" name="name" value="asc">Tên Z-a</div>
+                        <div class="ChangePrice dropdown-list__item" name="createdAt" value="desc">Mới Nhất</div>
+                        <div class="ChangePrice dropdown-list__item" name="createdAt" value="asc">Cũ Nhất</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
                 <tbody class="list">
-                    <%
-                    listProduct.forEach((item,index)=>{%> 
-                      <tr>
-                        <th scope="row">
-                            <%=index+1%>
-                        </th>
-                        <td class="budget">
-                            <%=item.name%>
-                        </td>
-                        <td class="budget">
-                            <%=item.category%>
-                        </td>
-                        <td >
-                            <%=item.price%>
-                        </td>
-                        <td >
-                            <%=item.discount%>
-                        </td>
-                        <td>
-                          <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="Ryan Tompson">
-                            <img alt="Image placeholder" src="<%=item.image%>">
-                          </a>
-                        </td>
-                        <td>
-                            <%=moment(item.createAt).tz("Asia/Bangkok").format("YYYY-MM-DD HH:mm:ss") %>
-                        </td>
-                        <td class="text-center">
-                          <a style="padding: 0 10px; cursor: pointer;" href="/adminmanage/product/detial/<%-item.id%>">
-                            <svg class="bi bi-tools" width="1.5em" height="1.5em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                              <path fill-rule="evenodd" d="M0 1l1-1 3.081 2.2a1 1 0 0 1 .419.815v.07a1 1 0 0 0 .293.708L10.5 9.5l.914-.305a1 1 0 0 1 1.023.242l3.356 3.356a1 1 0 0 1 0 1.414l-1.586 1.586a1 1 0 0 1-1.414 0l-3.356-3.356a1 1 0 0 1-.242-1.023L9.5 10.5 3.793 4.793a1 1 0 0 0-.707-.293h-.071a1 1 0 0 1-.814-.419L0 1zm11.354 9.646a.5.5 0 0 0-.708.708l3 3a.5.5 0 0 0 .708-.708l-3-3z"/>
-                              <path fill-rule="evenodd" d="M15.898 2.223a3.003 3.003 0 0 1-3.679 3.674L5.878 12.15a3 3 0 1 1-2.027-2.027l6.252-6.341A3 3 0 0 1 13.778.1l-2.142 2.142L12 4l1.757.364 2.141-2.141zm-13.37 9.019L3.001 11l.471.242.529.026.287.445.445.287.026.529L5 13l-.242.471-.026.529-.445.287-.287.445-.529.026L3 15l-.471-.242L2 14.732l-.287-.445L1.268 14l-.026-.529L1 13l.242-.471.026-.529.445-.287.287-.445.529-.026z"/>
-                            </svg>
-                          </a>
-                          <span style="cursor: pointer;" data-id="<%-item.id%>" class="deleteProducts">
-                            <svg class="bi bi-trash" width="1.5em" height="1.5em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                              <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
-                              <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
-                            </svg>
-                          </span>
-                        </td>
-                      </tr>
-                    <%}) %>
+                  <%
+                    listProduct.forEach((item,index)=>{%>
+                  <tr>
+                    <th scope="row">
+                      <%=index+1%>
+                    </th>
+                    <td class="budget">
+                      <%=item.name%>
+                    </td>
+                    <td class="budget">
+                      <%=item.category%>
+                    </td>
+                    <td>
+                      <%=item.price%>
+                    </td>
+                    <td>
+                      <%=item.discount%>
+                    </td>
+                    <td>
+                      <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip"
+                        data-original-title="Ryan Tompson">
+                        <img alt="Image placeholder" src="<%=item.image%>">
+                      </a>
+                    </td>
+                    <td>
+                      <%=moment(item.createAt).tz("Asia/Bangkok").format("YYYY-MM-DD HH:mm:ss") %>
+                    </td>
+                    <td class="text-center">
+                      <a style="padding: 0 10px; cursor: pointer;" href="/adminmanage/product/detial/<%-item.id%>">
+                        <svg class="bi bi-tools" width="1.5em" height="1.5em" viewBox="0 0 16 16" fill="currentColor"
+                          xmlns="http://www.w3.org/2000/svg">
+                          <path fill-rule="evenodd"
+                            d="M0 1l1-1 3.081 2.2a1 1 0 0 1 .419.815v.07a1 1 0 0 0 .293.708L10.5 9.5l.914-.305a1 1 0 0 1 1.023.242l3.356 3.356a1 1 0 0 1 0 1.414l-1.586 1.586a1 1 0 0 1-1.414 0l-3.356-3.356a1 1 0 0 1-.242-1.023L9.5 10.5 3.793 4.793a1 1 0 0 0-.707-.293h-.071a1 1 0 0 1-.814-.419L0 1zm11.354 9.646a.5.5 0 0 0-.708.708l3 3a.5.5 0 0 0 .708-.708l-3-3z" />
+                          <path fill-rule="evenodd"
+                            d="M15.898 2.223a3.003 3.003 0 0 1-3.679 3.674L5.878 12.15a3 3 0 1 1-2.027-2.027l6.252-6.341A3 3 0 0 1 13.778.1l-2.142 2.142L12 4l1.757.364 2.141-2.141zm-13.37 9.019L3.001 11l.471.242.529.026.287.445.445.287.026.529L5 13l-.242.471-.026.529-.445.287-.287.445-.529.026L3 15l-.471-.242L2 14.732l-.287-.445L1.268 14l-.026-.529L1 13l.242-.471.026-.529.445-.287.287-.445.529-.026z" />
+                        </svg>
+                      </a>
+                      <span style="cursor: pointer;" data-id="<%-item.id%>" class="deleteProducts">
+                        <svg class="bi bi-trash" width="1.5em" height="1.5em" viewBox="0 0 16 16" fill="currentColor"
+                          xmlns="http://www.w3.org/2000/svg">
+                          <path
+                            d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                          <path fill-rule="evenodd"
+                            d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+                        </svg>
+                      </span>
+                    </td>
+                  </tr>
+                  <%}) %>
                 </tbody>
               </table>
             </div>
-            <!-- Card footer -->
+            <style type="text/css">
+              button#dropdownMenuButton span.select {
+                font-size: 0.7em;
+              }
+
+              .ChangePrice.dropdown-list__item {
+                padding: 5px;
+                cursor: pointer;
+              }
+
+              .dropdown-toggle::after {
+                margin-left: 15px !important;
+              }
+
+              span#dropdownMenuButton {
+                padding: 10px 20px;
+                border: 1px solid #e2d8d8;
+                cursor: pointer;
+              }
+
+              button#dropdownMenuButton {
+                border: 1px solid #d6d0d0;
+                border-radius: 2px !important;
+                padding: 10px !important;
+              }
+
+              button#dropdownMenuButton:focus {
+                outline: none;
+              }
+            </style>
             <div class="card-footer py-4">
               <nav aria-label="...">
                 <% if (pages > 0) { %>
-                  <ul class="pagination justify-content-end mb-0">
-                      <% if (current == 1) { %>
-                          <li class="page-item disabled"><a class="page-link"> <i class="fas fa-angle-left"></i></a></li>
-                      <% } else { %>
-                          <li class="page-item "><a href="/adminmanage/news/1" class="page-link"><i class="fas fa-angle-left"></i></a></li>
-                      <% } %>
-                      <% var i = (Number(current) > 6 ? Number(current) - 5 : 1) %>
-                      <% if (i !== 1) { %>
-                          <li class="page-item disabled"><a class="page-link">...</a></li>
-                      <% } %>
-                      <% for (; i <= (Number(current) + 5) && i <= pages; i++) { %>
-                          <% if (i == current) { %>
-                              <li class="page-item active"><a class="page-link"><%= i %></a></li>
-                          <% } else { %>
-                              <li  class="page-item"><a href="/adminmanage/news/<%= i %>" class="page-link"><%= i %></a></li>
-                          <% } %>
-                          <% if (i == Number(current) + 4 && i < pages) { %>
-                              <li class=" page-item disabled"><a class="page-link">...</a></li>
-                          <% } %>
-                      <% } %>
-                      <% if (current == pages) { %>
-                          <li class=" page-item disabled"><a class="page-link"><i class="fas fa-angle-right"></i></a></li>
-                      <% } else { %>
-                          <li class=" page-item"><a href="/adminmanage/news/<%=Number(pages)%>" class="page-link"><i class="fas fa-angle-right"></i></a></li>
-                      <% } %>
-                  </ul>
-              <% } %>
-                <!-- <ul class="pagination justify-content-end mb-0">
-                  <li class="page-item disabled">
-                    <a class="page-link" href="#" tabindex="-1">
-                      <i class="fas fa-angle-left"></i>
-                      <span class="sr-only">Previous</span>
-                    </a>
-                  </li>
-                  <li class="page-item active">
-                    <a class="page-link" href="#">1</a>
-                  </li>
+                <ul class="pagination justify-content-end mb-0">
+                  <% if (current == 1) { %>
+                  <li class="page-item disabled"><a class="page-link"> <i class="fas fa-angle-left"></i></a></li>
+                  <% } else { %>
                   <li class="page-item">
-                    <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+                    <span value="1" name="<%=paths.name%>" order="<%=paths.order%>" class=" ChangePage page-link"><i
+                        class="fas fa-angle-left"></i>
+                    </span></li>
+                  <% } %>
+                  <% var i = (Number(current) > 6 ? Number(current) - 5 : 1) %>
+                  <% if (i !== 1) { %>
+                  <li class="page-item disabled"><a class="page-link">...</a></li>
+                  <% } %>
+                  <% for (; i <= (Number(current) + 5) && i <= pages; i++) { %>
+                  <% if (i == current) { %>
+                  <li class="page-item active"><a class="page-link"><%= i %></a></li>
+                  <% } else { %>
+                  <li class="page-item"><span value="<%=i%>" name="<%=paths.name%>" order="<%=paths.order%>"
+                      class="ChangePage page-link"><%= i %></span></li>
+                  <% } %>
+                  <% if (i == Number(current) + 4 && i < pages) { %>
+                  <li class=" page-item disabled"><a class="page-link">...</a></li>
+                  <% } %>
+                  <% } %>
+                  <% if (current == pages) { %>
+                  <li class=" page-item disabled"><a class="page-link"><i class="fas fa-angle-right"></i></a></li>
+                  <% } else { %>
+                  <li class=" page-item">
+                    <span value="<%=Number(pages)%>" name="<%=paths.name%>" order="<%=paths.order%>"
+                      class=" ChangePage page-link"><i class="fas fa-angle-right"></i>
+                    </span>
                   </li>
-                  <li class="page-item"><a class="page-link" href="#">3</a></li>
-                  <li class="page-item">
-                    <a class="page-link" href="#">
-                      <i class="fas fa-angle-right"></i>
-                      <span class="sr-only">Next</span>
-                    </a>
-                  </li>
-                </ul> -->
+                  <% } %>
+                </ul>
+                <% } %>
               </nav>
             </div>
           </div>
         </div>
       </div>
-      <!-- Footer -->
       <%-include("./../common/footer.ejs")%>
     </div>
   </div>
-  <!-- Argon Scripts -->
-  <!-- Core -->
   <script src="/assets/vendor/jquery/dist/jquery.min.js"></script>
   <script src="/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
   <script src="/assets/vendor/js-cookie/js.cookie.js"></script>
   <script src="/assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
   <script src="/assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-  <!-- Argon JS -->
   <script src="/assets/js/argon.js?v=1.2.0"></script>
   <script>
-    $(document).ready(function(){
-        $(".deleteProducts").click(function(){
-            let id = $(this).data("id");
-            console.log(id);
-            if(confirm("Bạn Muốn Xóa Tin Tức Này Không")){
-                $.ajax({
-                    url:"/adminmanage/product/delete",
-                    method:"post",
-                    data:{
-                        id:id
-                    },
-                    success:(data)=>{
-                        console.log(data);
-                        if(data.status=="success"){
-                        Toastify({
-                        text: "Xóa Thành Công",
-                        duration: 3000,
-                        newWindow: true,
-                        close: true,
-                        gravity: "top", // `top` or `bottom`
-                        position: 'right', // `left`, `center` or `right`
-                        backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
-                        stopOnFocus: true // Prevents dismissing of toast on hover
-                        }).showToast();
-                        setTimeout(()=>{
-                            location.reload();
-                        },1000)
-                        }
-                        else {
-                            Toastify({
-                            text: "Có Lỗi Xảy Ra",
-                            duration: 3000,
-                            newWindow: true,
-                            close: true,
-                            gravity: "top", // `top` or `bottom`
-                            position: 'right', // `left`, `center` or `right`
-                            backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
-                            stopOnFocus: true // Prevents dismissing of toast on hover
-                            }).showToast();
-                        }
-                    }
-                })
+    $(".ChangePrice").click(function () {
+      var url = new URL(document.URL)
+      url.searchParams.delete('order');
+      url.searchParams.delete('sortBy');
+      url.searchParams.append('order', $(this).attr("value"))
+      url.searchParams.append('sortBy', $(this).attr("name"))
+      window.location.href = url
+    })
+
+    $(".ChangePage").click(function () {
+      var url = new URL(document.URL);
+      if ($(this).attr("name") != '') {
+        url.searchParams.delete('order');
+        url.searchParams.delete('sortBy');
+        url.searchParams.delete('page');
+        url.searchParams.append('order', $(this).attr("order"))
+        url.searchParams.append('sortBy', $(this).attr("name"))
+        url.searchParams.append('page', $(this).attr("value"))
+        window.location.href = url.href;
+      } else {
+        url.searchParams.delete('order');
+        url.searchParams.delete('sortBy');
+        url.searchParams.delete('page');
+        url.searchParams.append('page', $(this).attr("value"))
+        window.location.href = url.href;
+      }
+    });
+  </script>
+  <script>
+    $(document).ready(function () {
+      $(".deleteProducts").click(function () {
+        let id = $(this).data("id");
+        console.log(id);
+        if (confirm("Bạn Muốn Xóa Tin Tức Này Không")) {
+          $.ajax({
+            url: "/adminmanage/product/delete",
+            method: "post",
+            data: {
+              id: id
+            },
+            success: (data) => {
+              console.log(data);
+              if (data.status == "success") {
+                Toastify({
+                  text: "Xóa Thành Công",
+                  duration: 3000,
+                  newWindow: true,
+                  close: true,
+                  gravity: "top", // `top` or `bottom`
+                  position: 'right', // `left`, `center` or `right`
+                  backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
+                  stopOnFocus: true // Prevents dismissing of toast on hover
+                }).showToast();
+                setTimeout(() => {
+                  location.reload();
+                }, 1000)
+              }
+              else {
+                Toastify({
+                  text: "Có Lỗi Xảy Ra",
+                  duration: 3000,
+                  newWindow: true,
+                  close: true,
+                  gravity: "top", // `top` or `bottom`
+                  position: 'right', // `left`, `center` or `right`
+                  backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
+                  stopOnFocus: true // Prevents dismissing of toast on hover
+                }).showToast();
+              }
             }
-        })
+          })
+        }
+      })
     })
   </script>
 </body>
