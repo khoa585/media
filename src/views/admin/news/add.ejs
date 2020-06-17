@@ -43,26 +43,26 @@
     <!-- Header -->
     <!-- Header -->
     <div class="header bg-primary pb-6">
-        <div class="container-fluid">
-          <div class="header-body">
-            <div class="row align-items-center py-4">
-              <div class="col-lg-6 col-7">
-                <h6 class="h2 text-white d-inline-block mb-0">Admin</h6>
-                <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
-                  <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
-                    <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
-                    <li class="breadcrumb-item"><a href="#">Admin</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Tin Tức</li>
-                  </ol>
-                </nav>
-              </div>
-              <div class="col-lg-6 col-5 text-right">
-                <!-- <a href="/adminmanage/news/add" class="btn btn-sm btn-neutral">Thêm Mới</a> -->
-              </div>
+      <div class="container-fluid">
+        <div class="header-body">
+          <div class="row align-items-center py-4">
+            <div class="col-lg-6 col-7">
+              <h6 class="h2 text-white d-inline-block mb-0">Admin</h6>
+              <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+                <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+                  <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
+                  <li class="breadcrumb-item"><a href="#">Admin</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">Tin Tức</li>
+                </ol>
+              </nav>
+            </div>
+            <div class="col-lg-6 col-5 text-right">
+              <!-- <a href="/adminmanage/news/add" class="btn btn-sm btn-neutral">Thêm Mới</a> -->
             </div>
           </div>
         </div>
       </div>
+    </div>
     <!-- Page content -->
     <div class="container-fluid mt--6">
       <div class="row">
@@ -92,17 +92,18 @@
                     <div class="col-lg-12">
                       <div class="form-group">
                         <label class="form-control-label" for="input-email">Mô Tả</label>
-                        <textarea id="descriptions" class="form-control" rows="4" cols="50" placeholder="Nhập Mô Tả"></textarea>
+                        <textarea id="descriptions" class="form-control" rows="4" cols="50"
+                          placeholder="Nhập Mô Tả"></textarea>
                       </div>
                     </div>
                     <div class="col-lg-12">
-                        <div class="form-group">
-                            <label class="form-control-label" for="input-email">Hình Ảnh :</label>
-                            <div id="image-priview-add" style="padding: 10px;">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-email">Hình Ảnh :</label>
+                        <div id="image-priview-add" style="padding: 10px;">
 
-                            </div>
-                            <input type="file" class="form-control" id="newsImages" >
                         </div>
+                        <input type="file" class="form-control" id="newsImages">
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -114,7 +115,7 @@
                   </div>
                 </div>
                 <div class="pl-lg-4">
-                    <button type="submit">Thêm Mới</button>
+                  <button type="submit">Thêm Mới</button>
                 </div>
               </form>
             </div>
@@ -138,117 +139,115 @@
   <script src="/assets/js/argon.js?v=1.2.0"></script>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
   <style>
-      @media  (max-width: 700px){
-        .image-preview {
+    @media (max-width: 700px) {
+      .image-preview {
         width: 100%;
         height: 200px;
         border: 1px #8898aa;
         padding: 10px;
-        }
       }
-      @media  (min-width: 700px){
-        .image-preview {
+    }
+
+    @media (min-width: 700px) {
+      .image-preview {
         width: 50%;
         height: 50%;
         border: 1px #8898aa;
         padding: 10px;
-        }
       }
-      
+    }
   </style>
   <script>
 
-      $(document).ready(function(){
-        var editor=CKEDITOR.replace( 'editor');
-        editor.on( 'fileUploadRequest', function( evt ) {
-          console.log("Upload")
-          var fileLoader = evt.data.fileLoader,
-              formData = new FormData(),
-              xhr = fileLoader.xhr;
+    $(document).ready(function () {
+      var editor = CKEDITOR.replace('editor');
+      editor.on('fileUploadRequest', function (evt) {
+        console.log("Upload")
+        var fileLoader = evt.data.fileLoader,
+          formData = new FormData(),
+          xhr = fileLoader.xhr;
 
-          xhr.open( 'post', fileLoader.uploadUrl, true );
-          formData.append( 'file', fileLoader.file, fileLoader.fileName );
-          fileLoader.xhr.send( formData );
+        xhr.open('post', fileLoader.uploadUrl, true);
+        formData.append('file', fileLoader.file, fileLoader.fileName);
+        fileLoader.xhr.send(formData);
 
-          // Prevented the default behavior.
-          evt.stop();
-      }, null, null, 4 ); //
-        $("#newsImages").change(function(){
-            if (this.files && this.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function (e) {
-              
-                let img =`<img src=${e.target.result} class='image-preview'/>`;
-                $('#image-priview-add').empty();
-                $('#image-priview-add').append(img);
-            }
-            reader.readAsDataURL(this.files[0]);
+        // Prevented the default behavior.
+        evt.stop();
+      }, null, null, 4); //
+      $("#newsImages").change(function () {
+        if (this.files && this.files[0]) {
+          var reader = new FileReader();
+          reader.onload = function (e) {
+
+            let img = `<img src=${e.target.result} class='image-preview'/>`;
+            $('#image-priview-add').empty();
+            $('#image-priview-add').append(img);
+          }
+          reader.readAsDataURL(this.files[0]);
         }
-        })
-        // Add Tin Tức
-        $("#formAdd").submit(function(event){
-            event.preventDefault();
-            let title = $("#title").val();
-            let descriptions = $("#descriptions").val();
-            let File = $("#newsImages")[0].files[0]
-            var data = CKEDITOR.instances.editor.getData();
-            let formData = new FormData();
-            console.log(title ,File,data,descriptions)
-            if(title=="" || data =="" || descriptions =="" ){
-              return  Toastify({
-                        text: "Vui Lòng Nhập Đủ Thông Tin",
-                        duration: 3000,
-                        newWindow: true,
-                        close: true,
-                        gravity: "top", // `top` or `bottom`
-                        position: 'right', // `left`, `center` or `right`
-                        backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
-                        stopOnFocus: true // Prevents dismissing of toast on hover
-                        }).showToast();
+      })
+      // Add Tin Tức
+      $("#formAdd").submit(function (event) {
+        event.preventDefault();
+        let title = $("#title").val();
+        let descriptions = $("#descriptions").val();
+        let File = $("#newsImages")[0].files[0]
+        var data = CKEDITOR.instances.editor.getData();
+        let formData = new FormData();
+        console.log(title, File, data, descriptions)
+        if (title == "" || data == "" || descriptions == "") {
+          return Toastify({
+            text: "Vui Lòng Nhập Đủ Thông Tin",
+            duration: 3000,
+            newWindow: true,
+            close: true,
+            gravity: "top", // `top` or `bottom`
+            position: 'right', // `left`, `center` or `right`
+            backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
+            stopOnFocus: true // Prevents dismissing of toast on hover
+          }).showToast();
+        }
+        formData.append('title', title);
+        formData.append('description', descriptions);
+        formData.append('html', data);
+        formData.append('file', File);
+        $.ajax({
+          url: '/adminmanage/news/add',
+          method: 'post',
+          data: formData,
+          cache: false,
+          contentType: false,
+          processData: false,
+          success: function (data) {
+            if (data.status == "success") {
+              Toastify({
+                text: "Thêm Thành Công",
+                duration: 3000,
+                newWindow: true,
+                close: true,
+                gravity: "top", // `top` or `bottom`
+                position: 'right', // `left`, `center` or `right`
+                backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
+                stopOnFocus: true // Prevents dismissing of toast on hover
+              }).showToast();
+            } else {
+              Toastify({
+                text: "Có Lỗi Xảy ra",
+                duration: 3000,
+                newWindow: true,
+                close: true,
+                gravity: "top", // `top` or `bottom`
+                position: 'right', // `left`, `center` or `right`
+                backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
+                stopOnFocus: true // Prevents dismissing of toast on hover
+              }).showToast();
             }
-            formData.append('title',title);
-            formData.append('description',descriptions);
-            formData.append('html',data);
-            formData.append('file',File);
-            $.ajax({
-                url:'/adminmanage/news/add',
-                method:'post',
-                data:formData,
-                cache : false,
-                contentType: false,
-                processData: false,
-                success:function(data){
-                    if(data.status=="success"){
-                      Toastify({
-                      text: "Thêm Thành Công",
-                      duration: 3000,
-                      newWindow: true,
-                      close: true,
-                      gravity: "top", // `top` or `bottom`
-                      position: 'right', // `left`, `center` or `right`
-                      backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
-                      stopOnFocus: true // Prevents dismissing of toast on hover
-                      }).showToast();
-                      setTimeout(()=>{
-                        location.href="/adminmanage/news"
-                      },1000)
-                    }else
-                     {
-                        Toastify({
-                        text: "Có Lỗi Xảy ra",
-                        duration: 3000,
-                        newWindow: true,
-                        close: true,
-                        gravity: "top", // `top` or `bottom`
-                        position: 'right', // `left`, `center` or `right`
-                        backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
-                        stopOnFocus: true // Prevents dismissing of toast on hover
-                        }).showToast();
-                     }
-                }
-            })
+          }
         })
       })
+
+
+    })
   </script>
 </body>
 

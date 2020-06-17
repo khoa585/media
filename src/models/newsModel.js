@@ -1,14 +1,16 @@
 const {newsDB,newsFields} = require("./../databases/news");
+const { Op } = require("sequelize");
 const PAGE =1  ;
 const LIMIT_NUMBER= 6 ;
 const createNews = async (data)=>{
     return newsDB.create({...data});
 }
-const getListNews = async (page=PAGE,limit=LIMIT_NUMBER)=>{
+const getListNews = async (page=PAGE,limit=LIMIT_NUMBER,sortBy)=>{
+    
     return newsDB.findAll({
        limit:limit,
        offset:(page-1)*limit,
-       order:[["createdAt","DESC"]],
+       order:[[sortBy.name,sortBy.sort]],
        raw:true
     })
 }
@@ -19,6 +21,15 @@ const deleteNews = async (id)=>{
     return newsDB.destroy({
         where:{
             [newsFields.id]:id
+        }
+    })
+}
+const deleteManyNews = async (data)=>{
+    return newsDB.destroy({
+        where:{
+            [newsFields.id]:{
+                [Op.in]:[...data]
+            }
         }
     })
 }
@@ -41,5 +52,6 @@ module.exports = {
     TotalNumberNews,
     deleteNews,
     getDetialNews,
-    updateNews
+    updateNews,
+    deleteManyNews
 }

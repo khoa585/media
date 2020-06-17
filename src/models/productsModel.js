@@ -3,6 +3,7 @@ const sequelize = require("./../databases/connectdDb");
 const { QueryTypes } = require('sequelize');
 const PAGE = 1;
 const LIMIT_NUMBER = 12;
+const { Op } = require("sequelize");
 const createNews = async (data) => {
     return productsDB.create({ ...data });
 }
@@ -69,11 +70,21 @@ const updateProduct = async (id, data) => {
         }
     })
 }
+const deleteManyProduct = async (data) => {
+    return productsDB.destroy({
+        where:{
+            [productsFields.id]:{
+                [Op.in]:[...data]
+            }
+        }
+    })
+}
 module.exports = {
     createNews,
     getListProducts,
     totalNumber,
     deleteProduct,
     detialProduct,
-    updateProduct
+    updateProduct,
+    deleteManyProduct
 }

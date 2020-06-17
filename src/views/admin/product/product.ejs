@@ -8,9 +8,12 @@
   <meta name="author" content="Creative Tim">
   <title>Quản Lý Tin Tức</title>
   <link rel="icon" href="/assets/img/brand/favicon.png" type="image/png">
+  <!-- Fonts -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
+  <!-- Icons -->
   <link rel="stylesheet" href="/assets/vendor/nucleo/css/nucleo.css" type="text/css">
   <link rel="stylesheet" href="/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css" type="text/css">
+  <!-- Argon CSS -->
   <link rel="stylesheet" href="/assets/css/argon.css?v=1.2.0" type="text/css">
 </head>
 
@@ -44,7 +47,7 @@
         <div class="col">
           <div class="card">
             <div class="card-header border-0">
-              <h3 class="mb-0">Danh Sách Tin Tức</h3>
+              <h3 class="mb-0">Danh Sách Sản Phẩm</h3>
             </div>
             <div class="table-responsive">
               <table class="table align-items-center table-flush">
@@ -185,7 +188,6 @@
                 cursor: pointer;
                 border: 1px solid #e2d8d8;
               }
-
               .list td,
               th {
                 text-align: center;
@@ -275,82 +277,83 @@
   <script src="/assets/vendor/js-cookie/js.cookie.js"></script>
   <script src="/assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
   <script src="/assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+  <script src="//cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
   <script src="/assets/js/argon.js?v=1.2.0"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
   <script>
-    $(".ChangePrice").click(function () {
-      var url = new URL(document.URL)
-      url.searchParams.delete('order');
-      url.searchParams.delete('sortBy');
-      url.searchParams.append('order', $(this).attr("value"))
-      url.searchParams.append('sortBy', $(this).attr("name"))
-      window.location.href = url
-    })
-    $("#deletaProduct").click(function () {
-      const input = document.getElementsByClassName('check_box')
-      if (confirm("Bạn Muốn Xóa Các Sản Phẩm Này Không")) {
-        for (i = 0; i < input.length; i++) {
-          if (input[i].checked) {
-            let id = input[i].id
-            $.ajax({
-              url: "/adminmanage/product/delete",
-              method: "post",
-              data: {
-                id: id
-              },
-              success: (data) => {
-                console.log(data);
-                if (data.status == "success") {
-                  Toastify({
-                    text: "Xóa Thành Công",
-                    duration: 3000,
-                    newWindow: true,
-                    close: true,
-                    gravity: "top", // `top` or `bottom`
-                    position: 'right', // `left`, `center` or `right`
-                    backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
-                    stopOnFocus: true // Prevents dismissing of toast on hover
-                  }).showToast();
-                  setTimeout(() => {
-                    location.reload();
-                  }, 1000)
-                }
-                else {
-                  Toastify({
-                    text: "Có Lỗi Xảy Ra",
-                    duration: 3000,
-                    newWindow: true,
-                    close: true,
-                    gravity: "top", // `top` or `bottom`
-                    position: 'right', // `left`, `center` or `right`
-                    backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
-                    stopOnFocus: true // Prevents dismissing of toast on hover
-                  }).showToast();
-                }
-              }
-            })
-          }
-        }
-      }
-    })
-    $(".ChangePage").click(function () {
-      var url = new URL(document.URL);
-      if ($(this).attr("name") != '') {
+    $(document).ready(function () {
+      $(".ChangePrice").click(function () {
+        var url = new URL(document.URL)
         url.searchParams.delete('order');
         url.searchParams.delete('sortBy');
-        url.searchParams.delete('page');
-        url.searchParams.append('order', $(this).attr("order"))
+        url.searchParams.append('order', $(this).attr("value"))
         url.searchParams.append('sortBy', $(this).attr("name"))
-        url.searchParams.append('page', $(this).attr("value"))
-        window.location.href = url.href;
-      } else {
-        url.searchParams.delete('order');
-        url.searchParams.delete('sortBy');
-        url.searchParams.delete('page');
-        url.searchParams.append('page', $(this).attr("value"))
-        window.location.href = url.href;
-      }
-    });
+        window.location.href = url
+      })
+      $("#deletaProduct").click(function () {
+        let arrayData = [];
+        $(".check_box:checked").each(function () {
+          arrayData.push($(this).attr("id"));
+        })
+        if (confirm("Bạn Muốn Xóa Sản Phẩm Này Không")) {
+          $.ajax({
+            url: "/adminmanage/product/deleteMany",
+            method: "post",
+            data: {
+              data: arrayData
+            },
+            success: (data) => {
+              console.log(data.status);
+              if (data.status === "success") {
+                Toastify({
+                  text: "Thêm Thành Công",
+                  duration: 3000,
+                  newWindow: true,
+                  close: true,
+                  gravity: "top", // `top` or `bottom`
+                  position: 'right', // `left`, `center` or `right`
+                  backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
+                  stopOnFocus: true // Prevents dismissing of toast on hover
+                }).showToast();
+                setTimeout(() => {
+                  location.reload();
+                }, 1000)
+              } else {
+                Toastify({
+                  text: "Có Lỗi Xảy ra",
+                  duration: 3000,
+                  newWindow: true,
+                  close: true,
+                  gravity: "top", // `top` or `bottom`
+                  position: 'right', // `left`, `center` or `right`
+                  backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
+                  stopOnFocus: true // Prevents dismissing of toast on hover
+                }).showToast();
+              }
+            }
+          })
+        }
+      })
+      $(".ChangePage").click(function () {
+        var url = new URL(document.URL);
+        if ($(this).attr("name") != '') {
+          url.searchParams.delete('order');
+          url.searchParams.delete('sortBy');
+          url.searchParams.delete('page');
+          url.searchParams.append('order', $(this).attr("order"))
+          url.searchParams.append('sortBy', $(this).attr("name"))
+          url.searchParams.append('page', $(this).attr("value"))
+          window.location.href = url.href;
+        } else {
+          url.searchParams.delete('order');
+          url.searchParams.delete('sortBy');
+          url.searchParams.delete('page');
+          url.searchParams.append('page', $(this).attr("value"))
+          window.location.href = url.href;
+        }
+      });
+    })
   </script>
   <script>
     $(document).ready(function () {
@@ -369,9 +372,8 @@
               if (data.status == "success") {
                 Toastify({
                   text: "Xóa Thành Công",
-                  duration: 3000,
+                  duration: 2000,
                   newWindow: true,
-                  close: true,
                   gravity: "top", // `top` or `bottom`
                   position: 'right', // `left`, `center` or `right`
                   backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",

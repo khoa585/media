@@ -1,47 +1,22 @@
-<!--
-=========================================================
-* Argon Dashboard - v1.2.0
-=========================================================
-* Product Page: https://www.creative-tim.com/product/argon-dashboard
-
-
-* Copyright  Creative Tim (http://www.creative-tim.com)
-* Coded by www.creative-tim.com
-
-
-
-=========================================================
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
--->
 <!DOCTYPE html>
 <html>
-
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="Start your development with a Dashboard for Bootstrap 4.">
   <meta name="author" content="Creative Tim">
   <title>Thêm Tin Tức</title>
-  <!-- Favicon -->
   <link rel="icon" href="/assets/img/brand/favicon.png" type="image/png">
-  <!-- Fonts -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
-  <!-- Icons -->
   <link rel="stylesheet" href="/assets/vendor/nucleo/css/nucleo.css" type="text/css">
   <link rel="stylesheet" href="/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css" type="text/css">
-  <!-- Argon CSS -->
   <link rel="stylesheet" href="/assets/css/argon.css?v=1.2.0" type="text/css">
 </head>
 
 <body>
-  <!-- Sidenav -->
   <%-include("./../common/navbar.ejs")%>
-  <!-- Main content -->
   <div class="main-content" id="panel">
-    <!-- Topnav -->
     <%-include("./../common/header.ejs")%>
-    <!-- Header -->
-    <!-- Header -->
     <div class="header bg-primary pb-6">
         <div class="container-fluid">
           <div class="header-body">
@@ -57,16 +32,13 @@
                 </nav>
               </div>
               <div class="col-lg-6 col-5 text-right">
-                <!-- <a href="/adminmanage/news/add" class="btn btn-sm btn-neutral">Thêm Mới</a> -->
               </div>
             </div>
           </div>
         </div>
       </div>
-    <!-- Page content -->
     <div class="container-fluid mt--6">
       <div class="row">
-
         <div class="col-xl-12 order-xl-1">
           <div class="card">
             <div class="card-header">
@@ -103,7 +75,6 @@
                     </div>
                   </div>
                 </div>
-                <!-- Description -->
                 <div class="pl-lg-4">
                   <div class="form-group">
                     <label class="form-control-label">Nội Dung</label>
@@ -119,12 +90,9 @@
           </div>
         </div>
       </div>
-      <!-- Footer -->
       <%-include("./../common/footer.ejs")%>
     </div>
   </div>
-  <!-- Argon Scripts -->
-  <!-- Core -->
   <script src="/assets/vendor/jquery/dist/jquery.min.js"></script>
   <script src="/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
   <script src="/assets/vendor/js-cookie/js.cookie.js"></script>
@@ -132,7 +100,6 @@
   <script src="/assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
   <script src="//cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
-  <!-- Argon JS -->
   <script src="/assets/js/argon.js?v=1.2.0"></script>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
   <style>
@@ -166,8 +133,6 @@
           xhr.open( 'post', fileLoader.uploadUrl, true );
           formData.append( 'file', fileLoader.file, fileLoader.fileName );
           fileLoader.xhr.send( formData );
-
-          // Prevented the default behavior.
           evt.stop();
       }, null, null, 4 ); //
         $("#newsImages").change(function(){
@@ -182,7 +147,6 @@
             reader.readAsDataURL(this.files[0]);
         }
         })
-        // Add Tin Tức
         $("#formUpdate").submit(function(event){
             event.preventDefault();
             let id = $("#idNews").val();
@@ -198,10 +162,10 @@
                         duration: 3000,
                         newWindow: true,
                         close: true,
-                        gravity: "top", // `top` or `bottom`
-                        position: 'right', // `left`, `center` or `right`
+                        gravity: "top", 
+                        position: 'right', 
                         backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
-                        stopOnFocus: true // Prevents dismissing of toast on hover
+                        stopOnFocus: true 
                         }).showToast();
             }
             formData.append('id',id);
@@ -223,14 +187,11 @@
                       duration: 3000,
                       newWindow: true,
                       close: true,
-                      gravity: "top", // `top` or `bottom`
-                      position: 'right', // `left`, `center` or `right`
+                      gravity: "top", 
+                      position: 'right', 
                       backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
-                      stopOnFocus: true // Prevents dismissing of toast on hover
+                      stopOnFocus: true 
                       }).showToast();
-                      setTimeout(()=>{
-                        location.reload();
-                      },1000)
                     }else
                      {
                         Toastify({
@@ -238,10 +199,10 @@
                         duration: 3000,
                         newWindow: true,
                         close: true,
-                        gravity: "top", // `top` or `bottom`
-                        position: 'right', // `left`, `center` or `right`
+                        gravity: "top", 
+                        position: 'right', 
                         backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
-                        stopOnFocus: true // Prevents dismissing of toast on hover
+                        stopOnFocus: true 
                         }).showToast();
                      }
                 }

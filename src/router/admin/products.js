@@ -58,6 +58,24 @@ router.post("/delete", async (req, res) => {
         })
     }
 })
+
+router.post("/deleteMany", async (req, res) => {
+    const id = req.body["data[]"]
+    try {
+        let resultDelete = await productModel.deleteManyProduct(id);
+        console.log(resultDelete)
+        return res.json({
+            status: "success",
+            data: resultDelete
+        })
+    } catch (error) {
+        return res.json({
+            status: "error",
+            data: error
+        })
+    }
+})
+
 router.post("/update", upload.single("file"),
     async (req, res) => {
         // console.log(req.body);
