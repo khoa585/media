@@ -893,8 +893,6 @@
                                                 class="fas fa-angle-left"></i></a></li>
                                     <% } else { %>
                                     <li class="page-item">
-                                        <!-- <a href="<%=path%>?page=1" class="page-link"><i
-                                            class="fas fa-angle-left"></i></a></li> -->
                                         <span value="1" name="<%=paths.name%>" order="<%=paths.order%>"
                                             class=" ChangePage page-link"><i class="fas fa-angle-left"></i>
                                         </span></li>
@@ -907,12 +905,10 @@
                                     <% if (i == current) { %>
                                     <li class="page-item active"><a class="page-link"><%= i %></a></li>
                                     <% } else { %>
-                                    <!-- <li class="page-item"><span href="<%=path%>?page=<%= i %>"
-                                            class="page-link"><%= i %></span></li> -->
                                     <li class="page-item"><span value="<%=i%>" name="<%=paths.name%>"
                                             order="<%=paths.order%>" class="ChangePage page-link"><%= i %></span></li>
                                     <% } %>
-                                    <% if (i == Number(current) + 4 && i < pages) { %>
+                                    <% if (i == Number(current) + 5 && i < pages) { %>
                                     <li class=" page-item disabled"><a class="page-link">...</a></li>
                                     <% } %>
                                     <% } %>
@@ -921,9 +917,6 @@
                                                 class="fas fa-angle-right"></i></a></li>
                                     <% } else { %>
                                     <li class=" page-item">
-                                        <!-- <a href="<%=path%>?page=<%=Number(pages)%>"
-                                            class="page-link"><i class="fas fa-angle-right"></i>
-                                        </a> -->
                                         <span value="<%=Number(pages)%>" name="<%=paths.name%>" order="<%=paths.order%>"
                                             class=" ChangePage page-link"><i class="fas fa-angle-right"></i>
                                         </span>

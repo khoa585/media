@@ -51,13 +51,14 @@
                 <thead class="thead-light">
                   <tr>
                     <th scope="col" class="sort" data-sort="name">STT</th>
+                    <th scope="col" class="text-center">Hành Động</th>
                     <th scope="col" class="sort" data-sort="budget" style="width: 200px;">Tên Sản Phẩm</th>
+                    <th scope="col">Thời Gian</th>
                     <th scope="col" class="sort" data-sort="budget" style="width: 200px;">Loại</th>
                     <th scope="col" class="sort" data-sort="budget" style="width: 200px;">Giá</th>
                     <th scope="col" class="sort" data-sort="budget" style="width: 200px;">Giảm Giá</th>
                     <th scope="col">Ảnh</th>
-                    <th scope="col">Thời Gian</th>
-                    <th scope="col" class="text-center">Hành Động</th>
+                    <th scope="col">Xóa</th>
                   </tr>
                 </thead>
                 <div>
@@ -68,33 +69,36 @@
                     justify-content: flex-end;
                     height: 60px;
                     align-items: center;">
+                    <div style=" margin-right: 20px; ">
+                      <button class="button btn" id="deletaProduct">Xóa</button>
+                    </div>
                     <div class="dropdown">
                       <% if (countPrice === 0) {%>
-                      <span class="select dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown"
+                      <span class="select dropdown-toggle btn" id="dropdownMenuButton" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">Sắp xếp theo</span>
                       <% } %>
                       <% if (countPrice === 1) {%>
-                      <span class="select dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown"
+                      <span class="select dropdown-toggle btn" id="dropdownMenuButton" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">Giá Giảm Dần</span>
                       <% } %>
                       <% if (countPrice === 2) {%>
-                      <span class="select dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown"
+                      <span class="select dropdown-toggle btn" id="dropdownMenuButton" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">Giá Tăng Dần</span>
                       <% } %>
                       <% if (countPrice === 3) {%>
-                      <span class="select dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown"
+                      <span class="select dropdown-toggle btn" id="dropdownMenuButton" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">Tên A-z</span>
                       <% } %>
                       <% if (countPrice === 4) {%>
-                      <span class="select dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown"
+                      <span class="select dropdown-toggle btn" id="dropdownMenuButton" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">Tên Z-a</span>
                       <% } %>
                       <% if (countPrice === 5) {%>
-                      <span class="select dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown"
+                      <span class="select dropdown-toggle btn" id="dropdownMenuButton" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">Mới Nhất</span>
                       <% } %>
                       <% if (countPrice === 6) {%>
-                      <span class="select dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown"
+                      <span class="select dropdown-toggle btn" id="dropdownMenuButton" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">Cũ
                         Nhất</span>
                       <% } %>
@@ -117,27 +121,6 @@
                     <th scope="row">
                       <%=index+1%>
                     </th>
-                    <td class="budget">
-                      <%=item.name%>
-                    </td>
-                    <td class="budget">
-                      <%=item.category%>
-                    </td>
-                    <td>
-                      <%=item.price%>
-                    </td>
-                    <td>
-                      <%=item.discount%>
-                    </td>
-                    <td>
-                      <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip"
-                        data-original-title="Ryan Tompson">
-                        <img alt="Image placeholder" src="<%=item.image%>">
-                      </a>
-                    </td>
-                    <td>
-                      <%=moment(item.createAt).tz("Asia/Bangkok").format("YYYY-MM-DD HH:mm:ss") %>
-                    </td>
                     <td class="text-center">
                       <a style="padding: 0 10px; cursor: pointer;" href="/adminmanage/product/detial/<%-item.id%>">
                         <svg class="bi bi-tools" width="1.5em" height="1.5em" viewBox="0 0 16 16" fill="currentColor"
@@ -158,12 +141,56 @@
                         </svg>
                       </span>
                     </td>
+                    <td class="budget">
+                      <%=item.name%>
+                    </td>
+                    <td>
+                      <%=moment(item.createAt).tz("Asia/Bangkok").format("YYYY-MM-DD HH:mm:ss") %>
+                    </td>
+                    <td class="budget">
+                      <%=item.category%>
+                    </td>
+                    <td>
+                      <%=item.price%>
+                    </td>
+                    <td>
+                      <%=item.discount%>
+                    </td>
+                    <td>
+                      <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip"
+                        data-original-title="Ryan Tompson">
+                        <img alt="Image placeholder" src="<%=item.image%>">
+                      </a>
+                    </td>
+                    <td>
+                      <input type="checkbox" class="check_box" id=<%=item.id%> />
+                    </td>
                   </tr>
                   <%}) %>
                 </tbody>
               </table>
             </div>
             <style type="text/css">
+              button.button.btn {
+                background-color: #f7f7f7;
+                border: none;
+                color: #616d8a;
+                padding: 15px 32px;
+                padding: 10px 20px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                margin: 4px 2px;
+                cursor: pointer;
+                border: 1px solid #e2d8d8;
+              }
+
+              .list td,
+              th {
+                text-align: center;
+              }
+
               button#dropdownMenuButton span.select {
                 font-size: 0.7em;
               }
@@ -192,6 +219,10 @@
               button#dropdownMenuButton:focus {
                 outline: none;
               }
+
+              input[type='checkbox'] {
+                cursor: pointer;
+              }
             </style>
             <div class="card-footer py-4">
               <nav aria-label="...">
@@ -216,7 +247,7 @@
                   <li class="page-item"><span value="<%=i%>" name="<%=paths.name%>" order="<%=paths.order%>"
                       class="ChangePage page-link"><%= i %></span></li>
                   <% } %>
-                  <% if (i == Number(current) + 4 && i < pages) { %>
+                  <% if (i == Number(current) + 5 && i < pages) { %>
                   <li class=" page-item disabled"><a class="page-link">...</a></li>
                   <% } %>
                   <% } %>
@@ -255,7 +286,53 @@
       url.searchParams.append('sortBy', $(this).attr("name"))
       window.location.href = url
     })
-
+    $("#deletaProduct").click(function () {
+      const input = document.getElementsByClassName('check_box')
+      if (confirm("Bạn Muốn Xóa Các Sản Phẩm Này Không")) {
+        for (i = 0; i < input.length; i++) {
+          if (input[i].checked) {
+            let id = input[i].id
+            $.ajax({
+              url: "/adminmanage/product/delete",
+              method: "post",
+              data: {
+                id: id
+              },
+              success: (data) => {
+                console.log(data);
+                if (data.status == "success") {
+                  Toastify({
+                    text: "Xóa Thành Công",
+                    duration: 3000,
+                    newWindow: true,
+                    close: true,
+                    gravity: "top", // `top` or `bottom`
+                    position: 'right', // `left`, `center` or `right`
+                    backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
+                    stopOnFocus: true // Prevents dismissing of toast on hover
+                  }).showToast();
+                  setTimeout(() => {
+                    location.reload();
+                  }, 1000)
+                }
+                else {
+                  Toastify({
+                    text: "Có Lỗi Xảy Ra",
+                    duration: 3000,
+                    newWindow: true,
+                    close: true,
+                    gravity: "top", // `top` or `bottom`
+                    position: 'right', // `left`, `center` or `right`
+                    backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
+                    stopOnFocus: true // Prevents dismissing of toast on hover
+                  }).showToast();
+                }
+              }
+            })
+          }
+        }
+      }
+    })
     $(".ChangePage").click(function () {
       var url = new URL(document.URL);
       if ($(this).attr("name") != '') {
@@ -280,7 +357,7 @@
       $(".deleteProducts").click(function () {
         let id = $(this).data("id");
         console.log(id);
-        if (confirm("Bạn Muốn Xóa Tin Tức Này Không")) {
+        if (confirm("Bạn Muốn Xóa Sản Phẩm Này Không")) {
           $.ajax({
             url: "/adminmanage/product/delete",
             method: "post",

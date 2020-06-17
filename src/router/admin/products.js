@@ -1,7 +1,7 @@
 let express = require("express");
 let router = express.Router();
 let multer = require("multer");
-let {genId} = require("./../../common/TextHelper");
+let { genId } = require("./../../common/TextHelper");
 let productModel = require('./../../models/productsModel');
 let moment = require("moment");
 let storage = multer.diskStorage({
@@ -15,82 +15,82 @@ let storage = multer.diskStorage({
 });
 let upload = multer({
     storage: storage,
-    limits: {fileSize: 1024 * 1024 * 20}
+    limits: { fileSize: 1024 * 1024 * 20 }
 });
-router.get("/add",async(req,res)=>{
-    res.render("admin/product/add",{user:req.user})
+router.get("/add", async (req, res) => {
+    res.render("admin/product/add", { user: req.user })
 })
-router.post("/add",upload.single("file"),
-    async(req,res)=>{
-    try {
-        delete req.body.file ;
-        req.body.id =genId();
-        if(req.file){
-            req.body.image = "/upload/"+ req.file.filename;
+router.post("/add", upload.single("file"),
+    async (req, res) => {
+        try {
+            delete req.body.file;
+            req.body.id = genId();
+            if (req.file) {
+                req.body.image = "/upload/" + req.file.filename;
+            }
+            let data = await productModel.createNews(req.body);
+            return res.json({
+                status: "success",
+                data: data
+            })
+        } catch (error) {
+            console.log(error);
+            return res.json({
+                status: "error",
+                data: error
+            })
         }
-        let data = await productModel.createNews(req.body);
-        return res.json({
-            status:"success",
-            data:data
-        })
-    } catch (error) {
-        console.log(error);
-        return res.json({
-            status:"error",
-            data:error
-        })
-    }
 
-})
-router.post("/delete",async(req,res)=>{
+    })
+router.post("/delete", async (req, res) => {
     try {
         // console.log(req.body);
         let resultDelete = await productModel.deleteProduct(req.body.id);
         return res.json({
-            status:"success",
-            data:resultDelete
+            status: "success",
+            data: resultDelete
         })
     } catch (error) {
         console.log(error);
         return res.json({
-            status:"error",
-            data:error
+            status: "error",
+            data: error
         })
     }
 })
-router.post("/update",upload.single("file"),
-    async(req,res)=>{
-    // console.log(req.body);
-    let {id} = req.body ;
-    delete req.body.id ;
-    delete req.body.file ;
-    try {
-        if(req.file){
-            req.body.image = "/upload/"+ req.file.filename;
+router.post("/update", upload.single("file"),
+    async (req, res) => {
+        // console.log(req.body);
+        let { id } = req.body;
+        delete req.body.id;
+        delete req.body.file;
+        try {
+            if (req.file) {
+                req.body.image = "/upload/" + req.file.filename;
+            }
+            let dataUpdate = await productModel.updateProduct(id, req.body);
+            return res.json({
+                status: "success",
+                data: dataUpdate
+            })
+        } catch (error) {
+            console.log(error);
         }
-        let dataUpdate = await productModel.updateProduct(id,req.body);
-        return res.json({
-            status:"success",
-            data:dataUpdate
-        })
-    } catch (error) {
-        console.log(error);
-    }
-})
-router.get("/detial/:id",async(req,res)=>{
+    })
+router.get("/detial/:id", async (req, res) => {
     try {
         let resultProduct = await productModel.detialProduct(req.params.id);
-        if(!resultProduct){
+        if (!resultProduct) {
             return res.redirect("/adminmanage");
         }
-        return res.render("admin/product/detial",{user:req.user,productDetial:resultProduct,moment:moment})
+        return res.render("admin/product/detial", { user: req.user, productDetial: resultProduct, moment: moment })
     } catch (error) {
         return res.redirect("/adminmanage");
     }
 })
 const NUMBER_IN_PAGE = 12;
-router.get("(/:id)?",async(req,res)=>{
-    console.log( req.query)
+router.get("(/:id)?", async (req, res) => {
+    console.log(req.query)
     let sort_By;
     let order = req.query.order
     let name = req.query.sortBy
@@ -121,8 +121,8 @@ router.get("(/:id)?",async(req,res)=>{
     }
     let countPrice = req.query.order ? sort_By : 0;
     let page = req.query.page || 1;
-    let [listProduct,totalPage] = await Promise.all([productModel.getListProducts(page,NUMBER_IN_PAGE,sort_By),productModel.totalNumber()]);
+    let [listProduct, totalPage] = await Promise.all([productModel.getListProducts(page, NUMBER_IN_PAGE, sort_By), productModel.totalNumber()]);
     // console.log(listProduct);
-    res.render("admin/product/product",{user:req.user,moment:moment,paths: paths ,listProduct:listProduct,pages:Math.floor(totalPage.count/NUMBER_IN_PAGE)+1,current:page,countPrice:countPrice})
+    res.render("admin/product/product", { user: req.user, moment: moment, paths: paths, listProduct: listProduct, pages: Math.floor(totalPage.count / NUMBER_IN_PAGE) + 1, current: page, countPrice: countPrice })
 })
-module.exports = router ;
+module.exports = router;
