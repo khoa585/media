@@ -6,13 +6,23 @@ const createNews = async (data)=>{
     return newsDB.create({...data});
 }
 const getListNews = async (page=PAGE,limit=LIMIT_NUMBER,sortBy)=>{
+    console.log(sortBy);
+    if(sortBy){
+        return newsDB.findAll({
+            limit:limit,
+            offset:(page-1)*limit,
+            order:[[sortBy.name,sortBy.sort]],
+            raw:true
+         })
+    }
+    else {
+        return newsDB.findAll({
+            limit:limit,
+            offset:(page-1)*limit,
+            raw:true
+         })
+    }
     
-    return newsDB.findAll({
-       limit:limit,
-       offset:(page-1)*limit,
-       order:[[sortBy.name,sortBy.sort]],
-       raw:true
-    })
 }
 const TotalNumberNews = async()=>{
     return newsDB.findAndCountAll({raw:true});
