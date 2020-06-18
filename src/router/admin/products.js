@@ -60,7 +60,7 @@ router.post("/delete", async (req, res) => {
 })
 
 router.post("/deleteMany", async (req, res) => {
-    const id = req.body["data[]"]
+    const id = req.body["id[]"]
     try {
         let resultDelete = await productModel.deleteManyProduct(id);
         console.log(resultDelete)
@@ -108,7 +108,6 @@ router.get("/detial/:id", async (req, res) => {
 })
 const NUMBER_IN_PAGE = 12;
 router.get("(/:id)?", async (req, res) => {
-    console.log(req.query)
     let sort_By;
     let order = req.query.order
     let name = req.query.sortBy
@@ -139,8 +138,17 @@ router.get("(/:id)?", async (req, res) => {
     }
     let countPrice = req.query.order ? sort_By : 0;
     let page = req.query.page || 1;
-    let [listProduct, totalPage] = await Promise.all([productModel.getListProducts(page, NUMBER_IN_PAGE, sort_By), productModel.totalNumber()]);
-    // console.log(listProduct);
-    res.render("admin/product/product", { user: req.user, moment: moment, paths: paths, listProduct: listProduct, pages: Math.floor(totalPage.count / NUMBER_IN_PAGE) + 1, current: page, countPrice: countPrice })
+    let [listProduct, totalPage] = await Promise.all([productModel.getListProducts(page, NUMBER_IN_PAGE, sort_By, req.query.Category), productModel.totalNumber(req.query.Category)]);
+
+    res.render("admin/product/product", {
+        user: req.user,
+        moment: moment,
+        paths: paths,
+        listProduct: listProduct,
+        pages: Math.floor(totalPage.count / NUMBER_IN_PAGE) + 1,
+        current: page,
+        countPrice: countPrice,
+        Category  : req.query.Category
+    })
 })
 module.exports = router;

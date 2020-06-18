@@ -52,11 +52,11 @@
                   <tr>
                     <th scope="col">Xóa</th>
                     <th scope="col" class="sort" data-sort="name">STT</th>
-                    <th scope="col" class="sort" data-sort="budget" style="width: 200px;">Tiêu Đề</th>
-                    <th scope="col" class="sort" data-sort="status">Mô Tả</th>
-                    <th scope="col">Ảnh</th>
                     <th scope="col">Thời Gian</th>
                     <th scope="col" class="text-center">Hành Động</th>
+                    <th scope="col" class="sort" data-sort="budget" style="width: 200px;">Tiêu Đề</th>
+                    <th scope="col">Ảnh</th>
+
                   </tr>
                 </thead>
                 <div>
@@ -90,18 +90,6 @@
                     <th scope="row">
                       <%=index+1%>
                     </th>
-                    <td class="budget">
-                      <%=item.title%>
-                    </td>
-                    <td>
-                      <%=item.description%>
-                    </td>
-                    <td>
-                      <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip"
-                        data-original-title="Ryan Tompson">
-                        <img alt="Image placeholder" src="<%=item.image%>">
-                      </a>
-                    </td>
                     <td>
                       <%=moment(item.createAt).tz("Asia/Bangkok").format("YYYY-MM-DD HH:mm:ss") %>
                     </td>
@@ -125,6 +113,16 @@
                         </svg>
                       </span>
                     </td>
+                    <td class="budget">
+                      <%=item.title%>
+                    </td>
+                    <td>
+                      <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip"
+                        data-original-title="Ryan Tompson">
+                        <img alt="Image placeholder" src="<%=item.image%>">
+                      </a>
+                    </td>
+
 
                   </tr>
                   <%}) %>

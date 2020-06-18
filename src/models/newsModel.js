@@ -1,7 +1,7 @@
 const {newsDB,newsFields} = require("./../databases/news");
 const { Op } = require("sequelize");
 const PAGE =1  ;
-const LIMIT_NUMBER= 6 ;
+const LIMIT_NUMBER= 100 ;
 const createNews = async (data)=>{
     return newsDB.create({...data});
 }

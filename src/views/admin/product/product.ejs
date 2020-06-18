@@ -61,7 +61,7 @@
                     <th scope="col" class="sort" data-sort="budget" style="width: 200px;">Giá</th>
                     <th scope="col" class="sort" data-sort="budget" style="width: 200px;">Giảm Giá</th>
                     <th scope="col">Ảnh</th>
-                    <th scope="col">Xóa</th>
+                    <th scope="col" id="CheckedProduct" style="cursor: pointer;">Xóa</th>
                   </tr>
                 </thead>
                 <div>
@@ -72,13 +72,43 @@
                     justify-content: flex-end;
                     height: 60px;
                     align-items: center;">
+                    <!-- <div style=" margin-right: 20px; ">
+                      <button class="button btn" id="DeleteCheckedProduct">Hủy Tất Cả</button>
+                    </div>
+                    <div style=" margin-right: 20px; ">
+                      <button class="button btn" id="CheckedProduct">Chọn Tất Cả</button>
+                    </div> -->
+                    <div class="dropdown">
+                      <% if (Category === undefined) {%>
+                      <span class="select dropdown-toggle btn" id="dropdownMenuButton" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">Sắp xếp Phần mềm</span>
+                      <% } %>
+                      <% if (Category === '1') {%>
+                      <span class="select dropdown-toggle btn" id="dropdownMenuButton" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">Phần mềm Facebook</span>
+                      <% } %>
+                      <% if (Category === '2') {%>
+                      <span class="select dropdown-toggle btn" id="dropdownMenuButton" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">Phần mềm TikTok</span>
+                      <% } %>
+                      <% if (Category === '3') {%>
+                      <span class="select dropdown-toggle btn" id="dropdownMenuButton" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">Phần mềm Zalo</span>
+                      <% } %>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <div class="ChangeCategory dropdown-list__item" name="category" value="1">Phần mềm Facebook
+                        </div>
+                        <div class="ChangeCategory dropdown-list__item" name="category" value="2">Phần mềm TikTok</div>
+                        <div class="ChangeCategory dropdown-list__item" name="category" value="3">Phần mềm Zalo</div>
+                      </div>
+                    </div>
                     <div style=" margin-right: 20px; ">
                       <button class="button btn" id="deletaProduct">Xóa</button>
                     </div>
                     <div class="dropdown">
                       <% if (countPrice === 0) {%>
                       <span class="select dropdown-toggle btn" id="dropdownMenuButton" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">Sắp xếp theo</span>
+                        aria-haspopup="true" aria-expanded="false">Sắp xếp</span>
                       <% } %>
                       <% if (countPrice === 1) {%>
                       <span class="select dropdown-toggle btn" id="dropdownMenuButton" data-toggle="dropdown"
@@ -105,7 +135,6 @@
                         aria-haspopup="true" aria-expanded="false">Cũ
                         Nhất</span>
                       <% } %>
-
                       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <div class="ChangePrice dropdown-list__item" name="price" value="asc">Giá Tăng Dần</div>
                         <div class="ChangePrice dropdown-list__item" name="price" value="desc">Giá Giảm Dần</div>
@@ -166,7 +195,10 @@
                       </a>
                     </td>
                     <td>
-                      <input type="checkbox" class="check_box" id=<%=item.id%> />
+                      <label class="containercheckbox ">
+                        <input type="checkbox" class="check_box CheckedButton" />
+                        <span class="checkmark" checkeds="false" id=<%=item.id%>></span>
+                      </label>
                     </td>
                   </tr>
                   <%}) %>
@@ -174,6 +206,55 @@
               </table>
             </div>
             <style type="text/css">
+              .containercheckbox {
+                position: relative;
+                display: flex;
+              }
+
+              .containercheckbox input {
+                position: absolute;
+                opacity: 0;
+                cursor: pointer;
+                height: 0;
+                width: 0;
+              }
+
+              .containercheckbox .checkmark {
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 20px;
+                width: 20px;
+                background-color: #eee;
+                cursor: pointer;
+              }
+
+              .containercheckbox .checkmarks {
+                background-color: #2196F3;
+              }
+
+              .checkmark:after {
+                content: "";
+                position: absolute;
+                display: none;
+              }
+
+              .checkmark:after {
+                display: block;
+              }
+
+              .containercheckbox .checkmarks:after {
+                left: 9px;
+                top: 5px;
+                width: 5px;
+                height: 10px;
+                border: solid white;
+                border-width: 0 3px 3px 0;
+                -webkit-transform: rotate(45deg);
+                -ms-transform: rotate(45deg);
+                transform: rotate(45deg);
+              }
+
               button.button.btn {
                 background-color: #f7f7f7;
                 border: none;
@@ -188,6 +269,7 @@
                 cursor: pointer;
                 border: 1px solid #e2d8d8;
               }
+
               .list td,
               th {
                 text-align: center;
@@ -200,6 +282,25 @@
               .ChangePrice.dropdown-list__item {
                 padding: 5px;
                 cursor: pointer;
+              }
+
+              .ChangePrice.dropdown-list__item:hover {
+                background-color: rgba(0, 0, 0, .03);
+                transition: .5s;
+              }
+
+              span.ChangePage.page-link {
+                cursor: pointer;
+              }
+
+              .ChangeCategory.dropdown-list__item {
+                padding: 5px;
+                cursor: pointer;
+              }
+
+              .ChangeCategory.dropdown-list__item:hover {
+                background-color: rgba(0, 0, 0, .03);
+                transition: .5s;
               }
 
               .dropdown-toggle::after {
@@ -283,6 +384,28 @@
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
   <script>
     $(document).ready(function () {
+      $("#CheckedProduct").click(function () {
+        $('.checkmark').each(function () {
+          if ($(this).attr("checkeds") === "true") {
+            $(this).attr("checkeds", "false")
+            $(this).removeClass("checkmarks");
+          } else {
+            $(this).attr("checkeds", "true")
+            $(this).addClass("checkmarks");
+          }
+        })
+      })
+
+      $(".checkmark").click(function () {
+        if ($(this).attr("checkeds") === "true") {
+          $(this).attr("checkeds", "false")
+          $(this).removeClass("checkmarks");
+        } else {
+          $(this).attr("checkeds", "true")
+          $(this).addClass("checkmarks");
+        }
+      })
+
       $(".ChangePrice").click(function () {
         var url = new URL(document.URL)
         url.searchParams.delete('order');
@@ -291,23 +414,32 @@
         url.searchParams.append('sortBy', $(this).attr("name"))
         window.location.href = url
       })
+      $(".ChangeCategory").click(function () {
+        var url = new URL(document.URL)
+        url.searchParams.delete('Category');
+        url.searchParams.append('Category', $(this).attr("value"))
+        window.location.href = url
+      })
       $("#deletaProduct").click(function () {
         let arrayData = [];
-        $(".check_box:checked").each(function () {
-          arrayData.push($(this).attr("id"));
+        $(".checkmark").each(function () {
+          if ($(this).attr("checkeds") === "true") {
+            arrayData.push($(this).attr("id"));
+          }
         })
+        console.log(arrayData.length)
         if (confirm("Bạn Muốn Xóa Sản Phẩm Này Không")) {
           $.ajax({
-            url: "/adminmanage/product/deleteMany",
+            url:  arrayData.length === 1 ? "/adminmanage/product/delete" : "/adminmanage/product/deleteMany",
             method: "post",
             data: {
-              data: arrayData
+              id: arrayData.length === 1 ? arrayData[0] :  arrayData
             },
             success: (data) => {
               console.log(data.status);
               if (data.status === "success") {
                 Toastify({
-                  text: "Thêm Thành Công",
+                  text: "Xóa Thành Công",
                   duration: 3000,
                   newWindow: true,
                   close: true,

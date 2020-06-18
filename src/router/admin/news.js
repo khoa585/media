@@ -79,7 +79,7 @@ router.post("/delete", async (req, res) => {
 })
 router.get("(/:id)?", async (req, res) => {
     let page = 1;
-    let LIMIT_NUMBER = 6;
+    let LIMIT_NUMBER = 100;
     if (req.query.page) {
         page = req.query.page;
     }
@@ -106,7 +106,7 @@ router.get("(/:id)?", async (req, res) => {
     if (!listNews) {
         return res.redirect("/adminmanage");
     }
-    res.render('admin/news/news', { user: req.user, listNews: listNews, pages: Math.floor(totalPage.count / 6) + 1, moment: moment, current: page, paths: paths })
+    res.render('admin/news/news', { user: req.user, listNews: listNews, pages: Math.floor(totalPage.count / 100) + 1, moment: moment, current: page, paths: paths })
 })
 router.get("/detial/:id", async (req, res) => {
     try {

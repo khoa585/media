@@ -80,6 +80,7 @@ router.get("/:type", async (req, res) => {
     let category = req.category.filter((item) => {
         return item.slug == type;
     })
+ 
     if (category.length == 0) {
         return res.redirect("/");
     }
