@@ -123,7 +123,7 @@ router.get("/detial/:id", async (req, res) => {
 
 
 router.post("/deleteMany", async (req, res) => {
-    const id = req.body["data[]"]
+    const id = req.body["id[]"]
     try {
         let resultDelete = await deleteManyNews(id);
         return res.json({

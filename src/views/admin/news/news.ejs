@@ -50,7 +50,9 @@
               <table class="table align-items-center table-flush">
                 <thead class="thead-light">
                   <tr>
-                    <th scope="col">Xóa</th>
+                    <th scope="col" id="CheckedNews" style="cursor: pointer;">
+                      <span class="select_btn">Chọn</span>
+                    </th>
                     <th scope="col" class="sort" data-sort="name">STT</th>
                     <th scope="col">Thời Gian</th>
                     <th scope="col" class="text-center">Hành Động</th>
@@ -85,7 +87,9 @@
                     listNews.forEach((item,index)=>{%>
                   <tr>
                     <td>
-                      <input type="checkbox" class="check_box" id=<%=item.id%> />
+                      <div class="containercheckbox ">
+                        <span class="checkmark" checkeds="false" id=<%=item.id%>></span>
+                      </div>
                     </td>
                     <th scope="row">
                       <%=index+1%>
@@ -171,6 +175,67 @@
         </div>
       </div>
       <style type="text/css">
+        .containercheckbox {
+          position: relative;
+          display: flex;
+        }
+
+        span.select_btn {
+          padding: 5px;
+          background: #fbfbfb;
+          border: 1px solid #d8d6d6;
+        }
+
+        span.select_btn:hover {
+          transform: translateY(-1px);
+          box-shadow: 0 7px 14px rgba(50, 50, 93, .1), 0 3px 6px rgba(0, 0, 0, .08);
+        }
+
+        .containercheckbox input {
+          position: absolute;
+          opacity: 0;
+          cursor: pointer;
+          height: 0;
+          width: 0;
+        }
+
+        .containercheckbox .checkmark {
+          position: absolute;
+          top: 0;
+          left: 0;
+          height: 20px;
+          width: 20px;
+          background-color: #eee;
+          cursor: pointer;
+          transform: translate(140%, -70%);
+        }
+
+        .containercheckbox .checkmarks {
+          background-color: #2196F3;
+        }
+
+        .checkmark:after {
+          content: "";
+          position: absolute;
+          display: none;
+        }
+
+        .checkmark:after {
+          display: block;
+        }
+
+        .containercheckbox .checkmarks:after {
+          left: 9px;
+          top: 5px;
+          width: 5px;
+          height: 10px;
+          border: solid white;
+          border-width: 0 3px 3px 0;
+          -webkit-transform: rotate(45deg);
+          -ms-transform: rotate(45deg);
+          transform: rotate(45deg);
+        }
+
         button.button.btn {
           background-color: #f7f7f7;
           border: none;
@@ -239,17 +304,43 @@
   <script src="/assets/js/argon.js?v=1.2.0"></script>
   <script>
     $(document).ready(function () {
+
+      $("#CheckedNews").click(function () {
+        $('.checkmark').each(function () {
+          if ($(this).attr("checkeds") === "true") {
+            $(this).attr("checkeds", "false")
+            $(this).removeClass("checkmarks");
+          } else {
+            $(this).attr("checkeds", "true")
+            $(this).addClass("checkmarks");
+          }
+        })
+      })
+
+      $(".checkmark").click(function () {
+        if ($(this).attr("checkeds") === "true") {
+          $(this).attr("checkeds", "false")
+          $(this).removeClass("checkmarks");
+        } else {
+          $(this).attr("checkeds", "true")
+          $(this).addClass("checkmarks");
+        }
+      })
+
       $("#deletaNews").click(function () {
         let arrayData = [];
-        $(".check_box:checked").each(function () {
-          arrayData.push($(this).attr("id"));
+        $(".checkmark").each(function () {
+          if ($(this).attr("checkeds") === "true") {
+            arrayData.push($(this).attr("id"));
+          }
         })
+
         if (confirm("Bạn Muốn Xóa Tin Tức Này Không")) {
           $.ajax({
-            url: "/adminmanage/news/deleteMany",
+            url: arrayData.length === 1 ? "/adminmanage/news/delete" : "/adminmanage/news/deleteMany",
             method: "post",
             data: {
-              data: arrayData
+              id: arrayData.length === 1 ? arrayData[0] : arrayData
             },
             success: (data) => {
               console.log(data.status);
@@ -259,21 +350,21 @@
                   duration: 3000,
                   newWindow: true,
                   close: true,
-                  gravity: "top", 
-                  position: 'right', 
+                  gravity: "top",
+                  position: 'right',
                   backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
                   stopOnFocus: true // Prevents dismissing of toast on hover
                 }).showToast();
                 setTimeout(() => {
                   location.reload();
-                }, 1000)
+                }, 0)
               } else {
                 Toastify({
                   text: "Có Lỗi Xảy ra",
                   duration: 3000,
                   newWindow: true,
                   close: true,
-                  gravity: "top", 
+                  gravity: "top",
                   position: 'right',
                   backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
                   stopOnFocus: true

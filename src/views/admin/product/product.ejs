@@ -61,7 +61,9 @@
                     <th scope="col" class="sort" data-sort="budget" style="width: 200px;">Giá</th>
                     <th scope="col" class="sort" data-sort="budget" style="width: 200px;">Giảm Giá</th>
                     <th scope="col">Ảnh</th>
-                    <th scope="col" id="CheckedProduct" style="cursor: pointer;">Xóa</th>
+                    <th scope="col" id="CheckedProduct" style="cursor: pointer;">
+                      <span class="select_btn">Chọn</span>
+                    </th>
                   </tr>
                 </thead>
                 <div>
@@ -195,10 +197,9 @@
                       </a>
                     </td>
                     <td>
-                      <label class="containercheckbox ">
-                        <input type="checkbox" class="check_box CheckedButton" />
+                      <div class="containercheckbox ">
                         <span class="checkmark" checkeds="false" id=<%=item.id%>></span>
-                      </label>
+                      </div>
                     </td>
                   </tr>
                   <%}) %>
@@ -209,6 +210,17 @@
               .containercheckbox {
                 position: relative;
                 display: flex;
+              }
+
+              span.select_btn {
+                padding: 5px;
+                background: #fbfbfb;
+                border: 1px solid #d8d6d6;
+              }
+
+              span.select_btn:hover {
+                transform: translateY(-1px);
+                box-shadow: 0 7px 14px rgba(50, 50, 93, .1), 0 3px 6px rgba(0, 0, 0, .08);
               }
 
               .containercheckbox input {
@@ -227,6 +239,7 @@
                 width: 20px;
                 background-color: #eee;
                 cursor: pointer;
+                transform: translate(70%, -70%);
               }
 
               .containercheckbox .checkmarks {
@@ -430,10 +443,10 @@
         console.log(arrayData.length)
         if (confirm("Bạn Muốn Xóa Sản Phẩm Này Không")) {
           $.ajax({
-            url:  arrayData.length === 1 ? "/adminmanage/product/delete" : "/adminmanage/product/deleteMany",
+            url: arrayData.length === 1 ? "/adminmanage/product/delete" : "/adminmanage/product/deleteMany",
             method: "post",
             data: {
-              id: arrayData.length === 1 ? arrayData[0] :  arrayData
+              id: arrayData.length === 1 ? arrayData[0] : arrayData
             },
             success: (data) => {
               console.log(data.status);
@@ -513,7 +526,7 @@
                 }).showToast();
                 setTimeout(() => {
                   location.reload();
-                }, 1000)
+                }, 0)
               }
               else {
                 Toastify({

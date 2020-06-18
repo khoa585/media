@@ -106,7 +106,7 @@ router.get("/detial/:id", async (req, res) => {
         return res.redirect("/adminmanage");
     }
 })
-const NUMBER_IN_PAGE = 12;
+const NUMBER_IN_PAGE = 100;
 router.get("(/:id)?", async (req, res) => {
     let sort_By;
     let order = req.query.order

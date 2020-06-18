@@ -242,41 +242,39 @@
         formData.append('description', description);
         formData.append('detial', data);
         formData.append('file', File);
-        for (var i = 1; i < 10; i++) {
-          $.ajax({
-            url: '/adminmanage/product/add',
-            method: 'post',
-            data: formData,
-            cache: false,
-            contentType: false,
-            processData: false,
-            success: function (data) {
-              if (data.status == "success") {
-                Toastify({
-                  text: "Thêm Thành Công",
-                  duration: 3000,
-                  newWindow: true,
-                  close: true,
-                  gravity: "top", // `top` or `bottom`
-                  position: 'right', // `left`, `center` or `right`
-                  backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
-                  stopOnFocus: true // Prevents dismissing of toast on hover
-                }).showToast();
-              } else {
-                Toastify({
-                  text: "Có Lỗi Xảy ra",
-                  duration: 3000,
-                  newWindow: true,
-                  close: true,
-                  gravity: "top", // `top` or `bottom`
-                  position: 'right', // `left`, `center` or `right`
-                  backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
-                  stopOnFocus: true // Prevents dismissing of toast on hover
-                }).showToast();
-              }
+        $.ajax({
+          url: '/adminmanage/product/add',
+          method: 'post',
+          data: formData,
+          cache: false,
+          contentType: false,
+          processData: false,
+          success: function (data) {
+            if (data.status == "success") {
+              Toastify({
+                text: "Thêm Thành Công",
+                duration: 3000,
+                newWindow: true,
+                close: true,
+                gravity: "top", // `top` or `bottom`
+                position: 'right', // `left`, `center` or `right`
+                backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
+                stopOnFocus: true // Prevents dismissing of toast on hover
+              }).showToast();
+            } else {
+              Toastify({
+                text: "Có Lỗi Xảy ra",
+                duration: 3000,
+                newWindow: true,
+                close: true,
+                gravity: "top", // `top` or `bottom`
+                position: 'right', // `left`, `center` or `right`
+                backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
+                stopOnFocus: true // Prevents dismissing of toast on hover
+              }).showToast();
             }
-          })
-        }
+          }
+        })
 
       })
     })
