@@ -843,22 +843,29 @@
                                                             href="/pm/<%-to_slug(task.name)%>.<%-task.id%>"
                                                             target="_blank" class="btn btn-main">XEM CHI TIẾT</a></p>
                                                 </div>
-                                                <p class="image"><img src=<%-task.image%> alt="simple-leads"></p>
+                                                <div>
+                                                    <p class="image"><img src=<%-task.image%> alt="simple-leads"></p>
+                                                </div>
+
                                                 <% if(task.discount != 0) {%>
                                                 <div class="salePrice">
                                                     <span>Giảm <%- task.discount%>%</span>
                                                 </div>
                                                 <% } else {%>
                                                 <% }%>
-                                                <h3 class="title"><span><%-task.name%></span></h3>
+                                                <div>
+                                                    <h3 class="title"><span><%-task.name%></span></h3>
+                                                </div>
+
                                                 <div>
                                                     <p class=<%-task.discount === 0 ? "price" : "price-thought"%>>
                                                         <%-formatter.format(task.price)%> VND</p>
                                                     <p class=<%-task.discount != 0 ? "price" : "visibale"%>>
                                                         <%-formatter.format(Math.floor(task.price - ((task.price*task.discount)/100)))%>
                                                         VND</p>
+                                                    <p class="description"><%- task.description%> </p>
                                                 </div>
-                                                <p class="description"><%- task.description%> </p>
+
                                                 <!-- <p class="download"><a href="javascript:void(0)" data-id="67113"
                                                         data-name="ATP Media"
                                                         class="btn btn-second btn-check-down hidden-xs"><img
