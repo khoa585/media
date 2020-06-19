@@ -41,7 +41,6 @@ router.get("/", async (req, res) => {
     } else {
         pages = Math.floor(totalProduct.count / NUMBER_IN_PAGE) + 1;
     }
-    console.log(resultData[0].price - ((resultData[0].price *resultData[0].discount)/100))
     res.render("products/index", { resultData: resultData, pages: pages, current: page, countPrice: countPrice, paths: paths })
 })
 router.get("/:type", async (req, res) => {

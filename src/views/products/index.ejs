@@ -846,7 +846,7 @@
                                         padding: 1% 0;"></div>
                                         <% if (resultData.length !=0) { %>
                                         <% resultData.forEach(function(task){ %>
-                                        <div class="col-md-3">
+                                        <div class="col-md-3 padding__">
                                             <div id="ATPMedia" class="box-product">
                                                 <div class="box-hover">
                                                     <p class="button button-quick" data-toggle="modal"
@@ -857,22 +857,27 @@
                                                             href="/pm/<%-to_slug(task.name)%>.<%-task.id%>"
                                                             target="_blank" class="btn btn-main">XEM CHI TIẾT</a></p>
                                                 </div>
-                                                <p class="image"><img src=<%-task.image%> alt="simple-leads"></p>
+                                                <div>
+                                                    <p class="image"><img src=<%-task.image%> alt="simple-leads"></p>
+                                                </div>
                                                 <% if(task.discount != 0) {%>
                                                 <div class="salePrice">
                                                     <span>Giảm <%- task.discount%>%</span>
                                                 </div>
                                                 <% } else {%>
                                                 <% }%>
-                                                <h3 class="title"><span><%-task.name%></span></h3>
+                                                <div>
+                                                    <h3 class="title"><span><%-task.name%></span></h3>
+                                                </div>
                                                 <div>
                                                     <p class=<%-task.discount === 0 ? "price" : "price-thought"%>>
                                                         <%-formatter.format(task.price)%> VND</p>
                                                     <p class=<%-task.discount != 0 ? "price" : "visibale"%>>
                                                         <%-formatter.format(Math.floor(task.price - ((task.price*task.discount)/100)))%>
                                                         VND</p>
+                                                    <p class="description"><%- task.description%> </p>
                                                 </div>
-                                                <p class="description"><%- task.description%> </p>
+
                                                 <!-- <p class="download"><a href="javascript:void(0)" data-id="67113"
                                                         data-name="ATP Media"
                                                         class="btn btn-second btn-check-down hidden-xs"><img
@@ -981,7 +986,7 @@
                                     padding: 10px;
                                     color: #fff;
                                     width: 110px;
-                                    z-index: 999;
+                                    z-index: 5;
                                 }
 
                                 .visibale {
@@ -1023,6 +1028,10 @@
                                     background-color: #e8e8e8;
                                 }
 
+                                .col-md-3.padding__ {
+                                    padding: 20px 10px;
+                                }
+
                                 .section-product .box-product {
                                     text-align: center;
                                 }
@@ -1037,13 +1046,15 @@
                                 }
 
                                 .section-product .box-product {
-                                    padding: 20px 0 0 0;
                                     box-shadow: 0 0 10px #ccc;
                                     border-radius: 10px;
-                                    margin-bottom: 40px;
                                     background-size: contain;
                                     position: relative;
                                     overflow: hidden;
+                                    height: 100%;
+                                    display: flex;
+                                    flex-direction: column;
+                                    justify-content: space-between;
                                 }
 
                                 .box-hover {
@@ -1237,6 +1248,7 @@
                                 }
 
                                 /* box Product */
+
                                 .section-product .box-product .title span {
                                     font-size: 20px;
                                     background: #fa6018;
@@ -1254,7 +1266,7 @@
                                 }
 
                                 .section-product .box-product .description {
-                                    min-height:40px;
+                                    min-height: 40px;
                                 }
 
                                 .section-product .download img {
