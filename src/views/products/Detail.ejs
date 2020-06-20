@@ -45,6 +45,19 @@
         return str;
     }
     %>
+    <% 
+    function formatPriceDays(days){
+        if(days  % 365 === 0){
+            return Math.floor(days/365) + " Năm"
+        }else{
+            if(days % 30 === 0){
+                return Math.floor(days / 30) + " Tháng"
+            }else{
+                return Math.floor(days/7) + " Tuần"
+            }
+        }
+    }
+    %>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
         integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
@@ -764,7 +777,7 @@
 
                             <div class="modal-content">
                                 <div id="MembershipSitePopup" class="popup-content">
-                                 
+
                                     <div class="row">
                                         <div class="col-md-12">
                                             <h3 class="title" id="titleProduct"><%-resultData.name%></h3>
@@ -775,8 +788,12 @@
                                                     src=<%-resultData.image%>></p>
                                         </div>
                                         <div class="col-md-6 content-body">
-                                            <p class="titletag" id="titletag"><%-formatter.format(resultData.price)%>
-                                                VND</p>
+                                            <p class=<%-resultData.discount === 0 ? "price" : "price-thought"%>>
+                                                <%-formatter.format(resultData.price)%> VND /
+                                                <%-formatPriceDays(resultData.days) %></p>
+                                            <p class=<%-resultData.discount != 0 ? "price" : "visibale"%>>
+                                                <%-formatter.format(Math.floor(resultData.price - ((resultData.price*resultData.discount)/100)))%>
+                                                VND / <%-formatPriceDays(resultData.days) %></p>
                                             <p class="description" id="detailsP"><%-resultData.detial%> </p>
                                         </div>
                                         <div class="col-md-12">
@@ -790,6 +807,24 @@
                             <% } %>
 
                             <style type="text/css">
+                                         .price-thought {
+                                    text-decoration: line-through;
+                                    text-align: center;
+                                    font-size: 18px;
+                                    margin-top: 20px;
+                                    font-weight: bold;
+                                }
+                                .visibale {
+                                    visibility: hidden;
+                                }
+                                .price {
+                                    text-align: center;
+                                    font-size: 18px;
+                                    color: #e60405;
+                                    margin-top: 20px;
+                                    font-weight: bold;
+                                }
+
                                 .section-product .box-product .image,
                                 .section-product .box-product .download,
                                 .section-product .box-product .title {

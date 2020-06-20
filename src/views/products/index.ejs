@@ -45,6 +45,19 @@
         return str;
     }
     %>
+    <% 
+    function formatPriceDays(days){
+        if(days  % 365 === 0){
+            return Math.floor(days/365) + " Năm"
+        }else{
+            if(days % 30 === 0){
+                return Math.floor(days / 30) + " Tháng"
+            }else{
+                return Math.floor(days/7) + " Tuần"
+            }
+        }
+    }
+    %>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
         integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
@@ -871,10 +884,11 @@
                                                 </div>
                                                 <div>
                                                     <p class=<%-task.discount === 0 ? "price" : "price-thought"%>>
-                                                        <%-formatter.format(task.price)%> VND</p>
+                                                        <%-formatter.format(task.price)%> VND /
+                                                        <%-formatPriceDays(task.days) %></p>
                                                     <p class=<%-task.discount != 0 ? "price" : "visibale"%>>
                                                         <%-formatter.format(Math.floor(task.price - ((task.price*task.discount)/100)))%>
-                                                        VND</p>
+                                                        VND / <%-formatPriceDays(task.days) %></p>
                                                     <p class="description"><%- task.description%> </p>
                                                 </div>
 

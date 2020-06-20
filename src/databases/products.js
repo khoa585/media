@@ -1,44 +1,48 @@
 const db = require("./connectdDb");
 const Sequelize = require('sequelize');
 const productsFields = {
-    id:"id",
-    name:"name",
-    categoryid:'categoryid',
-    price:'price',
-    discount:'discount',
-    image:'image',
-    description:'description',
-    detial:'detial'
+    id: "id",
+    name: "name",
+    categoryid: 'categoryid',
+    price: 'price',
+    discount: 'discount',
+    image: 'image',
+    description: 'description',
+    detial: 'detial',
+    days: 'days'
 }
-const productsDB = db.define("products",{
-    [productsFields.id]:{
-        type:Sequelize.DataTypes.INTEGER,
-        primaryKey:true,
+const productsDB = db.define("products", {
+    [productsFields.id]: {
+        type: Sequelize.DataTypes.INTEGER,
+        primaryKey: true,
     },
-    [productsFields.name]:{
-        type:Sequelize.TEXT
+    [productsFields.name]: {
+        type: Sequelize.TEXT
     },
-    [productsFields.categoryid]:{
-        type:Sequelize.INTEGER
+    [productsFields.categoryid]: {
+        type: Sequelize.INTEGER
     },
-    [productsFields.price]:{
-        type:Sequelize.INTEGER
+    [productsFields.price]: {
+        type: Sequelize.INTEGER
     },
-    [productsFields.discount]:{
-        type:Sequelize.INTEGER
+    [productsFields.discount]: {
+        type: Sequelize.INTEGER
     },
-    [productsFields.image]:{
-        type:Sequelize.TEXT
+    [productsFields.image]: {
+        type: Sequelize.TEXT
     },
-    [productsFields.description]:{
-        type:Sequelize.TEXT
+    [productsFields.description]: {
+        type: Sequelize.TEXT
     },
-    [productsFields.detial]:{
-        type:Sequelize.TEXT
+    [productsFields.detial]: {
+        type: Sequelize.TEXT
+    },
+    [productsFields.days]: {
+        type: Sequelize.INTEGER
     }
 
 })
-productsDB.sync({force:false});
+productsDB.sync({ force: false });
 module.exports = {
     productsFields,
     productsDB
