@@ -31,7 +31,7 @@ router.use("/uploader", uploader);
 router.use("/adminmanage", checkAdminPermision, adminRouter);
 router.use("/thu-tuc", news);
 router.use("/phan-mem",products);
-router.use("/pm",Detailproducts);
+router.use("/download-phan-mem",Detailproducts);
 router.get('/', async (req, res) => {
     try {
         const result = await getListNews(1,10)

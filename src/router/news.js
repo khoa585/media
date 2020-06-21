@@ -5,11 +5,15 @@ router.get("/", async (req, res) => {
     res.render("news/index")
 })
 router.get("/tin-tuc", async (req, res) => {
-    const page = req.query.page ? req.query.page : 1
-    const [resultListNews, resultTotals] = await Promise.all([getListNews(page, 15), TotalNumberNews()])
-    console.log(resultListNews)
+    const NUMBER_IN_PAGE = 12;
+    const page = req.query.page ? JSON.parse(req.query.page) : 1
+    const [resultListNews, resultTotals] = await Promise.all([getListNews(page, NUMBER_IN_PAGE), TotalNumberNews()])
     if (resultTotals) {
-        pages = resultTotals.count / 12
+        if (resultTotals.count % NUMBER_IN_PAGE == 0) {
+            pages = resultTotals.count / NUMBER_IN_PAGE;
+        } else {
+            pages = Math.floor(resultTotals.count / NUMBER_IN_PAGE) + 1;
+        }
     }
     res.render("news/ListNews", { resultListNews: resultListNews, current: page, pages: pages })
 })

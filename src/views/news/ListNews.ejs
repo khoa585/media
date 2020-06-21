@@ -749,18 +749,18 @@
                             <% resultListNews.forEach(function(task,index){ %>
                             <div class="col post-item">
                                 <div class="col-inner"> <a
-                                        href="https://ezmedia.vn/10-cach-giup-video-len-xu-huong-tik-tok/"
+                                        href="/thu-tuc/<%-to_slug(task.title)%>.<%-task.id%>"
                                         class="plain">
                                         <div class="box box-vertical box-text-bottom box-blog-post has-hover">
                                             <div class="box-image" style="width:40%;">
                                                 <div class="image-cover" style="padding-top:56%;"> <img width="300"
                                                         height="261"
-                                                        src="https://ezmedia.vn/wp-content/uploads/2020/04/tang-view-tik-tok-mien-phi-1-300x261.png"
-                                                        data-src="https://ezmedia.vn/wp-content/uploads/2020/04/tang-view-tik-tok-mien-phi-1-300x261.png"
+                                                        src="<%- task.image%>"
+                                                        data-src="<%- task.image%>"
                                                         class="attachment-medium size-medium wp-post-image lazy-load-active"
                                                         alt="Tăng View Tik Tok"
-                                                        srcset="https://ezmedia.vn/wp-content/uploads/2020/04/tang-view-tik-tok-mien-phi-1-300x261.png 300w, https://ezmedia.vn/wp-content/uploads/2020/04/tang-view-tik-tok-mien-phi-1.png 396w"
-                                                        data-srcset="https://ezmedia.vn/wp-content/uploads/2020/04/tang-view-tik-tok-mien-phi-1-300x261.png 300w, https://ezmedia.vn/wp-content/uploads/2020/04/tang-view-tik-tok-mien-phi-1.png 396w"
+                                                        srcset="<%- task.image%>"
+                                                        data-srcset="<%- task.image%>"
                                                         sizes="(max-width: 300px) 100vw, 300px"></div>
                                             </div>
                                             <div class="box-text text-left">
@@ -779,19 +779,37 @@
                             </div>
                             <% }) %>
                             <% } %>
-
-
                         </div>
                         <ul class="page-numbers nav-pagination links text-center">
-                            <li><a class="prev page-number overflow-auto" href=""><i
-                                        class="icon-angle-left "></i></a></li>
-                            <li><span aria-current="page" class="page-number current">1</span></li>
-                            <li><a class="page-number" href="https://ezmedia.vn/chuyen-muc/tin-tuc/page/2/">2</a></li>
-                            <li><a class="page-number" href="https://ezmedia.vn/chuyen-muc/tin-tuc/page/3/">3</a></li>
-                            <li><a class="page-number" href="https://ezmedia.vn/chuyen-muc/tin-tuc/page/4/">4</a></li>
-                            <li><a class="page-number" href="https://ezmedia.vn/chuyen-muc/tin-tuc/page/5/">5</a></li>
-                            <li><a class="next page-number" href="https://ezmedia.vn/chuyen-muc/tin-tuc/page/2/"><i
+                            <% if(pages> 0) {%>
+                            <% if(current === 1) {%>
+                            <% } else{%>
+                            <li><a value="1" class="ChangePage prev page-number overflow-auto"><i
+                                        class="icon-angle-left "></i></a> </li>
+                            <%}%>
+                                <% var i = (Number(current) > 6 ? Number(current) - 5 : 1) %>
+                            <% if(i != 1){%>
+                            <li><a class="page-number">...</a></li>
+                            <%}%>
+                                <% for (; i <= (Number(current) + 5) && i <= pages; i++) { %>
+                            <% if (i === current) { %>
+                            <li><span aria-current="page" class=" page-number current"><%= i %></span></li>
+                            <% } else { %>
+                            <li><span aria-current="page" value="<%= i %>"
+                                    class="ChangePage page-number"><%= i %></span></li>
+                            <% } %>
+                            <% if (i === Number(current) + 5 && i < pages) { %>
+                            <li><a class="page-number">...</a></li>
+                            <% } %>
+                            <% } %>
+                            <% if (current == pages) { %>
+                            <% } else { %>
+                            <li class=" page-item">
+                            <li><a value='<%= pages %>' class="ChangePage next page-number"><i
                                         class="icon-angle-right"></i></a></li>
+                            </li>
+                            <% } %>
+                            <% } %>
                         </ul>
                     </div>
                     <div class="post-sidebar large-3 col">
@@ -856,7 +874,8 @@
                                             name="s" value="" id="s" placeholder="Tìm kiếm..." /></div>
                                     <div class="flex-col"> <button type="submit"
                                             class="ux-search-submit submit-button secondary button icon mb-0"
-                                            aria-label="Submit"> <i class="icon-search"></i> </button></div>
+                                            aria-label="Submit"> <i class="icon-search"></i> </button>
+                                    </div>
                                 </div>
                                 <div class="live-search-results text-left z-top"></div>
                             </form>
@@ -869,44 +888,50 @@
                     <ul class="sub-menu nav-sidebar-ul children">
                         <li
                             class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item menu-item-2321">
-                            <a href="dich-vu-bao-ve-nick-facebook/" aria-current="page">Bảo Mật Tài Khoản</a></li>
-                        <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-751"><a
-                                href="tang-follow-facebook-tang-sub-facebook/">Tăng follow Facebook</a></li>
-                        <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2358"><a
-                                href="tang-like-fanpage-facebook/">Tăng Like Fanpage</a></li>
-                        <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-4277"><a
-                                href="mua-fanpage-facebook-gia-re/">Mua FanPage</a></li>
-                        <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-4295"><a
-                                href="mua-fanpage-tich-xanh-facebook-gia-re/">FanPage Tích Xanh</a></li>
-                        <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-4215"><a
-                                href="dich-vu-rip-nick-khoa-nick-facebook/">Khóa nick facebook</a></li>
-                        <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2954"><a
-                                href="cach-loc-ban-be-khong-tuong-tac-facebook/">Lọc Bạn Bè/Kéo Tương Tác</a></li>
-                        <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-749"><a
-                                href="tang-like">Tăng like bài viết (Bảo trì)</a></li>
-                        <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2553"><a
-                                href="tang-seeding-bai-viet-facebook/">Seeding Bài Viết (Bảo trì)</a></li>
-                        <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-747"><a
-                                href="tang-nguoi-xem-livestream-facebook">Tăng Mắt Live Stream (Bảo trì)</a></li>
+                            <a href="dich-vu-bao-ve-nick-facebook/" aria-current="page">Bảo Mật Tài
+                                Khoản</a></li>
+                        <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-751">
+                            <a href="tang-follow-facebook-tang-sub-facebook/">Tăng follow Facebook</a>
+                        </li>
+                        <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2358">
+                            <a href="tang-like-fanpage-facebook/">Tăng Like Fanpage</a></li>
+                        <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-4277">
+                            <a href="mua-fanpage-facebook-gia-re/">Mua FanPage</a></li>
+                        <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-4295">
+                            <a href="mua-fanpage-tich-xanh-facebook-gia-re/">FanPage Tích Xanh</a></li>
+                        <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-4215">
+                            <a href="dich-vu-rip-nick-khoa-nick-facebook/">Khóa nick facebook</a></li>
+                        <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2954">
+                            <a href="cach-loc-ban-be-khong-tuong-tac-facebook/">Lọc Bạn Bè/Kéo Tương
+                                Tác</a></li>
+                        <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-749">
+                            <a href="tang-like">Tăng like bài viết (Bảo trì)</a></li>
+                        <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2553">
+                            <a href="tang-seeding-bai-viet-facebook/">Seeding Bài Viết (Bảo trì)</a>
+                        </li>
+                        <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-747">
+                            <a href="tang-nguoi-xem-livestream-facebook">Tăng Mắt Live Stream (Bảo
+                                trì)</a></li>
                     </ul>
                 </li>
                 <li
                     class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-2105">
                     <a>Youtube</a>
                     <ul class="sub-menu nav-sidebar-ul children">
-                        <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2106"><a
-                                href="tang-view-youtube-mua-view-youtube/">Tăng View Youtube</a></li>
-                        <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2303"><a
-                                href="tang-sub-youtube-mua-sub-youtube/">Tăng Sub Youtube</a></li>
-                        <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2411"><a
-                                href="tang-4000-gio-xem-video-youtube/">Tăng 4000 Giờ Xem</a></li>
-                        <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-4378"><a
-                                href="mua-kenh-youtube-da-bat-kiem-tien/">Bán Kênh Đã BKT</a></li>
-                        <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3671"><a
-                                href="tang-comment-binh-luan-youtube/">Tăng Bình Luận (Bảo Trì)</a></li>
-                        <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3491"><a
-                                href="dich-vu-tang-like-youtube/">Tăng like video (Bảo trì)</a></li>
-                        <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2304"><a>Tăng Xem
+                        <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2106">
+                            <a href="tang-view-youtube-mua-view-youtube/">Tăng View Youtube</a></li>
+                        <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2303">
+                            <a href="tang-sub-youtube-mua-sub-youtube/">Tăng Sub Youtube</a></li>
+                        <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2411">
+                            <a href="tang-4000-gio-xem-video-youtube/">Tăng 4000 Giờ Xem</a></li>
+                        <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-4378">
+                            <a href="mua-kenh-youtube-da-bat-kiem-tien/">Bán Kênh Đã BKT</a></li>
+                        <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3671">
+                            <a href="tang-comment-binh-luan-youtube/">Tăng Bình Luận (Bảo Trì)</a></li>
+                        <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3491">
+                            <a href="dich-vu-tang-like-youtube/">Tăng like video (Bảo trì)</a></li>
+                        <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2304">
+                            <a>Tăng Xem
                                 Công Chiếu (Bảo trì)</a></li>
                     </ul>
                 </li>
@@ -914,45 +939,48 @@
                     class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-2997">
                     <a>Instagram</a>
                     <ul class="sub-menu nav-sidebar-ul children">
-                        <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2998"><a
-                                href="tang-follow-instagram/">Tăng Follow Instagram</a></li>
-                        <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3745"><a
-                                href="tang-like-instagram/">Tăng Like Tháng Instagram</a></li>
-                        <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3105"><a
-                                href="tang-like-instagram/">Tăng Like Post Lẻ</a></li>
-                        <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3024"><a
-                                href="tang-view-video-instagram/">Tăng View Instagram</a></li>
+                        <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2998">
+                            <a href="tang-follow-instagram/">Tăng Follow Instagram</a></li>
+                        <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3745">
+                            <a href="tang-like-instagram/">Tăng Like Tháng Instagram</a></li>
+                        <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3105">
+                            <a href="tang-like-instagram/">Tăng Like Post Lẻ</a></li>
+                        <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3024">
+                            <a href="tang-view-video-instagram/">Tăng View Instagram</a></li>
                     </ul>
                 </li>
                 <li
                     class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-2416">
                     <a>Tik Tok</a>
                     <ul class="sub-menu nav-sidebar-ul children">
-                        <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2417"><a
-                                href="tang-follow-tiktok/">Tăng Follow Tik tok</a></li>
-                        <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3113"><a
-                                href="tang-view-tik-tok/">Tăng View Tik tok</a></li>
-                        <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3216"><a
-                                href="tang-like-tym-tik-tok/">Tăng Like Tik tok</a></li>
-                        <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3811"><a
-                                href="mua-nick-tik-tok-2/">Mua Nick Tik Tok</a></li>
-                        <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3975"><a
-                                href="tich-xanh-tik-tok/">Tài Khoản Tích Xanh Tik tok</a></li>
-                        <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-4477"><a
-                                href="tang-mat-xem-live-stream-tik-tok/">Tăng Mắt Live Stream Tik tok (Chưa có)</a></li>
-                        <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-4480"><a
-                                href="chay-quang-cao-tik-tok/">Quảng cáo tik tok ads (Chưa có)</a></li>
+                        <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2417">
+                            <a href="tang-follow-tiktok/">Tăng Follow Tik tok</a></li>
+                        <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3113">
+                            <a href="tang-view-tik-tok/">Tăng View Tik tok</a></li>
+                        <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3216">
+                            <a href="tang-like-tym-tik-tok/">Tăng Like Tik tok</a></li>
+                        <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3811">
+                            <a href="mua-nick-tik-tok-2/">Mua Nick Tik Tok</a></li>
+                        <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3975">
+                            <a href="tich-xanh-tik-tok/">Tài Khoản Tích Xanh Tik tok</a></li>
+                        <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-4477">
+                            <a href="tang-mat-xem-live-stream-tik-tok/">Tăng Mắt Live Stream Tik tok
+                                (Chưa có)</a></li>
+                        <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-4480">
+                            <a href="chay-quang-cao-tik-tok/">Quảng cáo tik tok ads (Chưa có)</a></li>
                     </ul>
                 </li>
                 <li
                     class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-2222">
                     <a>Shopee</a>
                     <ul class="sub-menu nav-sidebar-ul children">
-                        <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-4490"><a
-                                href="tang-follow-shopee/">Tăng follow shopee</a></li>
-                        <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2223"><a
-                                href="tang-mat-xem-livestream-shopee/">Tăng Mắt Live Stream (Bảo trì)</a></li>
-                        <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2307"><a>Tăng Vote
+                        <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-4490">
+                            <a href="tang-follow-shopee/">Tăng follow shopee</a></li>
+                        <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2223">
+                            <a href="tang-mat-xem-livestream-shopee/">Tăng Mắt Live Stream (Bảo trì)</a>
+                        </li>
+                        <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2307">
+                            <a>Tăng Vote
                                 (Sắp mở)</a></li>
                     </ul>
                 </li>
@@ -1491,5 +1519,20 @@
         src="../wp-content/plugins/wp-rocket/assets/js/lazyload/12.0/lazyload.min.js"></script>
     <script src="../../wp-content/cache/min/1/2eb826468b7947bb2909175851e2f8f6.js" data-minify="1" defer></script>
 </body>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+<script>
+    $(document).ready(function () {
+        $(".ChangePage").click(function () {
+            var url = new URL(document.URL);
+            url.searchParams.delete('page')
+            url.searchParams.append('page', $(this).attr("value"))
+
+            window.location = url
+            console.log(url)
+        });
+    })
+</script>
 
 </html>
