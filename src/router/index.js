@@ -29,7 +29,7 @@ router.post("/adminmanage/login", async (req, res) => {
 })
 router.use("/uploader", uploader);
 router.use("/adminmanage", checkAdminPermision, adminRouter);
-router.use("/thu-tuc", news);
+router.use("/thu-thuat", news);
 router.use("/phan-mem",products);
 router.use("/download-phan-mem",Detailproducts);
 router.get('/', async (req, res) => {
