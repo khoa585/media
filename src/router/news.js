@@ -1,10 +1,10 @@
 let express = require('express');
 let router = express.Router();
 let { getDetialNews, getListNews, TotalNumberNews } = require("./../models/newsModel");
+// router.get("/", async (req, res) => {
+//     res.render("news/index")
+// })
 router.get("/", async (req, res) => {
-    res.render("news/index")
-})
-router.get("/tin-tuc", async (req, res) => {
     const NUMBER_IN_PAGE = 12;
     const page = req.query.page ? JSON.parse(req.query.page) : 1
     const [resultListNews, resultTotals] = await Promise.all([getListNews(page, NUMBER_IN_PAGE), TotalNumberNews()])
