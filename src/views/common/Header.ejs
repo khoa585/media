@@ -48,7 +48,7 @@
                                 <li class="header-search-form search-form html relative has-icon">
                                     <div class="header-search-form-wrapper">
                                         <div class="searchform-wrapper ux-search-box relative is-normal">
-                                            <form id="searchforms" class="searchform" action="" role="search">
+                                            <form id="searchform_" class="searchform" action="" role="search">
                                                 <div class="flex-row relative">
                                                     <div class="flex-col flex-grow">
                                                         <input type="search" class="search-field_ mb-0" name="s"
@@ -272,12 +272,13 @@
         crossorigin="anonymous"></script>
     <script>
         $(document).ready(function () {
-            $("#searchforms").submit(function (event) {
+            $("#searchform_").submit(function (event) {
                 event.preventDefault()
                 var url = new URL(document.URL);
                 let valueN = $("#searchNewss").val()
                 url.searchParams.delete('s');
                 url.searchParams.append('s', valueN)
+                console.log(valueN)
                 window.location.href = `/thu-thuat?s=${valueN}`;
             })
         })
