@@ -19,7 +19,10 @@ const getListNews = async (page = PAGE, limit = LIMIT_NUMBER, sortBy) => {
         return newsDB.findAll({
             limit: limit,
             offset: (page - 1) * limit,
-            raw: true
+            raw: true,
+            order: [
+            ['createdAt', 'DESC'],
+            ]
         })
     }
 
