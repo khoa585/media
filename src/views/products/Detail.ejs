@@ -780,14 +780,14 @@
 
                                     <div class="row contentRow">
                                         <div class="col-md-12">
-                                            <h3 class="title" id="titleProduct"><%-resultData.name%></h3>
+                                            <h2 class="title" id="titleProduct"><%-resultData.name%></h2>
                                             <div class="hr"></div>
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-12">
                                             <p class="image-product"><img id="imageP" alt="all-in-one"
                                                     src=<%-resultData.image%>></p>
                                         </div>
-                                        <div class="col-md-6 content-body">
+                                        <div class="col-md-12 content-body">
                                             <p class=<%-resultData.discount === 0 ? "price" : "price-thought"%>>
                                                 <%-formatter.format(resultData.price)%> VND /
                                                 <%-formatPriceDays(resultData.days) %></p>
@@ -1031,9 +1031,7 @@
                                     text-decoration: none;
                                 }
 
-                                .popup-content .content-body {
-                                    text-align: left;
-                                }
+                               
 
                                 .section-product .box-product:hover .image::before {
                                     content: "";
