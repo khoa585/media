@@ -775,10 +775,10 @@
                         <div class="entry-content clear" itemprop="text">
                             <% if (resultData.length !=0) { %>
 
-                            <div class="modal-content">
+                            <div class="modal-content content">
                                 <div id="MembershipSitePopup" class="popup-content">
 
-                                    <div class="row">
+                                    <div class="row contentRow">
                                         <div class="col-md-12">
                                             <h3 class="title" id="titleProduct"><%-resultData.name%></h3>
                                             <div class="hr"></div>
@@ -807,16 +807,24 @@
                             <% } %>
 
                             <style type="text/css">
-                                         .price-thought {
+                                .modal-content.content {
+                                    border: none;
+                                }
+                                .contentRow{
+                                    margin: auto;
+                                }
+                                .price-thought {
                                     text-decoration: line-through;
                                     text-align: center;
                                     font-size: 18px;
                                     margin-top: 20px;
                                     font-weight: bold;
                                 }
+
                                 .visibale {
                                     visibility: hidden;
                                 }
+
                                 .price {
                                     text-align: center;
                                     font-size: 18px;

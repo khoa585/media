@@ -771,8 +771,11 @@
                                                 </div>
                                             </div>
                                             <div class="badge absolute top post-date badge-circle">
-                                                <div class="badge-inner"> <span class="post-date-day">09</span><br>
-                                                    <span class="post-date-month is-xsmall">Th5</span></div>
+                                                <div class="badge-inner"> <span
+                                                        class="post-date-day"><%- moment(task.createdAt).format('DD')%></span><br>
+                                                    <span
+                                                        class="post-date-month is-xsmall"><%- moment(task.createdAt).format('MM');%></span>
+                                                </div>
                                             </div>
                                         </div>
                                     </a></div>
@@ -782,7 +785,8 @@
                             <div>
                                 <h3 style="font-size: 20px;
                                 color: #7a828a;">Nothing Found...</h3>
-                                <span>Sorry, but nothing matched your search terms. Please try again with some different keywords.</span>
+                                <span>Sorry, but nothing matched your search terms. Please try again with some different
+                                    keywords.</span>
                             </div>
                             <%}%>
                         </div>

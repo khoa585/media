@@ -4,6 +4,7 @@ let { getDetialNews, getListNews, TotalNumberNews, searchNews, TotalNumberNewsSe
 // router.get("/", async (req, res) => {
 //     res.render("news/index")
 // })
+var moment = require('moment');
 router.get("/", async (req, res) => {
     const Keysearch = req.query.s
     const NUMBER_IN_PAGE = 12;
@@ -23,9 +24,9 @@ router.get("/", async (req, res) => {
             } else {
                 pages = Math.floor(resultTotals.count / NUMBER_IN_PAGE) + 1;
             }
-            res.render("news/ListNews", { resultListNews: resultData, current: page, pages: pages, key: key, resultRight: resultRight })
+            res.render("news/ListNews", { resultListNews: resultData, current: page, pages: pages, key: key, resultRight: resultRight,moment : moment })
         } else {
-            res.render("news/ListNews", { resultListNews: resultData, current: 0, pages: 0, key: key, resultRight: resultRight })
+            res.render("news/ListNews", { resultListNews: resultData, current: 0, pages: 0, key: key, resultRight: resultRight,moment : moment })
         }
     } else {
         const [resultListNews, resultTotals,resultRight] = await Promise.all([getListNews(page, NUMBER_IN_PAGE), TotalNumberNews(),getListNews(page, 6)])
@@ -35,7 +36,7 @@ router.get("/", async (req, res) => {
             } else {
                 pages = Math.floor(resultTotals.count / NUMBER_IN_PAGE) + 1;
             }
-            res.render("news/ListNews", { resultListNews: resultListNews, current: page, pages: pages, key: key,resultRight: resultRight })
+            res.render("news/ListNews", { resultListNews: resultListNews, current: page, pages: pages, key: key,resultRight: resultRight ,moment : moment})
         }
     }
 

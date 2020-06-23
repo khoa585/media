@@ -802,13 +802,17 @@
                     <div class="post-sidebar large-3 col">
                         <div id="secondary" class="widget-area " role="complementary">
                             <aside id="search-2" class="widget widget_search">
-                                <form method="get" class="searchform" action="" role="search">
+                                <form method="get" class="searchform" id="searchform" action="" role="search">
                                     <div class="flex-row relative">
-                                        <div class="flex-col flex-grow"> <input type="search" class="search-field mb-0"
-                                                name="s" value="" id="s" placeholder="Tìm kiếm..." /></div>
-                                        <div class="flex-col"> <button type="submit"
+                                        <div class="flex-col flex-grow">
+                                            <input type="search" class="search-field_ mb-0" name="s" value=""
+                                                id="searchNews" placeholder="Tìm kiếm..." autocomplete="off">
+                                        </div>
+                                        <div class="flex-col">
+                                            <button type="submit"
                                                 class="ux-search-submit submit-button secondary button icon mb-0"
-                                                aria-label="Submit"> <i class="icon-search"></i> </button></div>
+                                                aria-label="Submit"> <i class="icon-search"></i>
+                                            </button></div>
                                     </div>
                                     <div class="live-search-results text-left z-top"></div>
                                 </form>
@@ -819,7 +823,8 @@
                                 <ul>
                                     <% resultNews.forEach(function(item){ %>
                                     <li>
-                                        <a  href="/thu-thuat/<%-to_slug(item.title)%>.<%-item.id%>" aria-current="page"><%- item.title %></a>
+                                        <a href="/thu-thuat/<%-to_slug(item.title)%>.<%-item.id%>"
+                                            aria-current="page"><%- item.title %></a>
                                     </li>
                                     <% }) %>
                                 </ul>
@@ -1483,31 +1488,17 @@
         src="../wp-content/plugins/wp-rocket/assets/js/lazyload/12.0/lazyload.min.js"></script>
     <script src="../../wp-content/cache/min/1/2eb826468b7947bb2909175851e2f8f6.js" data-minify="1" defer></script>
 </body>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+<script>
+    $(document).ready(function () {
+        $("#searchform").submit(function (event) {
+            event.preventDefault()
+            let valueN = $("#searchNews").val()
+            window.location.href = `/thu-thuat?s=${valueN}`;
+        })
+    })
+</script>
 
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
