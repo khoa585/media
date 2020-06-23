@@ -228,10 +228,9 @@
         let discount = $("#discountproduct").val();
         let description = $("#descriptionproduct").val();
         let daysproduct = JSON.parse($("#daysproduct").val());
-        console.log(daysproduct % 365 != 0)
         if ((daysproduct % 7 != 0) && (daysproduct % 30 != 0) && (daysproduct % 365 != 0)) {
           return Toastify({
-            text: "Vui Lòng",
+            text: "Vui Lòng Nhập Ngày Hợp lệ",
             duration: 3000,
             newWindow: true,
             close: true,

@@ -737,7 +737,11 @@
                 <header class="archive-page-header">
                     <div class="row">
                         <div class="large-12 text-center col">
-                            <h1 class="page-title is-large uppercase"> Category Archives: <span>Tin tức</span></h1>
+                            <%if(key!=""){%>
+                            <h1 class="page-title is-large uppercase">SEARCH RESULTS FOR: <span><%=key%></span></h1>
+                            <%}else{%>
+                            <h1 class="page-title is-large uppercase"> Category Archives: <span>Tin Tức</span></h1>
+                            <%}%>
                         </div>
                     </div>
                 </header>
@@ -748,18 +752,14 @@
                             <%if(resultListNews.length > 0){%>
                             <% resultListNews.forEach(function(task,index){ %>
                             <div class="col post-item">
-                                <div class="col-inner"> <a
-                                    href="/thu-thuat/<%-to_slug(task.title)%>.<%-task.id%>"
+                                <div class="col-inner"> <a href="/thu-thuat/<%-to_slug(task.title)%>.<%-task.id%>"
                                         class="plain">
                                         <div class="box box-vertical box-text-bottom box-blog-post has-hover">
                                             <div class="box-image" style="width:40%;">
                                                 <div class="image-cover" style="padding-top:56%;"> <img width="300"
-                                                        height="261"
-                                                        src="<%- task.image%>"
-                                                        data-src="<%- task.image%>"
+                                                        height="261" src="<%- task.image%>" data-src="<%- task.image%>"
                                                         class="attachment-medium size-medium wp-post-image lazy-load-active"
-                                                        alt="Tăng View Tik Tok"
-                                                        srcset="<%- task.image%>"
+                                                        alt="Tăng View Tik Tok" srcset="<%- task.image%>"
                                                         data-srcset="<%- task.image%>"
                                                         sizes="(max-width: 300px) 100vw, 300px"></div>
                                             </div>
@@ -778,7 +778,13 @@
                                     </a></div>
                             </div>
                             <% }) %>
-                            <% } %>
+                            <% }else{ %>
+                            <div>
+                                <h3 style="font-size: 20px;
+                                color: #7a828a;">Nothing Found...</h3>
+                                <span>Sorry, but nothing matched your search terms. Please try again with some different keywords.</span>
+                            </div>
+                            <%}%>
                         </div>
                         <ul class="page-numbers nav-pagination links text-center">
                             <% if(pages> 0) {%>
@@ -804,60 +810,53 @@
                             <% } %>
                             <% if (current == pages) { %>
                             <% } else { %>
-                            <li class=" page-item">
-                            <li><a value='<%= pages %>' class="ChangePage next page-number"><i
+                            <li class=" page-item"><a value='<%= pages %>' class="ChangePage next page-number"><i
                                         class="icon-angle-right"></i></a></li>
-                            </li>
                             <% } %>
                             <% } %>
-                        </ul>
-                    </div>
-                    <div class="post-sidebar large-3 col">
-                        <div id="secondary" class="widget-area " role="complementary">
-                            <aside id="search-2" class="widget widget_search">
-                                <form method="get" class="searchform" action="https://ezmedia.vn/" role="search">
-                                    <div class="flex-row relative">
-                                        <div class="flex-col flex-grow"> <input type="search" class="search-field mb-0"
-                                                name="s" value="" id="s" placeholder="Tìm kiếm..." autocomplete="off">
+                            </ul>
+                        </div>
+                        <div class="post-sidebar large-3 col">
+                            <div id="secondary" class="widget-area " role="complementary">
+                                <aside id="search-2" class="widget widget_search">
+                                    <form method="get" class="searchform" id="searchform" action="https://ezmedia.vn/"
+                                        role="search">
+                                        <div class="flex-row relative">
+                                            <div class="flex-col flex-grow">
+                                                <input type="search" class="search-field_ mb-0" name="s" value=""
+                                                    id="searchNews" placeholder="Tìm kiếm..." autocomplete="off">
+                                            </div>
+                                            <div class="flex-col"> <button type="submit"
+                                                    class="ux-search-submit submit-button secondary button icon mb-0"
+                                                    aria-label="Submit"> <i class="icon-search"></i> </button></div>
                                         </div>
-                                        <div class="flex-col"> <button type="submit"
-                                                class="ux-search-submit submit-button secondary button icon mb-0"
-                                                aria-label="Submit"> <i class="icon-search"></i> </button></div>
-                                    </div>
-                                    <div class="live-search-results text-left z-top">
-                                        <div class="autocomplete-suggestions"
-                                            style="position: absolute; display: none; max-height: 300px; z-index: 9999;">
+                                        <div class="live-search-results text-left z-top">
+                                            <div class="autocomplete-suggestions"
+                                                style="position: absolute; display: none; max-height: 300px; z-index: 9999;">
+                                            </div>
                                         </div>
-                                    </div>
-                                </form>
-                            </aside>
-                            <aside id="recent-posts-2" class="widget widget_recent_entries"> <span
-                                    class="widget-title "><span>Bài viết mới</span></span>
-                                <div class="is-divider small"></div>
-                                <ul>
-                                    <li> <a
-                                            href="https://ezmedia.vn/4-buoc-cach-tai-video-tik-tok-khong-co-logo-va-id/">4
-                                            Bước Cách tải video Tik Tok không có logo và ID</a></li>
-                                    <li> <a href="https://ezmedia.vn/10-cach-giup-video-len-xu-huong-tik-tok/">10 Cách
-                                            Giúp video Tik tok lên xu hướng kiếm triệu view</a></li>
-                                    <li> <a href="https://ezmedia.vn/nen-mua-fanpage-co-san-hay-mua-like-cho-fanpage/">Nên
-                                            Mua Fanpage Có Sẵn Hay Mua Like Cho Fanpage ?</a></li>
-                                    <li> <a
-                                            href="https://ezmedia.vn/6-cach-hack-like-hack-view-hack-share-video-tik-tok-mien-phi-2020/">6
-                                            cách hack like, hack view, hack share video Tik Tok miễn phí 2020</a></li>
-                                    <li> <a
-                                            href="https://ezmedia.vn/5-cach-de-tang-like-nhanh-chong-tren-instargram-2020/">5
-                                            cách để tăng like nhanh chóng trên instargram 2020</a></li>
-                                </ul>
-                            </aside>
-                            <aside id="recent-comments-2" class="widget widget_recent_comments"><span
-                                    class="widget-title "><span>Phản hồi gần đây</span></span>
-                                <div class="is-divider small"></div>
-                                <ul id="recentcomments"></ul>
-                            </aside>
+                                    </form>
+                                </aside>
+                                <aside id="recent-posts-2" class="widget widget_recent_entries"> <span
+                                        class="widget-title "><span>Bài viết mới</span></span>
+                                    <div class="is-divider small"></div>
+                                    <ul>
+                                        <% resultListNews.slice(0,6).forEach(function(item){ %>
+                                        <li>
+                                            <a href="/thu-thuat/<%-to_slug(item.title)%>.<%-item.id%>"
+                                                aria-current="page"><%- item.title %></a>
+                                        </li>
+                                        <% }) %>
+                                    </ul>
+                                </aside>
+                                <aside id="recent-comments-2" class="widget widget_recent_comments"><span
+                                        class="widget-title "><span>Phản hồi gần đây</span></span>
+                                    <div class="is-divider small"></div>
+                                    <ul id="recentcomments"></ul>
+                                </aside>
+                            </div>
                         </div>
                     </div>
-                </div>
             </div>
         </main>
         <%- include('../common/Footer'); %>
@@ -1532,6 +1531,14 @@
             window.location = url
             console.log(url)
         });
+        $("#searchform").submit(function (event) {
+            event.preventDefault()
+            var url = new URL(document.URL);
+            let valueN = $("#searchNews").val()
+            url.searchParams.delete('s');
+            url.searchParams.append('s', valueN)
+            window.location.href = url.href;
+        })
     })
 </script>
 
