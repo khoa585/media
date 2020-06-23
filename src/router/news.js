@@ -10,7 +10,7 @@ router.get("/", async (req, res) => {
     const page = req.query.page ? JSON.parse(req.query.page) : 1
     let key = ''
     if (Keysearch) {
-        const resultData = await searchNews(Keysearch)
+        const [resultData, resultRight] = await Promise.all([searchNews(Keysearch), getListNews(page, 6)])
         key = Keysearch
         if (resultData.length > 0) {
             let arr = []
@@ -23,19 +23,19 @@ router.get("/", async (req, res) => {
             } else {
                 pages = Math.floor(resultTotals.count / NUMBER_IN_PAGE) + 1;
             }
-            res.render("news/ListNews", { resultListNews: resultData, current: page, pages: pages,key:key })
+            res.render("news/ListNews", { resultListNews: resultData, current: page, pages: pages, key: key, resultRight: resultRight })
         } else {
-            res.render("news/ListNews", { resultListNews: resultData, current: 0, pages: 0,key:key })
+            res.render("news/ListNews", { resultListNews: resultData, current: 0, pages: 0, key: key, resultRight: resultRight })
         }
     } else {
-        const [resultListNews, resultTotals] = await Promise.all([getListNews(page, NUMBER_IN_PAGE), TotalNumberNews()])
+        const [resultListNews, resultTotals,resultRight] = await Promise.all([getListNews(page, NUMBER_IN_PAGE), TotalNumberNews(),getListNews(page, 6)])
         if (resultTotals) {
             if (resultTotals.count % NUMBER_IN_PAGE == 0) {
                 pages = resultTotals.count / NUMBER_IN_PAGE;
             } else {
                 pages = Math.floor(resultTotals.count / NUMBER_IN_PAGE) + 1;
             }
-            res.render("news/ListNews", { resultListNews: resultListNews, current: page, pages: pages,key:key })
+            res.render("news/ListNews", { resultListNews: resultListNews, current: page, pages: pages, key: key,resultRight: resultRight })
         }
     }
 

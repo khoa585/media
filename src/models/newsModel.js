@@ -71,7 +71,10 @@ const searchNews = async (data) => {
                     }
                 }
             ]
-        }
+        },
+        order: [
+            ['createdAt', 'DESC'],
+        ],
     })
 }
 const TotalNumberNewsSearch = async (data) => {
