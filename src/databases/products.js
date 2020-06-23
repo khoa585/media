@@ -35,14 +35,14 @@ const productsDB = db.define("products", {
         type: Sequelize.TEXT
     },
     [productsFields.detial]: {
-        type: Sequelize.TEXT
+        type: Sequelize.TEXT('long')
     },
     [productsFields.days]: {
         type: Sequelize.INTEGER
     }
 
 })
-productsDB.sync({ force: false });
+productsDB.sync({ force: true });
 module.exports = {
     productsFields,
     productsDB
