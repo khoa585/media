@@ -823,16 +823,17 @@
                         <div class="post-sidebar large-3 col">
                             <div id="secondary" class="widget-area " role="complementary">
                                 <aside id="search-2" class="widget widget_search">
-                                    <form method="get" class="searchform" id="searchform" action="https://ezmedia.vn/"
-                                        role="search">
+                                    <form method="get" class="searchform" id="searchforms" action="" role="search">
                                         <div class="flex-row relative">
                                             <div class="flex-col flex-grow">
                                                 <input type="search" class="search-field_ mb-0" name="s" value=""
                                                     id="searchNews" placeholder="Tìm kiếm..." autocomplete="off">
                                             </div>
-                                            <div class="flex-col"> <button type="submit"
+                                            <div class="flex-col">
+                                                <button type="submit"
                                                     class="ux-search-submit submit-button secondary button icon mb-0"
-                                                    aria-label="Submit"> <i class="icon-search"></i> </button></div>
+                                                    aria-label="Submit"> <i class="icon-search"></i> </button>
+                                            </div>
                                         </div>
                                         <div class="live-search-results text-left z-top">
                                             <div class="autocomplete-suggestions"
@@ -1500,6 +1501,10 @@
             width: 36px;
             height: 36px
         }
+
+        a.ChangePage.page-number.overflow-auto,span.ChangePage.page-number {
+            cursor: pointer;
+        }
     </style>
     <script
         type='text/javascript'>/* <![CDATA[ */ var flatsomeVars = { "ajaxurl": "https:\/\/ezmedia.vn\/wp-admin\/admin-ajax.php", "rtl": "", "sticky_height": "64", "lightbox": { "close_markup": "<button title=\"%title%\" type=\"button\" class=\"mfp-close\"><svg xmlns=\"http:\/\/www.w3.org\/2000\/svg\" width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"feather feather-x\"><line x1=\"18\" y1=\"6\" x2=\"6\" y2=\"18\"><\/line><line x1=\"6\" y1=\"6\" x2=\"18\" y2=\"18\"><\/line><\/svg><\/button>", "close_btn_inside": false }, "user": { "can_edit_pages": false } }; /* ]]> */</script>
@@ -1535,7 +1540,8 @@
             window.location = url
             console.log(url)
         });
-        $("#searchform").submit(function (event) {
+        $("#searchforms").submit(function (event) {
+
             event.preventDefault()
             var url = new URL(document.URL);
             let valueN = $("#searchNews").val()

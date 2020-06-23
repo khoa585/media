@@ -3,7 +3,7 @@ const router = express.Router();
 let multer = require("multer");
 const { createNews, getListNews,deleteManyNews, TotalNumberNews, deleteNews, getDetialNews, updateNews } = require("./../../models/newsModel");
 let { genId } = require("./../../common/TextHelper");
-let moment = require("moment");
+var moment = require('moment');
 let storage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, __dirname + '/../../public/upload');
@@ -106,7 +106,7 @@ router.get("(/:id)?", async (req, res) => {
     if (!listNews) {
         return res.redirect("/adminmanage");
     }
-    res.render('admin/news/news', { user: req.user, listNews: listNews, pages: Math.floor(totalPage.count / 100) + 1, moment: moment, current: page, paths: paths })
+    res.render('admin/news/news', { user: req.user, listNews: listNews, pages: Math.floor(totalPage.count / 100) + 1, current: page, paths: paths,moment: moment })
 })
 router.get("/detial/:id", async (req, res) => {
     try {

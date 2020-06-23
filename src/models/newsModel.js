@@ -21,7 +21,7 @@ const getListNews = async (page = PAGE, limit = LIMIT_NUMBER, sortBy) => {
             offset: (page - 1) * limit,
             raw: true,
             order: [
-            ['createdAt', 'DESC'],
+                ['createdAt', 'DESC'],
             ]
         })
     }
@@ -59,7 +59,7 @@ const updateNews = async (id, data) => {
         }
     })
 }
-const searchNews = async (data) => {
+const searchNews = async (page = PAGE, limit = LIMIT_NUMBER, data) => {
     return await newsDB.findAll({
         where: {
             [Op.or]: [
@@ -78,6 +78,9 @@ const searchNews = async (data) => {
         order: [
             ['createdAt', 'DESC'],
         ],
+        limit: limit,
+        offset: (page - 1) * limit,
+        raw: true,
     })
 }
 const TotalNumberNewsSearch = async (data) => {

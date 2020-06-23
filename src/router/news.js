@@ -11,7 +11,7 @@ router.get("/", async (req, res) => {
     const page = req.query.page ? JSON.parse(req.query.page) : 1
     let key = ''
     if (Keysearch) {
-        const [resultData, resultRight] = await Promise.all([searchNews(Keysearch), getListNews(page, 6)])
+        const [resultData, resultRight] = await Promise.all([searchNews(page,NUMBER_IN_PAGE,Keysearch), getListNews(page, 6)])
         key = Keysearch
         if (resultData.length > 0) {
             let arr = []

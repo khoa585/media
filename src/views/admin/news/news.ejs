@@ -95,7 +95,7 @@
                       <%=index+1%>
                     </th>
                     <td>
-                      <%=moment(item.createAt).tz("Asia/Bangkok").format("YYYY-MM-DD HH:mm:ss") %>
+                      <%- moment(item.createdAt).format("YYYY-MM-DD HH:mm:ss") %>
                     </td>
                     <td class="text-center">
                       <a style="padding: 0 10px; cursor: pointer;" href="/adminmanage/news/detial/<%-item.id%>">
