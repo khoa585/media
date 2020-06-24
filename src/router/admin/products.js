@@ -28,10 +28,10 @@ router.post("/add", upload.single("file"),
             if (req.file) {
                 req.body.image = "/upload/" + req.file.filename;
             }
-            let data = await productModel.createNews(req.body);
+            await productModel.createNews(req.body);
             return res.json({
                 status: "success",
-                data: data
+                data: {}
             })
         } catch (error) {
             console.log(error);
@@ -45,10 +45,10 @@ router.post("/add", upload.single("file"),
 router.post("/delete", async (req, res) => {
     try {
         // console.log(req.body);
-        let resultDelete = await productModel.deleteProduct(req.body.id);
+        await productModel.deleteProduct(req.body.id);
         return res.json({
             status: "success",
-            data: resultDelete
+            data: {}
         })
     } catch (error) {
         console.log(error);
@@ -62,11 +62,10 @@ router.post("/delete", async (req, res) => {
 router.post("/deleteMany", async (req, res) => {
     const id = req.body["id[]"]
     try {
-        let resultDelete = await productModel.deleteManyProduct(id);
-        console.log(resultDelete)
+        await productModel.deleteManyProduct(id);
         return res.json({
             status: "success",
-            data: resultDelete
+            data: {}
         })
     } catch (error) {
         return res.json({
@@ -86,10 +85,10 @@ router.post("/update", upload.single("file"),
             if (req.file) {
                 req.body.image = "/upload/" + req.file.filename;
             }
-            let dataUpdate = await productModel.updateProduct(id, req.body);
+            await productModel.updateProduct(id, req.body);
             return res.json({
                 status: "success",
-                data: dataUpdate
+                data: {}
             })
         } catch (error) {
             console.log(error);
@@ -148,7 +147,7 @@ router.get("(/:id)?", async (req, res) => {
         pages: Math.floor(totalPage.count / NUMBER_IN_PAGE) + 1,
         current: page,
         countPrice: countPrice,
-        Category  : req.query.Category
+        Category: req.query.Category
     })
 })
 module.exports = router;

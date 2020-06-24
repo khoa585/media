@@ -23,16 +23,15 @@ router.get("/add", (req, res) => {
 router.post("/add", upload.single("file"),
     async (req, res) => {
         try {
-            console.log(req.body)
             delete req.body.file;
             req.body.id = genId();
             if (req.file) {
                 req.body.image = "/upload/" + req.file.filename;
             }
-            let data = await createNews(req.body);
+            await createNews(req.body);
             return res.json({
                 status: "success",
-                data: data
+                data: {}
             })
         } catch (error) {
             console.log(error);
@@ -52,10 +51,10 @@ router.post("/update", upload.single("file"),
             if (req.file) {
                 req.body.image = "/upload/" + req.file.filename;
             }
-            let dataUpdate = await updateNews(id, req.body);
+          await updateNews(id, req.body);
             return res.json({
                 status: "success",
-                data: dataUpdate
+                data: {}
             })
         } catch (error) {
             console.log(error);
@@ -64,10 +63,10 @@ router.post("/update", upload.single("file"),
 router.post("/delete", async (req, res) => {
     console.log(req.body);
     try {
-        let resultDelete = await deleteNews(req.body.id);
+        await deleteNews(req.body.id);
         return res.json({
             status: "success",
-            data: resultDelete
+            data: {}
         })
     } catch (error) {
         console.log(error);
