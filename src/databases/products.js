@@ -42,7 +42,7 @@ const productsDB = db.define("products", {
     }
 
 })
-productsDB.sync({ force: true });
+productsDB.sync({ force: false });
 module.exports = {
     productsFields,
     productsDB

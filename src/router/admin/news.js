@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 let multer = require("multer");
-const { createNews, getListNews,deleteManyNews, TotalNumberNews, deleteNews, getDetialNews, updateNews } = require("./../../models/newsModel");
+const { createNews, getListNews, deleteManyNews, TotalNumberNews, deleteNews, getDetialNews, updateNews } = require("./../../models/newsModel");
 let { genId } = require("./../../common/TextHelper");
 var moment = require('moment');
 let storage = multer.diskStorage({
@@ -51,7 +51,7 @@ router.post("/update", upload.single("file"),
             if (req.file) {
                 req.body.image = "/upload/" + req.file.filename;
             }
-          await updateNews(id, req.body);
+            await updateNews(id, req.body);
             return res.json({
                 status: "success",
                 data: {}
@@ -105,7 +105,7 @@ router.get("(/:id)?", async (req, res) => {
     if (!listNews) {
         return res.redirect("/adminmanage");
     }
-    res.render('admin/news/news', { user: req.user, listNews: listNews, pages: Math.floor(totalPage.count / 100) + 1, current: page, paths: paths,moment: moment })
+    res.render('admin/news/news', { user: req.user, listNews: listNews, pages: Math.floor(totalPage.count / 100) + 1, current: page, paths: paths, moment: moment })
 })
 router.get("/detial/:id", async (req, res) => {
     try {
@@ -116,7 +116,10 @@ router.get("/detial/:id", async (req, res) => {
         res.render("admin/news/detial", { user: req.user, newsDetial: resultNews, moment: moment })
 
     } catch (error) {
-        console.log(error);
+        return res.json({
+            status: "error",
+            data: error
+        })
     }
 })
 
