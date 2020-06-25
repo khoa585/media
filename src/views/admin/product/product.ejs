@@ -84,6 +84,9 @@ function to_slug(str) {
                 <thead class="thead-light">
                   <tr>
                     <th scope="col" class="sort" data-sort="name">STT</th>
+                    <th scope="col" id="CheckedProduct" style="cursor: pointer;">
+                      <span class="select_btn">Chọn</span>
+                    </th>
                     <th scope="col" class="text-center">Hành Động</th>
                     <th scope="col" class="sort" data-sort="budget" style="width: 200px;">Tên Sản Phẩm</th>
                     <th scope="col">Thời Gian</th>
@@ -91,9 +94,7 @@ function to_slug(str) {
                     <th scope="col" class="sort" data-sort="budget" style="width: 200px;">Giá</th>
                     <th scope="col" class="sort" data-sort="budget" style="width: 200px;">Giảm Giá</th>
                     <th scope="col">Ảnh</th>
-                    <th scope="col" id="CheckedProduct" style="cursor: pointer;">
-                      <span class="select_btn">Chọn</span>
-                    </th>
+
                   </tr>
                 </thead>
                 <div>
@@ -185,6 +186,11 @@ function to_slug(str) {
                     <th scope="row">
                       <%=index+1%>
                     </th>
+                    <td>
+                      <div class="containercheckbox ">
+                        <span class="checkmark" checkeds="false" id=<%=item.id%>></span>
+                      </div>
+                    </td>
                     <td class="text-center">
                       <a style="padding: 0 10px; cursor: pointer;" href="/adminmanage/product/detial/<%-item.id%>">
                         <svg class="bi bi-tools" width="1.5em" height="1.5em" viewBox="0 0 16 16" fill="currentColor"
@@ -206,7 +212,8 @@ function to_slug(str) {
                       </span>
                     </td>
                     <td class="budget">
-                      <a href="/download-phan-mem/<%-to_slug(item.name)%>.<%-item.id%>" target="_blank" class="btn btn-main">
+                      <a href="/download-phan-mem/<%-to_slug(item.name)%>.<%-item.id%>" target="_blank"
+                        class="btn btn-main">
                         <%=item.name%></a>
                     </td>
                     <td>
@@ -227,11 +234,7 @@ function to_slug(str) {
                         <img alt="Image placeholder" src="<%=item.image%>">
                       </a>
                     </td>
-                    <td>
-                      <div class="containercheckbox ">
-                        <span class="checkmark" checkeds="false" id=<%=item.id%>></span>
-                      </div>
-                    </td>
+
                   </tr>
                   <%}) %>
                 </tbody>

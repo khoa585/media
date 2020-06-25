@@ -50,15 +50,14 @@
               <table class="table align-items-center table-flush">
                 <thead class="thead-light">
                   <tr>
+                    <th scope="col" class="sort" data-sort="name">STT</th>
                     <th scope="col" id="CheckedNews" style="cursor: pointer;">
                       <span class="select_btn">Chọn</span>
                     </th>
-                    <th scope="col" class="sort" data-sort="name">STT</th>
-                    <th scope="col">Thời Gian</th>
                     <th scope="col" class="text-center">Hành Động</th>
+                    <th scope="col">Thời Gian</th>
                     <th scope="col" class="sort" data-sort="budget" style="width: 200px;">Tiêu Đề</th>
                     <th scope="col">Ảnh</th>
-
                   </tr>
                 </thead>
                 <div>
@@ -86,16 +85,14 @@
                   <%
                     listNews.forEach((item,index)=>{%>
                   <tr>
-                    <td>
-                      <div class="containercheckbox ">
-                        <span class="checkmark" checkeds="false" id=<%=item.id%>></span>
-                      </div>
-                    </td>
+
                     <th scope="row">
                       <%=index+1%>
                     </th>
                     <td>
-                      <%- moment(item.createdAt).format("YYYY-MM-DD HH:mm:ss") %>
+                      <div class="containercheckbox ">
+                        <span class="checkmark" checkeds="false" id=<%=item.id%>></span>
+                      </div>
                     </td>
                     <td class="text-center">
                       <a style="padding: 0 10px; cursor: pointer;" href="/adminmanage/news/detial/<%-item.id%>">
@@ -116,6 +113,9 @@
                             d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
                         </svg>
                       </span>
+                    </td>
+                    <td>
+                      <%- moment(item.createdAt).format("YYYY-MM-DD HH:mm:ss") %>
                     </td>
                     <td class="budget">
                       <%=item.title%>

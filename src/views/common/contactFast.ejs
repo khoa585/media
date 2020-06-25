@@ -1,10 +1,12 @@
 <Session class="contact-Fact">
     <div id="social-right-fixed">
-        <a href="" target="_blank"><i class="colorIcon fa fa-facebook" aria-hidden="true"></i></a>
-        <a href="#" target="_blank"><i class="colorIcon fa fa-youtube"></i></a>
-        <a href="" onclick="showPopup('popup-lien-he');"><i class="colorIcon fa fa-envelope-o" aria-hidden="true"></i></a>
-        <a href="" onclick="showPopup('popup-address');"><i class="colorIcon fa fa-phone" aria-hidden="true"></i></a>
-        <a href="" rel="nofollow" alt="Phiên bản Mobile"><i class=" colorIcon colorIcon_icons fa fa-mobile" aria-hidden="true"></i></a>
+        <a href="https://www.google.com/" target="_blank"><i class="colorIcon fa fa-facebook"
+                aria-hidden="true"></i></a>
+        <a href="https://www.google.com/" target="_blank"><i class="colorIcon fa fa-youtube"></i></a>
+        <!-- <a href="" onclick="showPopup('popup-lien-he');"><i class="colorIcon fa fa-envelope-o" aria-hidden="true"></i></a> -->
+        <a href="https://www.google.com/" target="_blank"><i class="colorIcon fa fa-phone" aria-hidden="true"></i></a>
+        <a href="javascript:void(0);" id="scroll" style="opacity: 0;visibility:hidden;transition: .5s all;"><i
+                class="colorIcon fa fa-cloud-upload" aria-hidden="true"></i></i></a>
     </div>
     <style>
         .contact-Fact {
@@ -14,7 +16,7 @@
             z-index: 99;
         }
 
-        i.colorIcon.fa.fa-facebook{
+        i.colorIcon.fa.fa-facebook {
             color: #fff;
             background: #3b5998;
         }
@@ -24,18 +26,17 @@
             background: #cf2200;
         }
 
-        i.colorIcon.fa-mobile{
-            font-size: 40px!important;
+        i.colorIcon.fa.fa-cloud-upload {
             color: #fff;
-            background: #de0001;
+            background: #0e1f4d;
         }
 
-        i.colorIcon.fa-envelope-o{
+        i.colorIcon.fa-envelope-o {
             color: #fff;
             background: #ff7e00;
         }
 
-        i.colorIcon.fa.fa-phone{
+        i.colorIcon.fa.fa-phone {
             color: #fff;
             background: #ed1c24;
         }
@@ -62,14 +63,22 @@
     </style>
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
         integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-
-
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-        crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
         $(document).ready(function () {
-
-        })
+            $(window).scroll(function () {
+                if ($(this).scrollTop() > 100) {
+                    $("#scroll").css({ "opacity": "1", "visibility": "visible" });
+                } else {
+                    $("#scroll").css({ "opacity": "0","visibility": "hidden" });
+                }
+            });
+            $('#scroll').click(function () {
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                })
+            });
+        });
     </script>
 </Session>

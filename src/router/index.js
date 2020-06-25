@@ -30,11 +30,11 @@ router.post("/adminmanage/login", async (req, res) => {
 router.use("/uploader", uploader);
 router.use("/adminmanage", checkAdminPermision, adminRouter);
 router.use("/thu-thuat", news);
-router.use("/phan-mem",products);
-router.use("/download-phan-mem",Detailproducts);
+router.use("/phan-mem", products);
+router.use("/download-phan-mem", Detailproducts);
 router.get('/', async (req, res) => {
     try {
-        const result = await getListNews(1,10)
+        const result = await getListNews(1, 10)
         res.render('index', { result: result });
     } catch (error) {
         return res.json({
@@ -128,8 +128,5 @@ router.get('/tang-mat-xem-livestream-shopee', (req, res) => {
     res.render('BuffsViewerStreamShopee')
 })
 
-router.get('/testmysql', async (req, res) => {
-    const result = await UsersDB.findAll()
-    console.log(result)
-})
+
 module.exports = router;

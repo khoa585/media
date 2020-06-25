@@ -22,10 +22,12 @@
             <div id="search-3" class="col pb-0 widget widget_search">
                 <span class="widget-title">Tìm kiếm trong trang</span>
                 <div class="is-divider small"></div>
-                <form method="get" class="searchform" action="" role="search">
+                <form id="searchform__"  method="get" class="searchform" action="" role="search">
                     <div class="flex-row relative">
-                        <div class="flex-col flex-grow"> <input type="search" class="search-field mb-0" name="s"
-                                value="" id="s" placeholder="Tìm kiếm..." /></div>
+                        <div class="flex-col flex-grow">
+                            <input type="search"  id="searchNews__" class="search-field_ mb-0" name="s" value="" id="s"
+                                placeholder="Tìm kiếm..." />
+                        </div>
                         <div class="flex-col"> <button type="submit"
                                 class="ux-search-submit submit-button secondary button icon mb-0" aria-label="Submit">
                                 <i class="icon-search"></i> </button></div>
@@ -54,6 +56,23 @@
             </div>
         </div>
     </div>
-    <a href="#top" class="back-to-top button icon invert plain fixed bottom z-1 is-outline hide-for-medium circle"
-        id="top-link"><i class="icon-angle-up"></i></a>
+    <!-- <a href="#top" class="back-to-top button icon invert plain fixed bottom z-1 is-outline hide-for-medium circle"
+        id="top-link"><i class="icon-angle-up"></i></a> -->
+    
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function () {
+            $("#searchform__").submit(function (event) {
+                event.preventDefault()
+                var url = new URL(document.URL);
+                let valueN = $("#searchNews__").val()
+                url.searchParams.delete('s');
+                url.searchParams.append('s', valueN)
+                console.log(valueN)
+                window.location.href = `/thu-thuat?s=${valueN}`;
+            })
+        })
+    </script>
 </footer>
