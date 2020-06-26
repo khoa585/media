@@ -11,7 +11,7 @@ router.get("/", async (req, res) => {
     const page = req.query.page ? JSON.parse(req.query.page) : 1
     let key = ''
     if (Keysearch) {
-        const [resultData, resultRight] = await Promise.all([searchNews(page,NUMBER_IN_PAGE,Keysearch), getListNews(page, 6)])
+        const [resultData, resultRight] = await Promise.all([searchNews(page,NUMBER_IN_PAGE,Keysearch), getListNews(1, 6)])
         key = Keysearch
         if (resultData.length > 0) {
             let arr = []
@@ -29,7 +29,7 @@ router.get("/", async (req, res) => {
             res.render("news/ListNews", { resultListNews: resultData, current: 0, pages: 0, key: key, resultRight: resultRight,moment : moment })
         }
     } else {
-        const [resultListNews, resultTotals,resultRight] = await Promise.all([getListNews(page, NUMBER_IN_PAGE), TotalNumberNews(),getListNews(page, 6)])
+        const [resultListNews, resultTotals,resultRight] = await Promise.all([getListNews(page, NUMBER_IN_PAGE), TotalNumberNews(),getListNews(1, 6)])
         if (resultTotals) {
             if (resultTotals.count % NUMBER_IN_PAGE == 0) {
                 pages = resultTotals.count / NUMBER_IN_PAGE;
