@@ -44,6 +44,7 @@ router.get("/", async (req, res) => {
     res.render("products/index", { resultData: resultData, pages: pages, current: page, countPrice: countPrice, paths: paths })
 })
 router.get("/:type", async (req, res) => {
+    console.log(req.params)
     const { type } = req.params;
     let page = req.query.page || 1;
     let pages = 0;
